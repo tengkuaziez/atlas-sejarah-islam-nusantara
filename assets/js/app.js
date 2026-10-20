@@ -55,6 +55,9 @@ window.App = (function() {
       if (sites.length > 0) {
         HistoryMap.setSitesData(sites);
       }
+      if (sultans.length > 0) {
+        HistoryMap.setSultansData(sultans);
+      }
 
       // 2. Initialize Detail Drawer
       DetailDrawer.initDetailDrawer(kingdoms, sultans, sources, territoriesGeoJSON, sites, events);
@@ -311,6 +314,181 @@ window.App = (function() {
         const input = document.getElementById('search-kingdom-input');
         if (searchCenterControls.classList.contains('mobile-open') && input) {
           setTimeout(() => input.focus(), 150);
+        }
+      });
+    }
+
+    // 6b. Unified Omnisearch Live Dropdown (All Time & All Types)
+    const searchInput = document.getElementById('search-kingdom-input');
+    const searchDropdown = document.getElementById('search-results-dropdown');
+
+    if (searchInput && searchDropdown) {
+      const performLiveSearch = (query) => {
+        const q = query.trim().toLowerCase();
+        if (q.length < 2) {
+          searchDropdown.style.display = 'none';
+          searchDropdown.innerHTML = '';
+          return;
+        }
+
+        const matchKingdoms = kingdoms.filter(k => 
+          k.name.toLowerCase().includes(q) ||
+          (k.alternate_names && k.alternate_names.some(a => a.toLowerCase().includes(q))) ||
+          (k.capital_city && k.capital_city.toLowerCase().includes(q)) ||
+          (k.founder && k.founder.toLowerCase().includes(q))
+        ).slice(0, 5);
+
+        const matchSultans = sultans.filter(s =>
+          s.name.toLowerCase().includes(q) ||
+          (s.biography && s.biography.toLowerCase().includes(q))
+        ).slice(0, 5);
+
+        const matchSites = sites.filter(st =>
+          st.site_name.toLowerCase().includes(q) ||
+          (st.site_type && st.site_type.toLowerCase().includes(q)) ||
+          (st.historical_significance && st.historical_significance.toLowerCase().includes(q))
+        ).slice(0, 5);
+
+        const matchEvents = events.filter(e =>
+          e.event_name.toLowerCase().includes(q) ||
+          (e.description && e.description.toLowerCase().includes(q))
+        ).slice(0, 4);
+
+        const totalMatches = matchKingdoms.length + matchSultans.length + matchSites.length + matchEvents.length;
+
+        if (totalMatches === 0) {
+          searchDropdown.innerHTML = `
+            <div style="padding:12px; font-size:0.78rem; color:#64748b; text-align:center;">
+              Tidak ada hasil yang cocok dengan "<strong>${query}</strong>" di semua kurun waktu.
+            </div>
+          `;
+          searchDropdown.style.display = 'block';
+          return;
+        }
+
+        let html = '';
+
+        // Kingdoms section
+        if (matchKingdoms.length > 0) {
+          html += `<div class="search-group-header">👑 Kerajaan & Kesultanan (${matchKingdoms.length})</div>`;
+          matchKingdoms.forEach(k => {
+            html += `
+              <div class="search-result-item" data-action="kingdom" data-id="${k.id}" data-year="${k.year_founded || 1600}">
+                <div style="font-weight:700; color:#0f4c3a; font-size:0.83rem;">${k.name}</div>
+                <div style="font-size:0.72rem; color:#64748b;">${k.region} &bull; ${k.year_founded_display || ''} &ndash; ${k.year_ended_display || ''}</div>
+              </div>
+            `;
+          });
+        }
+
+        // Sultans section
+        if (matchSultans.length > 0) {
+          html += `<div class="search-group-header">👑 Penguasa & Tokoh Sultan (${matchSultans.length})</div>`;
+          matchSultans.forEach(s => {
+            const k = kingdoms.find(item => item.id === s.kingdom_id);
+            const kName = k ? k.name : '';
+            html += `
+              <div class="search-result-item" data-action="sultan" data-id="${s.id}" data-kingdom="${s.kingdom_id}" data-year="${s.reign_start || (k ? k.year_founded : 1600)}">
+                <div style="font-weight:700; color:#b45309; font-size:0.83rem;">${s.name}</div>
+                <div style="font-size:0.72rem; color:#64748b;">${kName} &bull; Masa Bertahta: ${s.reign_display || ''}</div>
+              </div>
+            `;
+          });
+        }
+
+        // Sites section
+        if (matchSites.length > 0) {
+          html += `<div class="search-group-header">🏛️ Situs Cagar Budaya (${matchSites.length})</div>`;
+          matchSites.forEach(st => {
+            let catIcon = '🏛️';
+            if (st.site_type === 'mosque') catIcon = '🕌';
+            if (st.site_type === 'palace') catIcon = '👑';
+            if (st.site_type === 'fortress') catIcon = '🛡️';
+            if (st.site_type === 'port') catIcon = '⚓';
+            html += `
+              <div class="search-result-item" data-action="site" data-id="${st.site_id}" data-year="${st.construction_year || 1600}">
+                <div style="font-weight:700; color:#0369a1; font-size:0.83rem;">${catIcon} ${st.site_name}</div>
+                <div style="font-size:0.72rem; color:#64748b;">${st.construction_period_display} &bull; ${st.heritage_status || 'Cagar Budaya'}</div>
+              </div>
+            `;
+          });
+        }
+
+        // Events section
+        if (matchEvents.length > 0) {
+          html += `<div class="search-group-header">📜 Peristiwa Sejarah (${matchEvents.length})</div>`;
+          matchEvents.forEach(e => {
+            html += `
+              <div class="search-result-item" data-action="event" data-id="${e.event_id}" data-year="${e.event_year}">
+                <div style="font-weight:700; color:#475569; font-size:0.83rem;">${e.event_name}</div>
+                <div style="font-size:0.72rem; color:#64748b;">${e.event_date_display || e.event_year + ' M'} &bull; ${e.description.slice(0, 60)}...</div>
+              </div>
+            `;
+          });
+        }
+
+        searchDropdown.innerHTML = html;
+        searchDropdown.style.display = 'block';
+
+        // Add item click handlers
+        searchDropdown.querySelectorAll('.search-result-item').forEach(item => {
+          item.addEventListener('click', () => {
+            const action = item.getAttribute('data-action');
+            const targetId = item.getAttribute('data-id');
+            const targetYear = parseInt(item.getAttribute('data-year'), 10);
+
+            // Auto-pause timeline so playback does not disrupt inspection
+            if (window.TimelineController && window.TimelineController.pause) {
+              window.TimelineController.pause();
+            }
+
+            // Jump timeline to target year
+            if (!isNaN(targetYear) && window.TimelineController) {
+              window.TimelineController.setYear(targetYear);
+            }
+
+            // Close search dropdown
+            searchDropdown.style.display = 'none';
+            if (searchCenterControls) {
+              searchCenterControls.classList.remove('mobile-open');
+            }
+
+            if (action === 'kingdom') {
+              DetailDrawer.openKingdom(targetId);
+            } else if (action === 'sultan') {
+              const kingdomId = item.getAttribute('data-kingdom');
+              DetailDrawer.openKingdom(kingdomId);
+              setTimeout(() => {
+                const select = document.getElementById('sultan-select-dropdown');
+                if (select) {
+                  select.value = targetId;
+                  DetailDrawer.onSultanSelected(targetId);
+                }
+              }, 200);
+            } else if (action === 'site') {
+              DetailDrawer.openSite(targetId);
+            } else if (action === 'event') {
+              renderEventsModal();
+              const eventsModal = document.getElementById('modal-events');
+              if (eventsModal) eventsModal.classList.add('open');
+            }
+          });
+        });
+      };
+
+      searchInput.addEventListener('input', (e) => {
+        performLiveSearch(e.target.value);
+      });
+
+      searchInput.addEventListener('focus', (e) => {
+        if (e.target.value.trim().length >= 2) {
+          performLiveSearch(e.target.value);
+        }
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!searchInput.contains(e.target) && !searchDropdown.contains(e.target)) {
+          searchDropdown.style.display = 'none';
         }
       });
     }

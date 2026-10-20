@@ -19,9 +19,20 @@ Website dirancang dengan estetika **Historical Digital Atlas** (perpaduan nuansa
 2. **Linimasa Kronologis Dinamis Lintas Zaman (Interactive Timeline 1082–1956 M)**:
    - Slider rentang tahun dari tahun 1082 M (Nisan Leran) hingga 1956 M (Tidore & Perjuangan Irian Barat).
    - Tombol **Play / Pause** otomatis untuk animasi pergerakan sejarah per tahun.
+   - **Pengatur Kecepatan Putar (Speed Controller 1x s.d. 4x)**: Tombol pengatur kecepatan putar yang dapat beralih siklis antara 1x, 2x, 3x, dan 4x baik di desktop maupun ponsel.
+   - **Inspeksi Bebas Gangguan (Auto-Pause & Popup Preservation)**: Mengklik titik marker atau membuka panel detail otomatis menjeda (*pause*) linimasa agar pembacaan sejarah tidak terganggu atau tertutup oleh pergeseran tahun berikutnya.
    - Pilihan lompatan abad cepat (*Century Quick Jump*): 1082 (Leran), 1267 (Pasai), 1400, 1475 (Demak), 1526 (Banten/Banjar), 1575 (Ternate), 1625 (Puncak Keemasan), 1670 (Makassar), 1755 (Giyanti), 1825 (Perang Diponegoro), 1900 (Kolonial), 1945 (Kemerdekaan RI), dan 1956 (Irian Barat).
    - Penyesuaian serentak (*quad-sync*): memperbarui status kerajaan, poligon wilayah aktif, situs sejarah yang telah berdiri, dan statistik secara *real-time*.
    - **Deteksi Era Kemerdekaan & NKRI**: Menandai periode 1945–1956 M dengan aksen Merah Putih khusus pada linimasa.
+
+3. **Fitur Pencarian Universal Lintas Waktu & Jenis (Unified Omnisearch)**:
+   - Pencarian instan yang mencakup **seluruh kurun waktu (tidak terikat tahun linimasa aktif)** dan **seluruh kategori entitas**:
+     - 👑 **Kerajaan & Kesultanan**: nama resmi, variasi nama lokal, ibu kota, pendiri.
+     - 👑 **Sultan & Penguasa**: 101 sultan (misal: mencari "Hasanuddin", "Iskandar Muda", "Raden Patah", "Hamengkubuwono").
+     - 🏛️ **Situs Cagar Budaya**: 26 situs (masjid kuno, keraton, makam, benteng, pelabuhan).
+     - 📜 **Peristiwa Sejarah**: 25 peristiwa penting (perjanjian, perang, proklamasi).
+   - **Dropdown Hasil Langsung (Live Search Suggestions)**: Menampilkan hasil pencarian terkelompok. Mengklik item secara otomatis melompatkan linimasa ke tahun yang relevan, memusatkan peta ke lokasi koordinat objek, dan membuka panel detailnya.
+   - Pada peta, seluruh titik hasil pencarian langsung ditampilkan secara transparan lintas kurun waktu tanpa terhalang status kronologis tahun berjalan.
 
 3. **Status Integrasi ke Negara Kesatuan Republik Indonesia (NKRI)**:
    - Mendokumentasikan secara historiografis proses peralihan kedaulatan kerajaan ke Republik Indonesia:

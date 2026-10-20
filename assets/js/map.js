@@ -10,6 +10,7 @@ window.HistoryMap = (function() {
   let sitesLayer = null;
   let territoriesData = null;
   let sitesData = [];
+  let sultansData = [];
   let tileLayers = {};
   let currentBaseLayer = 'osm';
   let kingdomMarkers = {}; // kingdomId -> Leaflet marker
@@ -84,6 +85,10 @@ window.HistoryMap = (function() {
 
   function setSitesData(sitesArray) {
     sitesData = sitesArray || [];
+  }
+
+  function setSultansData(sultansArray) {
+    sultansData = sultansArray || [];
   }
 
   function toggleTerritories(enable) {
@@ -505,6 +510,15 @@ window.HistoryMap = (function() {
   }
 
   function renderSites(currentYear, filters) {
+    // Preserve open popup if any
+    let openPopupSiteId = null;
+    for (const sid in siteMarkers) {
+      if (siteMarkers[sid].isPopupOpen && siteMarkers[sid].isPopupOpen()) {
+        openPopupSiteId = sid;
+        break;
+      }
+    }
+
     sitesLayer.clearLayers();
     siteMarkers = {};
 
@@ -513,24 +527,29 @@ window.HistoryMap = (function() {
     }
 
     let renderedSites = 0;
+    const isSearching = Boolean(filters.search && filters.search.trim().length > 0);
+    const query = isSearching ? filters.search.toLowerCase().trim() : '';
 
     sitesData.forEach(site => {
-      // Temporal filter: Site must be constructed by this year, unless showAllHistorical is true
-      if (!filters.showAllHistorical && site.construction_year > currentYear) {
-        return;
-      }
-
-      // Category filter
+      // Category filter (if selected)
       if (selectedSiteCategory !== 'all' && site.site_type !== selectedSiteCategory) {
         return;
       }
 
-      // Search filter
-      if (filters.search) {
-        const query = filters.search.toLowerCase();
+      // Search filter across ALL TIME and ALL TYPES
+      if (isSearching) {
         const matchName = site.site_name.toLowerCase().includes(query);
-        const matchSignificance = site.historical_significance.toLowerCase().includes(query);
-        if (!matchName && !matchSignificance) {
+        const matchSignificance = site.historical_significance && site.historical_significance.toLowerCase().includes(query);
+        const matchType = site.site_type && site.site_type.toLowerCase().includes(query);
+        const matchCondition = site.current_condition && site.current_condition.toLowerCase().includes(query);
+        const matchPeriod = site.construction_period_display && site.construction_period_display.toLowerCase().includes(query);
+        if (!matchName && !matchSignificance && !matchType && !matchCondition && !matchPeriod) {
+          return;
+        }
+        // When searching, bypass construction_year filter so sites appear across all time!
+      } else {
+        // Temporal filter: Site must be constructed by this year, unless showAllHistorical is true
+        if (!filters.showAllHistorical && site.construction_year > currentYear) {
           return;
         }
       }
@@ -547,15 +566,41 @@ window.HistoryMap = (function() {
         className: 'kingdom-popup-custom'
       });
 
+      // Auto-pause timeline when inspecting site so timeseries does not destroy the popup
+      marker.on('click', () => {
+        if (window.TimelineController && window.TimelineController.pause) {
+          window.TimelineController.pause();
+        }
+      });
+      marker.on('popupopen', () => {
+        if (window.TimelineController && window.TimelineController.pause) {
+          window.TimelineController.pause();
+        }
+      });
+
       sitesLayer.addLayer(marker);
       siteMarkers[site.site_id] = marker;
       renderedSites++;
     });
 
+    // Restore open popup if still present
+    if (openPopupSiteId && siteMarkers[openPopupSiteId]) {
+      siteMarkers[openPopupSiteId].openPopup();
+    }
+
     return renderedSites;
   }
 
   function renderMarkers(kingdoms, currentYear, filters) {
+    // Preserve open popup if any
+    let openPopupKingdomId = null;
+    for (const kid in kingdomMarkers) {
+      if (kingdomMarkers[kid].isPopupOpen && kingdomMarkers[kid].isPopupOpen()) {
+        openPopupKingdomId = kid;
+        break;
+      }
+    }
+
     markersLayer.clearLayers();
     kingdomMarkers = {};
 
@@ -569,6 +614,9 @@ window.HistoryMap = (function() {
     const sitesCount = renderSites(currentYear, filters);
 
     // 3. Render Kingdom Markers on Top in markerPane (Z-Index 600)
+    const isSearching = Boolean(filters.search && filters.search.trim().length > 0);
+    const query = isSearching ? filters.search.toLowerCase().trim() : '';
+
     if (showKingdoms) {
       kingdoms.forEach(kingdom => {
         const status = getKingdomStatus(kingdom, currentYear);
@@ -578,27 +626,36 @@ window.HistoryMap = (function() {
           return;
         }
 
-        // Filter: Search Text
-        if (filters.search) {
-          const query = filters.search.toLowerCase();
+        // Filter: Search across ALL TIME and ALL TYPES (Kingdoms, Sultans, Capitals, Founders, Summaries)
+        if (isSearching) {
           const matchName = kingdom.name.toLowerCase().includes(query);
           const matchAlt = kingdom.alternate_names && kingdom.alternate_names.some(a => a.toLowerCase().includes(query));
-          const matchCapital = kingdom.capital_city.toLowerCase().includes(query);
-          if (!matchName && !matchAlt && !matchCapital) {
+          const matchCapital = kingdom.capital_city && kingdom.capital_city.toLowerCase().includes(query);
+          const matchFounder = kingdom.founder && kingdom.founder.toLowerCase().includes(query);
+          const matchSummary = kingdom.historical_summary && kingdom.historical_summary.toLowerCase().includes(query);
+
+          // Check if any sultan in this kingdom matches
+          const matchSultan = sultansData.some(s => s.kingdom_id === kingdom.id && (
+            s.name.toLowerCase().includes(query) || (s.biography && s.biography.toLowerCase().includes(query))
+          ));
+
+          if (!matchName && !matchAlt && !matchCapital && !matchFounder && !matchSummary && !matchSultan) {
             return;
           }
-        }
-
-        // Filter: Only Golden Age
-        if (filters.onlyGoldenAge && status !== 'golden_age') {
-          return;
-        }
-
-        // Filter: Show Active Only in Year vs All Historical
-        if (!filters.showAllHistorical) {
-          // Active-only mode: hide kingdoms not yet founded or already ended without cultural continuation
-          if (status === 'not_yet_founded' || status === 'ended') {
+          // Note: When isSearching is true, DO NOT filter out status === 'not_yet_founded' or 'ended'!
+          // The matched kingdom will be shown across all time!
+        } else {
+          // Normal mode (not searching):
+          // Filter: Only Golden Age
+          if (filters.onlyGoldenAge && status !== 'golden_age') {
             return;
+          }
+
+          // Filter: Show Active Only in Year vs All Historical
+          if (!filters.showAllHistorical) {
+            if (status === 'not_yet_founded' || status === 'ended') {
+              return;
+            }
           }
         }
 
@@ -609,25 +666,42 @@ window.HistoryMap = (function() {
           goldenAgeCount++;
         }
 
-        const icon = createMarkerIcon(kingdom, status);
+        // When searching, if the kingdom is outside current year range, render it with active visibility so user can see it
+        const effectiveStatus = (isSearching && (status === 'not_yet_founded' || status === 'ended')) ? 'active' : status;
+
+        const icon = createMarkerIcon(kingdom, effectiveStatus);
         const marker = L.marker([kingdom.coordinates.lat, kingdom.coordinates.lng], {
           icon: icon,
           title: kingdom.name,
           riseOnHover: true
         });
 
-        marker.bindPopup(() => buildPopupContent(kingdom, status, currentYear), {
+        marker.bindPopup(() => buildPopupContent(kingdom, effectiveStatus, currentYear), {
           maxWidth: 320,
           className: 'kingdom-popup-custom'
         });
 
+        // Auto-pause timeline when clicking marker or opening popup
         marker.on('click', () => {
+          if (window.TimelineController && window.TimelineController.pause) {
+            window.TimelineController.pause();
+          }
           map.panTo([kingdom.coordinates.lat, kingdom.coordinates.lng]);
+        });
+        marker.on('popupopen', () => {
+          if (window.TimelineController && window.TimelineController.pause) {
+            window.TimelineController.pause();
+          }
         });
 
         markersLayer.addLayer(marker);
         kingdomMarkers[kingdom.id] = marker;
       });
+    }
+
+    // Restore open popup if still present
+    if (openPopupKingdomId && kingdomMarkers[openPopupKingdomId]) {
+      kingdomMarkers[openPopupKingdomId].openPopup();
     }
 
     return {
@@ -687,6 +761,7 @@ window.HistoryMap = (function() {
     setBaseLayer,
     setTerritoriesData,
     setSitesData,
+    setSultansData,
     toggleTerritories,
     isTerritoriesVisible,
     toggleKingdoms,

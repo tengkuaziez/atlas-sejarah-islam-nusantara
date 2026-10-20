@@ -55,6 +55,11 @@ window.DetailDrawer = (function() {
   }
 
   function openKingdom(kingdomId) {
+    // Auto-pause timeline when inspecting detail so playback doesn't disrupt user
+    if (window.TimelineController && window.TimelineController.pause) {
+      window.TimelineController.pause();
+    }
+
     const kingdom = kingdomsMap[kingdomId];
     if (!kingdom || !drawerEl) return;
 
@@ -70,6 +75,11 @@ window.DetailDrawer = (function() {
   }
 
   function openSite(siteId) {
+    // Auto-pause timeline when inspecting detail
+    if (window.TimelineController && window.TimelineController.pause) {
+      window.TimelineController.pause();
+    }
+
     const site = sitesMap[siteId];
     if (!site || !drawerEl) return;
 

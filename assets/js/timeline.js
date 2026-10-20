@@ -130,7 +130,7 @@ window.TimelineController = (function() {
       setYear(MIN_YEAR);
     }
 
-    const intervalMs = Math.round(140 / playbackSpeed);
+    const intervalMs = Math.max(35, Math.round(180 / playbackSpeed));
 
     playTimer = setInterval(() => {
       if (currentYear >= MAX_YEAR) {
@@ -160,14 +160,39 @@ window.TimelineController = (function() {
   }
 
   function setSpeed(speedMultiplier) {
-    playbackSpeed = speedMultiplier;
+    const validSpeed = Math.min(4, Math.max(1, parseInt(speedMultiplier, 10) || 1));
+    playbackSpeed = validSpeed;
+    
+    // Update speed button UI
+    const speedBtn = document.getElementById('btn-timeline-speed');
+    if (speedBtn) {
+      speedBtn.innerText = `${playbackSpeed}x`;
+      speedBtn.title = `Kecepatan Putar: ${playbackSpeed}x (Klik untuk ganti 1x–4x)`;
+    }
+
     if (isPlaying) {
-      pause();
-      play();
+      clearInterval(playTimer);
+      const intervalMs = Math.max(35, Math.round(180 / playbackSpeed));
+      playTimer = setInterval(() => {
+        if (currentYear >= MAX_YEAR) {
+          pause();
+        } else {
+          setYear(currentYear + 1);
+        }
+      }, intervalMs);
     }
   }
 
+  function cycleSpeed() {
+    const speeds = [1, 2, 3, 4];
+    const currentIndex = speeds.indexOf(playbackSpeed);
+    const nextSpeed = speeds[(currentIndex + 1) % speeds.length];
+    setSpeed(nextSpeed);
+    return nextSpeed;
+  }
+
   function stepYear(step) {
+    pause(); // Auto-pause when stepping manually
     setYear(currentYear + step);
   }
 
@@ -180,6 +205,10 @@ window.TimelineController = (function() {
     return currentYear;
   }
 
+  function getSpeed() {
+    return playbackSpeed;
+  }
+
   return {
     initTimeline,
     setYear,
@@ -187,6 +216,8 @@ window.TimelineController = (function() {
     play,
     pause,
     setSpeed,
+    cycleSpeed,
+    getSpeed,
     stepYear,
     resetTimeline,
     getCurrentYear
