@@ -6,28 +6,26 @@ window.HistoryMap = (function() {
   let map = null;
   let markersLayer = null;
   let tileLayers = {};
-  let currentBaseLayer = 'positron';
+  let currentBaseLayer = 'osm';
   let kingdomMarkers = {}; // kingdomId -> Leaflet marker
 
   const INDONESIA_CENTER = [-0.7893, 118.9213];
   const DEFAULT_ZOOM = 5;
 
   function initMap(containerId) {
-    // Define Base Tile Layers
+    // 100% Free Public Basemaps - Zero API Key Required
     tileLayers = {
-      positron: L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-        subdomains: 'abcd',
-        maxZoom: 19
-      }),
-      dark: L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-        subdomains: 'abcd',
-        maxZoom: 19
-      }),
       osm: L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors',
         maxZoom: 19
+      }),
+      natgeo: L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/tile/{z}/{y}/{x}', {
+        attribution: 'Tiles &copy; National Geographic, Esri &mdash; National Geographic Style',
+        maxZoom: 16
+      }),
+      topo: L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+        attribution: 'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, SRTM | Style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a>',
+        maxZoom: 17
       }),
       satellite: L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
         attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community',
@@ -41,7 +39,7 @@ window.HistoryMap = (function() {
       minZoom: 4,
       maxZoom: 15,
       zoomControl: false,
-      layers: [tileLayers.positron]
+      layers: [tileLayers.osm]
     });
 
     // Custom Zoom Control at Top-Right

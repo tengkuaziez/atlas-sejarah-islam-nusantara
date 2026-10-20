@@ -12,7 +12,7 @@ Website dirancang dengan estetika **Historical Digital Atlas** (perpaduan nuansa
 1. **Peta Interaktif 2D Berbasis Leaflet.js**:
    - Memetakan 36 kerajaan dan kesultanan Islam di 6 zona geografis kepulauan: **Sumatera, Jawa, Kalimantan, Sulawesi, Maluku & Papua, dan Nusa Tenggara**.
    - Penanda (*marker*) kustom dengan simbol ornamen islami, mahkota keemasan, dan lencana peninggalan budaya.
-   - Pilihan multi-basemap: **CartoDB Positron** (peta kartografis terang beresolusi tinggi), **CartoDB Dark Matter** (mode malam atlas digital), **OpenStreetMap Standard**, dan **Citra Satelit Esri World Imagery**.
+   - Pilihan multi-basemap (100% Gratis & Tanpa API Key): **OpenStreetMap Standard** (default), **Esri National Geographic** (gaya atlas sejarah klasik bernuansa kartografi kuno), **OpenTopoMap** (relief kontur & elevasi), dan **Citra Satelit Esri World Imagery**.
 
 2. **Linimasa Kronologis Dinamis (Interactive Timeline 1200–1950 M)**:
    - Slider rentang tahun dari tahun 1200 M hingga 1950 M.
@@ -218,7 +218,7 @@ Situs ini 100% kompatibel dan siap di-deploy langsung ke **GitHub Pages**:
 ## 🔍 Ringkasan Pengujian & Keterbatasan Data
 
 ### Fitur yang Telah Diuji & Berfungsi:
-- [x] **Pemuatan Peta & Multi-Basemap**: Berfungsi sempurna pada CartoDB Positron, Dark Matter, OSM, dan Esri Satellite.
+- [x] **Pemuatan Peta & Multi-Basemap (Tanpa API Key)**: Berfungsi lancar pada OpenStreetMap, Esri NatGeo (Atlas Sejarah), OpenTopoMap, dan Esri Satellite.
 - [x] **Koordinat & Bounding Box**: Seluruh 36 koordinat pusat kerajaan diverifikasi berada di dalam batas lintang-bujur kepulauan Indonesia.
 - [x] **Sinkronisasi Linimasa**: Slider tahun dari 1200 M hingga 1950 M memperbarui status marker, label era, dan statistik aktif secara *real-time*.
 - [x] **Dropdown Sultan Dinamis**: Dropdown sultan berganti sesuai kerajaan yang dipilih, menampilkan biografi, prestasi, dan lencana masa pemerintahan yang sinkron dengan tahun yang sedang aktif.
