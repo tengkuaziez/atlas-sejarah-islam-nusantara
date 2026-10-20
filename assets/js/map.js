@@ -621,7 +621,7 @@ window.HistoryMap = (function() {
           riseOnHover: true
         });
 
-        marker.bindPopup(() => buildPopupContent(kingdom, effectiveStatus, currentYear), {
+        marker.bindPopup(() => buildPopupContent(kingdom, status, currentYear), {
           maxWidth: 320,
           className: 'kingdom-popup-custom'
         });
