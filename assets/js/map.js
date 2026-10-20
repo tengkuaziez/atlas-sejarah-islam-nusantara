@@ -756,6 +756,58 @@ window.HistoryMap = (function() {
     map.flyTo(INDONESIA_CENTER, DEFAULT_ZOOM, { duration: 1 });
   }
 
+  const REGION_BOUNDS = {
+    'Semua': [
+      [-11.0, 95.0],
+      [6.0, 141.0]
+    ],
+    'Sumatera': [
+      [-6.0, 95.0],
+      [6.0, 106.0]
+    ],
+    'Jawa': [
+      [-8.8, 105.5],
+      [-5.8, 114.6]
+    ],
+    'Kalimantan': [
+      [-4.3, 108.5],
+      [4.5, 119.2]
+    ],
+    'Sulawesi': [
+      [-6.2, 118.5],
+      [2.0, 125.3]
+    ],
+    'Maluku & Papua': [
+      [-5.5, 125.5],
+      [2.5, 135.0]
+    ],
+    'Nusa Tenggara': [
+      [-10.2, 115.5],
+      [-7.8, 125.2]
+    ]
+  };
+
+  function zoomToRegion(region) {
+    if (!map) return;
+
+    if (!region || region === 'Semua') {
+      resetView();
+      return;
+    }
+
+    const bounds = REGION_BOUNDS[region];
+    if (bounds) {
+      map.closePopup();
+      const isMobile = window.innerWidth < 768;
+      map.flyToBounds(bounds, {
+        paddingTopLeft: isMobile ? [15, 15] : [40, 40],
+        paddingBottomRight: isMobile ? [15, 85] : [40, 40],
+        duration: 1.25,
+        maxZoom: region === 'Jawa' ? 7 : (isMobile ? 6 : 7)
+      });
+    }
+  }
+
   return {
     initMap,
     setBaseLayer,
@@ -771,6 +823,7 @@ window.HistoryMap = (function() {
     focusKingdom,
     focusSite,
     resetView,
+    zoomToRegion,
     getKingdomStatus
   };
 })();

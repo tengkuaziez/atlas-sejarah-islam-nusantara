@@ -220,6 +220,15 @@ window.App = (function() {
       });
     }
 
+    // Auto-close mobile layers sheet when a region badge is clicked so user sees the map zoom action
+    if (mobileLayersModal) {
+      mobileLayersModal.querySelectorAll('.filter-badge[data-region]').forEach(badge => {
+        badge.addEventListener('click', () => {
+          mobileLayersModal.classList.remove('open');
+        });
+      });
+    }
+
     // 1d. Events Chronology Modal
     const eventsBtn = document.getElementById('btn-open-events-modal');
     const mobileEventsBtn = document.getElementById('btn-mobile-events-toggle');
@@ -269,6 +278,7 @@ window.App = (function() {
     if (resetViewBtn) {
       resetViewBtn.addEventListener('click', () => {
         HistoryMap.resetView();
+        FilterManager.setRegion('Semua', false);
       });
     }
 

@@ -63,12 +63,17 @@ window.FilterManager = (function() {
     }
   }
 
-  function setRegion(region) {
+  function setRegion(region, shouldZoom = true) {
     document.querySelectorAll('.filter-badge[data-region]').forEach(b => {
       b.classList.toggle('active', b.getAttribute('data-region') === region);
     });
     state.region = region;
     triggerChange();
+
+    // Smoothly fly & zoom the map to the selected geographic region
+    if (shouldZoom && window.HistoryMap && typeof window.HistoryMap.zoomToRegion === 'function') {
+      window.HistoryMap.zoomToRegion(region);
+    }
   }
 
   function toggleGoldenAge() {
