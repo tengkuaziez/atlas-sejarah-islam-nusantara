@@ -963,18 +963,19 @@ html, body {
    BOTTOM TIMELINE CONTROL BAR
    ========================================================================== */
 .timeline-bar-container {
-  height: 92px;
+  height: auto;
+  min-height: 98px;
   background: rgba(253, 252, 248, 0.98);
   border-top: 2px solid var(--color-border);
   box-shadow: 0 -4px 16px rgba(0,0,0,0.08);
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 6px 20px;
+  padding: 6px 20px 8px;
   z-index: 700;
   backdrop-filter: blur(8px);
   flex-shrink: 0;
-  padding-bottom: env(safe-area-inset-bottom);
+  padding-bottom: calc(8px + env(safe-area-inset-bottom, 0px));
   transition: height var(--transition-fast), padding var(--transition-fast);
 }
 
@@ -1120,13 +1121,34 @@ html, body {
   color: #142820;
 }
 
-/* Slider Bar */
+/* Slider Bar Container */
 .slider-wrapper {
   flex: 1;
   display: flex;
   flex-direction: column;
   position: relative;
   min-width: 0;
+  gap: 2px;
+}
+
+/* Floating Live Year Bubble above Thumb */
+.slider-thumb-bubble {
+  position: absolute;
+  top: -24px;
+  transform: translateX(-50%);
+  background: #142820;
+  color: #fbbf24;
+  font-family: var(--font-serif);
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 1px 7px;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(251, 191, 36, 0.4);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  pointer-events: none;
+  white-space: nowrap;
+  z-index: 10;
+  transition: opacity 0.15s ease;
 }
 
 .timeline-slider {
@@ -1134,10 +1156,10 @@ html, body {
   width: 100%;
   height: 8px;
   border-radius: 4px;
-  background: linear-gradient(to right, #dcd4c0 0%, #c4b99f 100%);
+  background: linear-gradient(to right, #059669 0%, #d4af37 60%, #e2d9c2 60%, #dcd4c0 100%);
   outline: none;
   cursor: pointer;
-  margin: 5px 0;
+  margin: 4px 0 2px;
 }
 
 .timeline-slider::-webkit-slider-thumb {
@@ -1146,57 +1168,127 @@ html, body {
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  background: radial-gradient(circle, var(--color-gold-light) 0%, var(--color-gold) 100%);
-  border: 2px solid #ffffff;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.35);
+  background: radial-gradient(circle, #fef08a 0%, #eab308 60%, #ca8a04 100%);
+  border: 2.5px solid #ffffff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.35);
   cursor: grab;
-  transition: transform 0.15s ease;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
 .timeline-slider::-webkit-slider-thumb:hover {
   transform: scale(1.2);
+  box-shadow: 0 0 12px rgba(234, 179, 8, 0.8);
 }
 
 .timeline-slider::-webkit-slider-thumb:active {
   cursor: grabbing;
+  transform: scale(1.25);
 }
 
-/* Century Ticks */
-.century-ticks-row {
+/* Proportional Scale Century Ruler */
+.timeline-ruler {
+  position: relative;
+  height: 18px;
+  margin: 0 12px; /* 12px exactly offsets the 24px thumb diameter */
+  user-select: none;
+}
+
+.ruler-tick {
+  position: absolute;
+  top: 0;
+  transform: translateX(-50%);
   display: flex;
-  justify-content: space-between;
-  padding: 0 2px;
-  gap: 4px;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+}
+
+.ruler-tick .tick-line {
+  width: 1px;
+  height: 5px;
+  background: #cbd5e1;
+  transition: background 0.15s, height 0.15s;
+}
+
+.ruler-tick.major .tick-line {
+  height: 6px;
+  width: 1.5px;
+  background: #94a3b8;
+}
+
+.ruler-tick .tick-label {
+  font-size: 0.62rem;
+  color: #64748b;
+  font-weight: 500;
+  margin-top: 1px;
+  line-height: 1;
+  transition: color 0.15s, font-weight 0.15s;
+}
+
+.ruler-tick:hover .tick-line,
+.ruler-tick.active-tick .tick-line {
+  background: var(--color-primary);
+  height: 8px;
+}
+
+.ruler-tick:hover .tick-label,
+.ruler-tick.active-tick .tick-label {
+  color: var(--color-primary-dark);
+  font-weight: 700;
+}
+
+/* Landmark Milestone Quick-Jump Chips Row */
+.timeline-milestones-row {
+  display: flex;
+  align-items: center;
+  gap: 5px;
   overflow-x: auto;
   scrollbar-width: none;
+  padding: 2px 0 1px;
+  min-height: 24px;
 }
 
-.century-ticks-row::-webkit-scrollbar {
+.timeline-milestones-row::-webkit-scrollbar {
   display: none;
 }
 
+.milestones-label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: var(--color-primary-dark);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  margin-right: 2px;
+}
+
 .century-btn {
-  background: none;
-  border: none;
-  font-size: 0.68rem;
-  color: var(--color-text-muted);
+  background: #f4efe2;
+  border: 1px solid #dcd4be;
+  font-size: 0.66rem;
+  color: #4b5563;
   cursor: pointer;
   font-weight: 600;
   transition: var(--transition-fast);
-  padding: 2px 5px;
-  border-radius: 4px;
+  padding: 2px 7px;
+  border-radius: var(--radius-full);
   white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .century-btn:hover {
-  color: var(--color-primary);
-  background: #eee7d5;
+  color: var(--color-primary-dark);
+  background: #e8debe;
+  border-color: var(--color-gold);
 }
 
 .century-btn.active-century {
-  color: var(--color-primary);
+  color: #ffffff;
   font-weight: 700;
-  background: #e2d9c2;
+  background: var(--color-primary);
+  border-color: var(--color-primary-dark);
+  box-shadow: 0 1px 4px rgba(5, 150, 105, 0.35);
 }
 
 /* ==========================================================================
@@ -1583,12 +1675,27 @@ html, body {
   .timeline-slider {
     width: 100%;
     height: 6px;
-    margin: 2px 0 4px;
+    margin: 4px 0 2px;
   }
 
   .timeline-slider::-webkit-slider-thumb {
-    width: 24px;
-    height: 24px;
+    width: 22px;
+    height: 22px;
+  }
+
+  .slider-thumb-bubble {
+    top: -20px;
+    font-size: 0.64rem;
+    padding: 1px 5px;
+  }
+
+  .timeline-ruler {
+    height: 15px;
+    margin: 0 11px;
+  }
+
+  .ruler-tick .tick-label {
+    font-size: 0.56rem;
   }
 
   .timeline-playback-btns {
@@ -1609,25 +1716,27 @@ html, body {
     height: 34px;
   }
 
-  .century-ticks-row {
+  .timeline-milestones-row {
     order: 3;
     display: flex;
+    align-items: center;
     gap: 4px;
     overflow-x: auto;
     scrollbar-width: none;
-    padding: 2px 0 2px 4px;
+    -webkit-overflow-scrolling: touch;
+    padding: 2px 0 2px 2px;
     width: 100%;
   }
 
-  .century-ticks-row::-webkit-scrollbar {
+  .timeline-milestones-row::-webkit-scrollbar {
     display: none;
   }
 
   .century-btn {
-    font-size: 0.64rem;
+    font-size: 0.62rem;
     padding: 2px 6px;
     background: #efe7d2;
-    border-radius: 4px;
+    border-radius: var(--radius-full);
     white-space: nowrap;
   }
 
@@ -1674,8 +1783,11 @@ html, body {
   }
 
   .year-epoch-badge {
-    max-width: 95px;
+    max-width: 140px;
     font-size: 0.6rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   .century-btn {

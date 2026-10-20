@@ -512,11 +512,13 @@ window.App = (function() {
       });
     });
 
-    // 9. Century jump clicks
-    document.querySelectorAll('.century-btn').forEach(btn => {
+    // 9. Century jump clicks & proportional ruler tick clicks
+    document.querySelectorAll('.century-btn, .ruler-tick').forEach(btn => {
       btn.addEventListener('click', () => {
         const yr = parseInt(btn.getAttribute('data-year'), 10);
-        TimelineController.setYear(yr);
+        if (!isNaN(yr)) {
+          TimelineController.setYear(yr);
+        }
       });
     });
   }

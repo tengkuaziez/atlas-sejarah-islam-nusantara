@@ -9,23 +9,35 @@ window.TimelineController = (function() {
   
   let isPlaying = false;
   let playTimer = null;
-  let playbackSpeed = 1; // 1x, 2x, 5x
+  let playbackSpeed = 1; // 1x, 2x, 3x, 4x
   let onYearChangeCallback = null;
 
   const EPOCH_DESCRIPTIONS = [
-    { upTo: 1199, text: "Bukti Epigrafi Tertua Islam di Jawa (Leran 1082 M)" },
-    { upTo: 1290, text: "Era Awal Masuknya Islam & Kesultanan Samudera Pasai" },
-    { upTo: 1390, text: "Kemakmuran Pasai, Nisan Troloyo, & Lawatan Ibnu Battuta" },
-    { upTo: 1470, text: "Jaringan Niaga Maritim Melaka & Rempah Maluku Kie Raha" },
-    { upTo: 1525, text: "Kebangkitan Kesultanan Demak & Syiar Walisongo di Jawa" },
-    { upTo: 1575, text: "Ekspansi Aceh Darussalam & Kejayaan Sultan Baabullah di Ternate" },
-    { upTo: 1640, text: "Zaman Keemasan Sultan Iskandar Muda, Sultan Agung, & Banten" },
-    { upTo: 1675, text: "Perang Makassar (Sultan Hasanuddin) & Sultan Ageng Tirtayasa" },
-    { upTo: 1755, text: "Dinamika Monarki Maritim & Perjanjian Giyanti di Jawa" },
-    { upTo: 1805, text: "Perjuangan Sultan Nuku Maluku & Perlawanan Bahari Siak" },
-    { upTo: 1840, text: "Perang Padri, Perang Diponegoro, & Perang Palembang" },
-    { upTo: 1944, text: "Perang Aceh, Perang Banjar, & Kebangkitan Nasional Menuju Republik" },
-    { upTo: 1956, text: "🇮🇩 Kemerdekaan RI 1945 & Integrasi Kerajaan Nusantara ke NKRI" }
+    { upTo: 1199, text: "Bukti Epigrafi Islam Tertua: Fatimah binti Maimun Leran (1082 M)" },
+    { upTo: 1266, text: "Awal Perkembangan Komunitas Muslim & Pelabuhan Niaga Pesisir" },
+    { upTo: 1296, text: "Pendirian Kesultanan Samudera Pasai oleh Sultan Malik as-Saleh (1267 M)" },
+    { upTo: 1344, text: "Pencetakan Koin Emas Dirham & Kemakmuran Samudera Pasai" },
+    { upTo: 1367, text: "Lawatan Musafir Dunia Ibnu Battuta ke Samudera Pasai (1345 M)" },
+    { upTo: 1399, text: "Jejak Komunitas Muslim Troloyo di Majapahit (1368 M)" },
+    { upTo: 1474, text: "Jaringan Niaga Bahari Selat Melaka & Rempah Maluku Kie Raha" },
+    { upTo: 1499, text: "Pendirian Kesultanan Demak Bintoro & Majelis Walisongo (1475 M)" },
+    { upTo: 1525, text: "Perjuangan Bahari Pati Unus Melawan Portugis di Melaka" },
+    { upTo: 1550, text: "Berdirinya Kesultanan Banten, Cirebon, & Banjar (1526 M)" },
+    { upTo: 1574, text: "Perlawanan Maluku Terhadap Portugis & Sultan Khairun Ternate" },
+    { upTo: 1604, text: "Zaman Kejayaan Sultan Baabullah Ternate & Pendirian Mataram Islam" },
+    { upTo: 1624, text: "Islamisasi Makassar Gowa-Tallo (1605 M) & Awal Sultan Iskandar Muda" },
+    { upTo: 1645, text: "⭐ Puncak Kejayaan Sultan Agung Mataram & Sultan Iskandar Muda Aceh" },
+    { upTo: 1666, text: "Bandar Niaga Bebas Somba Opu Makassar & Sultan Ageng Banten" },
+    { upTo: 1699, text: "Perjanjian Bongaya (1667 M) & Dinamika Perebutan Takhta Banten" },
+    { upTo: 1754, text: "Kebangkitan Dinasti Maritim Siak, Palembang, & Sambas" },
+    { upTo: 1779, text: "Perjanjian Giyanti (1755 M) & Berdirinya Yogyakarta & Surakarta" },
+    { upTo: 1824, text: "Perjuangan Sultan Nuku Maluku & Traktat London (1824 M)" },
+    { upTo: 1837, text: "Perang Jawa Pangeran Diponegoro (1825–1830 M) & Perang Padri" },
+    { upTo: 1872, text: "Perang Banjar Pangeran Antasari & Penetrasi Kolonial Belanda" },
+    { upTo: 1907, text: "Perang Semesta Aceh Darussalam Melawan Invasi Kolonial Belanda" },
+    { upTo: 1944, text: "Pergerakan Kebangkitan Nasional Menuju Kemerdekaan Indonesia" },
+    { upTo: 1949, text: "🇮🇩 Proklamasi Kemerdekaan RI 1945 & Amanat 5 September Yogyakarta" },
+    { upTo: 1956, text: "🇮🇩 Integrasi Kerajaan Nusantara ke NKRI & Pembebasan Irian Barat" }
   ];
 
   function getEpochText(year) {
@@ -40,8 +52,6 @@ window.TimelineController = (function() {
   function initTimeline(sliderId, yearDisplayId, epochDisplayId, onYearChange) {
     onYearChangeCallback = onYearChange;
     const slider = document.getElementById(sliderId);
-    const yearDisplay = document.getElementById(yearDisplayId);
-    const epochDisplay = document.getElementById(epochDisplayId);
 
     if (slider) {
       slider.min = MIN_YEAR;
@@ -49,6 +59,9 @@ window.TimelineController = (function() {
       slider.value = currentYear;
 
       slider.addEventListener('input', (e) => {
+        setYear(parseInt(e.target.value, 10));
+      });
+      slider.addEventListener('change', (e) => {
         setYear(parseInt(e.target.value, 10));
       });
     }
@@ -60,13 +73,28 @@ window.TimelineController = (function() {
     const slider = document.getElementById('timeline-slider');
     const yearDisplay = document.getElementById('display-year-number');
     const epochDisplay = document.getElementById('display-epoch-badge');
+    const thumbBubble = document.getElementById('slider-thumb-bubble');
 
-    if (slider && parseInt(slider.value, 10) !== year) {
-      slider.value = year;
+    const pct = Math.min(100, Math.max(0, ((year - MIN_YEAR) / (MAX_YEAR - MIN_YEAR)) * 100));
+
+    if (slider) {
+      if (parseInt(slider.value, 10) !== year) {
+        slider.value = year;
+      }
+      // Fill slider track up to current thumb position
+      slider.style.background = `linear-gradient(to right, #059669 0%, #d4af37 ${pct}%, #e2d9c2 ${pct}%, #dcd4c0 100%)`;
     }
+
+    // Update floating year bubble above the thumb (24px thumb diameter offset)
+    if (thumbBubble) {
+      thumbBubble.innerText = `${year} M`;
+      thumbBubble.style.left = `calc(${pct}% + ${(0.5 - pct / 100) * 24}px)`;
+    }
+
     if (yearDisplay) {
       yearDisplay.innerText = `${year} M`;
     }
+
     if (epochDisplay) {
       epochDisplay.innerText = getEpochText(year);
       if (year >= 1945) {
@@ -80,13 +108,29 @@ window.TimelineController = (function() {
       }
     }
 
-    // Highlight active century button
+    // Highlight closest milestone chip
+    let closestBtn = null;
+    let closestDist = Infinity;
     document.querySelectorAll('.century-btn').forEach(btn => {
       const targetYear = parseInt(btn.getAttribute('data-year'), 10);
-      if (Math.abs(targetYear - year) <= 25) {
-        btn.classList.add('active-century');
+      const dist = Math.abs(targetYear - year);
+      if (dist < closestDist) {
+        closestDist = dist;
+        closestBtn = btn;
+      }
+      btn.classList.remove('active-century');
+    });
+    if (closestBtn && closestDist <= 35) {
+      closestBtn.classList.add('active-century');
+    }
+
+    // Highlight closest proportional ruler tick
+    document.querySelectorAll('.ruler-tick').forEach(tick => {
+      const tickYear = parseInt(tick.getAttribute('data-year'), 10);
+      if (!isNaN(tickYear) && Math.abs(tickYear - year) <= 15) {
+        tick.classList.add('active-tick');
       } else {
-        btn.classList.remove('active-century');
+        tick.classList.remove('active-tick');
       }
     });
   }
