@@ -1,0 +1,295 @@
+/**
+ * WebGIS Islamic Kingdoms Nusantara - Kingdom Detail Drawer & Sultan Viewer
+ */
+
+window.DetailDrawer = (function() {
+  let drawerEl = null;
+  let currentKingdom = null;
+  let kingdomsMap = {};
+  let sultansMap = {}; // kingdom_id -> [sultans]
+  let sourcesMap = {}; // source_id -> source
+
+  function initDetailDrawer(kingdoms, sultans, sources) {
+    drawerEl = document.getElementById('kingdom-detail-drawer');
+    
+    kingdoms.forEach(k => { kingdomsMap[k.id] = k; });
+    sources.forEach(s => { sourcesMap[s.id] = s; });
+
+    sultans.forEach(s => {
+      if (!sultansMap[s.kingdom_id]) {
+        sultansMap[s.kingdom_id] = [];
+      }
+      sultansMap[s.kingdom_id].push(s);
+    });
+
+    // Close button listener
+    const closeBtn = document.getElementById('btn-close-drawer');
+    if (closeBtn) {
+      closeBtn.addEventListener('click', closeDrawer);
+    }
+  }
+
+  function openKingdom(kingdomId) {
+    const kingdom = kingdomsMap[kingdomId];
+    if (!kingdom || !drawerEl) return;
+
+    currentKingdom = kingdom;
+    renderDrawerContent(kingdom);
+    drawerEl.classList.add('open');
+
+    // Also focus map to kingdom
+    if (window.HistoryMap) {
+      window.HistoryMap.focusKingdom(kingdomId, Object.values(kingdomsMap));
+    }
+  }
+
+  function closeDrawer() {
+    if (drawerEl) {
+      drawerEl.classList.remove('open');
+    }
+  }
+
+  function renderDrawerContent(kingdom) {
+    const container = document.getElementById('drawer-dynamic-content');
+    if (!container) return;
+
+    const sultans = sultansMap[kingdom.id] || [];
+    const currentYear = window.TimelineController ? window.TimelineController.getCurrentYear() : 1625;
+
+    // Golden Age Section
+    let goldenAgeHtml = '';
+    if (kingdom.golden_age) {
+      goldenAgeHtml = `
+        <div class="golden-age-banner">
+          <div class="golden-age-badge">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.2h7.6l-6.1 4.5 2.3 7.3-6.2-4.6-6.2 4.6 2.3-7.3-6.1-4.5h7.6z"/></svg>
+            ERA KEEMASAN: ${kingdom.golden_age.start_year} &ndash; ${kingdom.golden_age.end_year} M
+          </div>
+          <div class="golden-age-leader">Penguasa Puncak: ${kingdom.golden_age.leader}</div>
+          <div class="golden-age-desc">${kingdom.golden_age.description}</div>
+        </div>
+      `;
+    }
+
+    // Sultans Dropdown & Display Box
+    let sultanSectionHtml = '';
+    if (sultans.length > 0) {
+      let sultanOptions = sultans.map((s, idx) => {
+        let isReigningNow = (s.reign_start && s.reign_end && currentYear >= s.reign_start && currentYear <= s.reign_end)
+          ? ' [Sedang Memerintah pada Tahun Ini]'
+          : '';
+        return `<option value="${s.id}">${s.order ? s.order + '. ' : ''}${s.name} (${s.reign_display})${isReigningNow}</option>`;
+      }).join('');
+
+      sultanSectionHtml = `
+        <div class="detail-card">
+          <div class="detail-card-title">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M5 16L3 5l5.5 5L12 4l3.5 6L21 5l-2 11H5zm14 3c0 .55-.45 1-1 1H6c-.55 0-1-.45-1-1v-1h14v1z"/></svg>
+            DAFTAR SULTAN & PENGUASA HISTORIS (${sultans.length} Tercatat)
+          </div>
+          <div class="sultan-selector-wrapper">
+            <select id="sultan-select-dropdown" class="sultan-select" onchange="window.DetailDrawer.onSultanSelected(this.value)">
+              ${sultanOptions}
+            </select>
+          </div>
+          <div id="sultan-detail-display-box" class="sultan-display-box">
+            <!-- Rendered via onSultanSelected -->
+          </div>
+        </div>
+      `;
+    } else {
+      sultanSectionHtml = `
+        <div class="detail-card">
+          <div class="detail-card-title">DAFTAR SULTAN & PENGUASA</div>
+          <p style="font-size:0.8rem; color:#64748b;">Silsilah lengkap penguasa sedang dalam proses verifikasi filologis naskah lokal.</p>
+        </div>
+      `;
+    }
+
+    // Key Events Timeline
+    let eventsHtml = '';
+    if (kingdom.key_events && kingdom.key_events.length > 0) {
+      const eventItems = kingdom.key_events.map(ev => `
+        <div class="timeline-event-item">
+          <div class="timeline-event-year">${ev.year} M</div>
+          <div class="timeline-event-text">${ev.event}</div>
+        </div>
+      `).join('');
+
+      eventsHtml = `
+        <div class="detail-card">
+          <div class="detail-card-title">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11z"/></svg>
+            PERISTIWA PENTING & KRONOLOGI HISTORIS
+          </div>
+          <div class="events-timeline">
+            ${eventItems}
+          </div>
+        </div>
+      `;
+    }
+
+    // Relics & Heritage
+    let relicsHtml = '';
+    if (kingdom.relics_and_heritage && kingdom.relics_and_heritage.length > 0) {
+      const relicTags = kingdom.relics_and_heritage.map(r => `
+        <div class="relic-tag">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="var(--color-gold)"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          ${r}
+        </div>
+      `).join('');
+
+      relicsHtml = `
+        <div class="detail-card">
+          <div class="detail-card-title">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3L2 12h3v8h14v-8h3L12 3zm0 4.5c1.38 0 2.5 1.12 2.5 2.5S13.38 12.5 12 12.5 9.5 11.38 9.5 10 10.62 7.5 12 7.5z"/></svg>
+            PENINGGALAN ARKEOLOGIS & CAGAR BUDAYA
+          </div>
+          <div class="relics-tag-grid">
+            ${relicTags}
+          </div>
+        </div>
+      `;
+    }
+
+    // Historiographical Certainty Box
+    const certaintyBadge = kingdom.data_certainty_level === 'Tinggi'
+      ? `<span style="background:#bbf7d0; color:#166534; padding:2px 8px; border-radius:99px;">Tingkat Kepastian: Tinggi</span>`
+      : `<span style="background:#fef08a; color:#854d0e; padding:2px 8px; border-radius:99px;">Tingkat Kepastian: Sedang / Interpretatif</span>`;
+
+    const certaintyHtml = `
+      <div class="detail-card">
+        <div class="detail-card-title">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
+          HISTORIOGRAFI & STATUS VERIFIKASI
+        </div>
+        <div class="certainty-box ${kingdom.data_certainty_level === 'Sedang' ? 'medium' : ''}">
+          <div class="certainty-header">
+            <span>Status: ${kingdom.verification_status}</span>
+            ${certaintyBadge}
+          </div>
+          <div class="certainty-desc">${kingdom.certainty_notes}</div>
+        </div>
+      </div>
+    `;
+
+    // Reference Sources
+    let sourcesListHtml = '';
+    if (kingdom.sources_ids && kingdom.sources_ids.length > 0) {
+      const srcItems = kingdom.sources_ids.map(sid => {
+        const src = sourcesMap[sid];
+        if (!src) return '';
+        return `
+          <li style="margin-bottom:6px; font-size:0.77rem; color:#475569;">
+            <strong>${src.authors} (${src.year})</strong>. <em>${src.title}</em>. ${src.publisher}.
+          </li>
+        `;
+      }).join('');
+
+      sourcesListHtml = `
+        <div class="detail-card">
+          <div class="detail-card-title">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/></svg>
+            REFERENSI SUMBER AKADEMIK
+          </div>
+          <ul style="padding-left:18px;">
+            ${sourcesListHtml}
+          </ul>
+        </div>
+      `;
+    }
+
+    // Assemble Drawer DOM
+    document.getElementById('drawer-kingdom-name').innerText = kingdom.name;
+    document.getElementById('drawer-kingdom-alts').innerText = kingdom.alternate_names 
+      ? `Variasi Nama: ${kingdom.alternate_names.join(', ')}` 
+      : '';
+
+    container.innerHTML = `
+      <div class="detail-card" style="border-left: 4px solid var(--color-primary);">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+          <span style="font-size:0.75rem; text-transform:uppercase; color:var(--color-primary); font-weight:700;">${kingdom.region}</span>
+          <span style="font-size:0.75rem; color:#64748b; font-weight:600;">GPS: ${kingdom.coordinates.lat.toFixed(4)}, ${kingdom.coordinates.lng.toFixed(4)}</span>
+        </div>
+        <div style="font-size:0.83rem; line-height:1.45; color:#334155; margin-bottom:10px;">
+          <strong>Pusat Pemerintahan:</strong> ${kingdom.capital_city}<br>
+          <strong>Periode Eksistensi:</strong> ${kingdom.year_founded_display} &ndash; ${kingdom.year_ended_display}<br>
+          <strong>Pendiri Utama:</strong> ${kingdom.founder}
+        </div>
+        <p style="font-size:0.82rem; line-height:1.55; color:#1e293b;">
+          ${kingdom.historical_summary}
+        </p>
+      </div>
+
+      ${goldenAgeHtml}
+      ${sultanSectionHtml}
+      ${eventsHtml}
+      ${relicsHtml}
+      ${certaintyHtml}
+      ${sourcesListHtml}
+    `;
+
+    // Initialize first sultan view
+    if (sultans.length > 0) {
+      // Find sultan reigning in currentYear if any, else default to index 0 or golden age ruler
+      let activeSultan = sultans.find(s => s.reign_start && s.reign_end && currentYear >= s.reign_start && currentYear <= s.reign_end);
+      if (!activeSultan) {
+        activeSultan = sultans.find(s => s.is_golden_age_ruler) || sultans[0];
+      }
+      const select = document.getElementById('sultan-select-dropdown');
+      if (select) select.value = activeSultan.id;
+      renderSultanBox(activeSultan);
+    }
+  }
+
+  function onSultanSelected(sultanId) {
+    if (!currentKingdom) return;
+    const sultans = sultansMap[currentKingdom.id] || [];
+    const sultan = sultans.find(s => s.id === sultanId);
+    if (sultan) {
+      renderSultanBox(sultan);
+    }
+  }
+
+  function renderSultanBox(sultan) {
+    const box = document.getElementById('sultan-detail-display-box');
+    if (!box) return;
+
+    const goldenBadge = sultan.is_golden_age_ruler 
+      ? `<span style="background:#fef3c7; color:#92400e; font-size:10px; font-weight:700; padding:2px 8px; border-radius:99px; margin-left:6px;">⭐ Penguasa Era Keemasan</span>`
+      : '';
+
+    const achievements = sultan.key_achievements 
+      ? sultan.key_achievements.map(a => `<li>${a}</li>`).join('')
+      : '';
+
+    box.innerHTML = `
+      <div class="sultan-display-header">
+        <div>
+          <span class="sultan-display-name">${sultan.name}</span>
+          ${goldenBadge}
+        </div>
+        <span class="sultan-reign-badge">${sultan.reign_display}</span>
+      </div>
+      <div class="sultan-bio">${sultan.biography}</div>
+      ${achievements ? `
+        <div style="font-size:0.75rem; font-weight:700; color:var(--color-primary); margin:8px 0 4px;">Pencapaian & Kebijakan Utama:</div>
+        <ul class="sultan-achievements-list">
+          ${achievements}
+        </ul>
+      ` : ''}
+      ${sultan.reference_notes ? `
+        <div style="font-size:0.72rem; color:#64748b; font-style:italic; margin-top:8px; border-top:1px dashed #e2e8f0; padding-top:4px;">
+          Catatan Verifikasi: ${sultan.reference_notes}
+        </div>
+      ` : ''}
+    `;
+  }
+
+  return {
+    initDetailDrawer,
+    openKingdom,
+    closeDrawer,
+    onSultanSelected
+  };
+})();
