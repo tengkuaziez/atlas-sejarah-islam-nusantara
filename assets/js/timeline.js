@@ -4,8 +4,8 @@
 
 window.TimelineController = (function() {
   let currentYear = 1625;
-  const MIN_YEAR = 1200;
-  const MAX_YEAR = 1950;
+  const MIN_YEAR = 1082;
+  const MAX_YEAR = 1956;
   
   let isPlaying = false;
   let playTimer = null;
@@ -13,18 +13,19 @@ window.TimelineController = (function() {
   let onYearChangeCallback = null;
 
   const EPOCH_DESCRIPTIONS = [
+    { upTo: 1199, text: "Bukti Epigrafi Tertua Islam di Jawa (Leran 1082 M)" },
     { upTo: 1290, text: "Era Awal Masuknya Islam & Kesultanan Samudera Pasai" },
-    { upTo: 1390, text: "Kemakmuran Pasai & Kunjungan Penjelajah Dunia (Ibnu Battuta)" },
-    { upTo: 1470, text: "Jaringan Perdagangan Islam Melaka & Rempah Maluku Kie Raha" },
+    { upTo: 1390, text: "Kemakmuran Pasai, Nisan Troloyo, & Lawatan Ibnu Battuta" },
+    { upTo: 1470, text: "Jaringan Niaga Maritim Melaka & Rempah Maluku Kie Raha" },
     { upTo: 1525, text: "Kebangkitan Kesultanan Demak & Syiar Walisongo di Jawa" },
-    { upTo: 1575, text: "Ekspansi Kesultanan Aceh Darussalam & Kejayaan Baabullah di Ternate" },
+    { upTo: 1575, text: "Ekspansi Aceh Darussalam & Kejayaan Sultan Baabullah di Ternate" },
     { upTo: 1640, text: "Zaman Keemasan Sultan Iskandar Muda, Sultan Agung, & Banten" },
-    { upTo: 1675, text: "Perang Makassar (Sultan Hasanuddin) & Kejayaan Sultan Ageng Tirtayasa" },
+    { upTo: 1675, text: "Perang Makassar (Sultan Hasanuddin) & Sultan Ageng Tirtayasa" },
     { upTo: 1755, text: "Dinamika Monarki Maritim & Perjanjian Giyanti di Jawa" },
     { upTo: 1805, text: "Perjuangan Sultan Nuku Maluku & Perlawanan Bahari Siak" },
     { upTo: 1840, text: "Perang Padri, Perang Diponegoro, & Perang Palembang" },
-    { upTo: 1905, text: "Perang Banjar, Perang Aceh, & Puputan Mempertahankan Kedaulatan" },
-    { upTo: 1950, text: "Kebangkitan Nasional, Kemerdekaan RI 1945, & Integrasi Keraton Nusantara" }
+    { upTo: 1944, text: "Perang Aceh, Perang Banjar, & Kebangkitan Nasional Menuju Republik" },
+    { upTo: 1956, text: "🇮🇩 Kemerdekaan RI 1945 & Integrasi Kerajaan Nusantara ke NKRI" }
   ];
 
   function getEpochText(year) {
@@ -33,7 +34,7 @@ window.TimelineController = (function() {
         return epoch.text;
       }
     }
-    return "Era Indonesia Modern";
+    return "Era Indonesia Berdaulat (NKRI)";
   }
 
   function initTimeline(sliderId, yearDisplayId, epochDisplayId, onYearChange) {
@@ -68,6 +69,15 @@ window.TimelineController = (function() {
     }
     if (epochDisplay) {
       epochDisplay.innerText = getEpochText(year);
+      if (year >= 1945) {
+        epochDisplay.style.background = '#fee2e2';
+        epochDisplay.style.color = '#991b1b';
+        epochDisplay.style.borderColor = '#ef4444';
+      } else {
+        epochDisplay.style.background = '';
+        epochDisplay.style.color = '';
+        epochDisplay.style.borderColor = '';
+      }
     }
 
     // Highlight active century button

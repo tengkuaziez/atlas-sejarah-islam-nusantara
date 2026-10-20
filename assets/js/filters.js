@@ -7,7 +7,8 @@ window.FilterManager = (function() {
     region: 'Semua',
     search: '',
     onlyGoldenAge: false,
-    showAllHistorical: false
+    showAllHistorical: false,
+    siteCategory: 'all'
   };
 
   let onChangeCallback = null;
@@ -27,9 +28,20 @@ window.FilterManager = (function() {
     // Region Badges Listeners
     document.querySelectorAll('.filter-badge[data-region]').forEach(badge => {
       badge.addEventListener('click', () => {
-        document.querySelectorAll('.filter-badge[data-region]').forEach(b => b.classList.remove('active'));
-        badge.classList.add('active');
-        state.region = badge.getAttribute('data-region');
+        const region = badge.getAttribute('data-region');
+        setRegion(region);
+      });
+    });
+
+    // Site Category Chips
+    document.querySelectorAll('.site-cat-chip[data-site-cat]').forEach(chip => {
+      chip.addEventListener('click', () => {
+        document.querySelectorAll('.site-cat-chip').forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+        state.siteCategory = chip.getAttribute('data-site-cat');
+        if (window.HistoryMap) {
+          window.HistoryMap.setSiteCategoryFilter(state.siteCategory);
+        }
         triggerChange();
       });
     });
@@ -38,18 +50,7 @@ window.FilterManager = (function() {
     const goldenAgeBtn = document.getElementById('btn-filter-golden-age');
     if (goldenAgeBtn) {
       goldenAgeBtn.addEventListener('click', () => {
-        state.onlyGoldenAge = !state.onlyGoldenAge;
-        goldenAgeBtn.classList.toggle('active', state.onlyGoldenAge);
-        if (state.onlyGoldenAge) {
-          goldenAgeBtn.style.background = '#fef3c7';
-          goldenAgeBtn.style.color = '#92400e';
-          goldenAgeBtn.style.borderColor = '#f59e0b';
-        } else {
-          goldenAgeBtn.style.background = '';
-          goldenAgeBtn.style.color = '';
-          goldenAgeBtn.style.borderColor = '';
-        }
-        triggerChange();
+        toggleGoldenAge();
       });
     }
 
@@ -57,15 +58,48 @@ window.FilterManager = (function() {
     const showAllBtn = document.getElementById('btn-toggle-show-all');
     if (showAllBtn) {
       showAllBtn.addEventListener('click', () => {
-        state.showAllHistorical = !state.showAllHistorical;
-        showAllBtn.classList.toggle('active', state.showAllHistorical);
-        const label = document.getElementById('show-all-label');
-        if (label) {
-          label.innerText = state.showAllHistorical ? "Mode: Semua Titik Terpetakan" : "Mode: Kronologis Aktif";
-        }
-        triggerChange();
+        toggleHistoricalMode();
       });
     }
+  }
+
+  function setRegion(region) {
+    document.querySelectorAll('.filter-badge[data-region]').forEach(b => {
+      b.classList.toggle('active', b.getAttribute('data-region') === region);
+    });
+    state.region = region;
+    triggerChange();
+  }
+
+  function toggleGoldenAge() {
+    state.onlyGoldenAge = !state.onlyGoldenAge;
+    const goldenAgeBtn = document.getElementById('btn-filter-golden-age');
+    if (goldenAgeBtn) {
+      goldenAgeBtn.classList.toggle('active', state.onlyGoldenAge);
+      if (state.onlyGoldenAge) {
+        goldenAgeBtn.style.background = '#fef3c7';
+        goldenAgeBtn.style.color = '#92400e';
+        goldenAgeBtn.style.borderColor = '#f59e0b';
+      } else {
+        goldenAgeBtn.style.background = '';
+        goldenAgeBtn.style.color = '';
+        goldenAgeBtn.style.borderColor = '';
+      }
+    }
+    triggerChange();
+  }
+
+  function toggleHistoricalMode() {
+    state.showAllHistorical = !state.showAllHistorical;
+    const showAllBtn = document.getElementById('btn-toggle-show-all');
+    if (showAllBtn) {
+      showAllBtn.classList.toggle('active', state.showAllHistorical);
+      const label = document.getElementById('show-all-label');
+      if (label) {
+        label.innerText = state.showAllHistorical ? "Mode: Semua Titik Terpetakan" : "Mode: Kronologis Aktif";
+      }
+    }
+    triggerChange();
   }
 
   function triggerChange() {
@@ -80,6 +114,9 @@ window.FilterManager = (function() {
 
   return {
     initFilters,
-    getFilterState
+    getFilterState,
+    setRegion,
+    toggleGoldenAge,
+    toggleHistoricalMode
   };
 })();

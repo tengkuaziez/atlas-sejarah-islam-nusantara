@@ -198,5 +198,35 @@
     "type": "Buku Akademik",
     "url": "https://gramedia.com",
     "claims_supported": "Morfologi kota-kota bandar Islam pesisir pantai utara Jawa (Pasisir), keterkaitan kosmologi Islam-Jawa pada arsitektur masjid, keraton Surakarta, Yogyakarta, dan Cirebon."
+  },
+  {
+    "id": "de-graaf-pigeaud-1985",
+    "title": "Kerajaan-Kerajaan Islam Pertama di Jawa: Kajian Sejarah Politik Abad ke-15 dan ke-16",
+    "authors": "H.J. de Graaf & Th.G.Th. Pigeaud",
+    "publisher": "Grafiti Pers / KITLV, Jakarta",
+    "year": 1985,
+    "type": "Buku Akademik Otoritatif",
+    "url": "https://catalogue.nla.gov.au/Record/1770984",
+    "claims_supported": "Kajian historis pendirian Demak, Cirebon, Banten, epigrafi nisan Troloyo, dan akulturasi candrasengkala masjid kuno Jawa."
+  },
+  {
+    "id": "reid-2005",
+    "title": "An Indonesian Frontier: Acehnese & Other Histories of Sumatra",
+    "authors": "Anthony Reid",
+    "publisher": "Singapore University Press / KITLV Press",
+    "year": 2005,
+    "type": "Monograf Sejarah Akademik",
+    "url": "https://muse.jhu.edu/book/14986",
+    "claims_supported": "Jaringan maritim Kesultanan Aceh Darussalam era Sultan Iskandar Muda, diplomasi internasional, dan integrasi Siak ke NKRI."
+  },
+  {
+    "id": "anri-swapraja-1945",
+    "title": "Arsip Nasional RI: Berkas Pernyataan Kooti & Swapraja Masa Revolusi Kemerdekaan 1945–1950",
+    "authors": "Arsip Nasional Republik Indonesia (ANRI)",
+    "publisher": "ANRI, Jakarta",
+    "year": 1950,
+    "type": "Dokumen Arsip Primer Negara",
+    "url": "https://anri.go.id",
+    "claims_supported": "Amanat 5 September 1945 Yogyakarta, Maklumat Surakarta, Pernyataan Sultan Syarif Kasim II Siak, dan proses integrasi daerah swapraja ke NKRI."
   }
 ]

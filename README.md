@@ -1,9 +1,9 @@
 # Atlas Sejarah Kerajaan Islam Nusantara
-### *Sistem Informasi Geografis (WebGIS) Interaktif & Kronologi Kesultanan Nusantara*
+### *Sistem Informasi Geografis (WebGIS) Interaktif, Poligon Historis, Situs Cagar Budaya, & Integrasi NKRI*
 
-Sebuah aplikasi **WebGIS Sejarah Murni Sisi Klien (Client-Side Historical WebGIS)** yang memetakan persebaran pusat pemerintahan kerajaan dan kesultanan Islam di seluruh kepulauan Nusantara (Indonesia), mulai dari fase awal islamisasi maritim (abad ke-13 M) hingga integrasi ke dalam Negara Kesatuan Republik Indonesia (1945 M).
+Sebuah aplikasi **WebGIS Sejarah Murni Sisi Klien (Client-Side Historical WebGIS)** komprehensif yang memetakan perkembangan Islam di kepulauan Nusantara (Indonesia), mulai dari bukti awal epigrafi abad ke-11 M (Leran 1082 M), kemunculan emporium maritim kesultanan, poligon kedaulatan temporal, para penguasa, situs cagar budaya (masjid kuno, keraton, makam, benteng, pelabuhan), hingga peristiwa kemerdekaan 1945 dan proses integrasi kerajaan-kerajaan swapraja ke dalam **Negara Kesatuan Republik Indonesia (NKRI)**.
 
-Website dirancang dengan estetika **Historical Digital Atlas** (perpaduan nuansa kartografi kuno, tipografi klasik *Cinzel* & modern *Plus Jakarta Sans*, aksen emas bakar dan zamrud Islam), sepenuhnya responsif untuk perangkat desktop maupun ponsel, serta tanpa ketergantungan API berbayar sehingga dapat langsung dipublikasikan melalui **GitHub Pages**.
+Website dirancang dengan estetika **Historical Digital Atlas** (perpaduan nuansa kartografi kuno, tipografi klasik *Cinzel* & modern *Plus Jakarta Sans*, aksen emas bakar dan zamrud Islam), sepenuhnya dioptimalkan secara responsif untuk smartphone (anti-tumpang-tindih dengan sliding bottom-sheet & multi-row timeline), serta tanpa ketergantungan API berbayar sehingga dapat langsung dipublikasikan melalui **GitHub Pages**.
 
 ---
 
@@ -12,48 +12,39 @@ Website dirancang dengan estetika **Historical Digital Atlas** (perpaduan nuansa
 1. **Peta Interaktif 2D Berbasis Leaflet.js**:
    - Memetakan 36 kerajaan dan kesultanan Islam di 6 zona geografis kepulauan: **Sumatera, Jawa, Kalimantan, Sulawesi, Maluku & Papua, dan Nusa Tenggara**.
    - Penanda (*marker*) kustom dengan simbol ornamen islami, mahkota keemasan, dan lencana peninggalan budaya.
-   - **Pemetaan Poligon Wilayah Historis Temporal (Historical Territory Mapping)**: Lapisan batas pengaruh spasial (*core*, *controlled*, *influence*) yang berbasis atlas sejarah akademik, tersinkronisasi linimasa, dan dapat diaktifkan/dinonaktifkan secara independen.
+   - **Pemetaan Poligon Wilayah Historis Temporal (Historical Territory Mapping)**: 13 lapisan batas kedaulatan spasial (*core*, *controlled*, *influence*) berbasis atlas sejarah akademik otoritatif (Robert Cribb 2000, Anthony Reid, Claude Guillot).
+   - **Lapisan Titik Situs Cagar Budaya Bersejarah (Historical Sites Layer)**: Memetakan 26 situs arkeologis (masjid bersejarah, keraton/istana, makam diraja, benteng maritim, dan pelabuhan transito kuno) berkoordinat presisi tinggi.
    - Pilihan multi-basemap (100% Gratis & Tanpa API Key): **OpenStreetMap Standard** (default), **Esri National Geographic** (gaya atlas sejarah klasik bernuansa kartografi kuno), **OpenTopoMap** (relief kontur & elevasi), dan **Citra Satelit Esri World Imagery**.
 
-2. **Linimasa Kronologis Dinamis (Interactive Timeline 1200–1950 M)**:
-   - Slider rentang tahun dari tahun 1200 M hingga 1950 M.
+2. **Linimasa Kronologis Dinamis Lintas Zaman (Interactive Timeline 1082–1956 M)**:
+   - Slider rentang tahun dari tahun 1082 M (Nisan Leran) hingga 1956 M (Tidore & Perjuangan Irian Barat).
    - Tombol **Play / Pause** otomatis untuk animasi pergerakan sejarah per tahun.
-   - Pilihan lompatan abad cepat (*Century Quick Jump*): 1267 (Pasai), 1400, 1475 (Demak), 1526 (Banten/Banjar), 1575 (Ternate), 1625 (Puncak Keemasan), 1670 (Makassar), 1755 (Giyanti), 1825 (Perang Diponegoro), 1900, dan 1945 (Kemerdekaan RI).
-   - Penyesuaian ganda (*dual sync*): memperbarui status titik marker sekaligus geometri poligon wilayah historis yang aktif di tahun terpilih.
-   - Status marker berubah otomatis mengikuti tahun yang dipilih:
-     - **Sedang Dalam Era Keemasan (Golden Age)**: Marker emas berpendar dengan animasi denyut (*pulsing halo*).
-     - **Aktif & Berdaulat**: Marker hijau zamrud dengan bulan sabit Islam.
-     - **Fase Kemunduran / Tekanan Perang**: Marker terakota oranye.
-     - **Telah Berintegrasi ke NKRI**: Marker biru safir simbolik.
-     - **Bertahan sebagai Lembaga Adat/Kultural**: Simbol pilar cagar budaya.
-     - **Telah Runtuh / Dilebur**: Marker abu-abu pudar.
-     - **Belum Berdiri**: Tersembunyi (dalam mode aktif) atau abu-abu transparan.
+   - Pilihan lompatan abad cepat (*Century Quick Jump*): 1082 (Leran), 1267 (Pasai), 1400, 1475 (Demak), 1526 (Banten/Banjar), 1575 (Ternate), 1625 (Puncak Keemasan), 1670 (Makassar), 1755 (Giyanti), 1825 (Perang Diponegoro), 1900 (Kolonial), 1945 (Kemerdekaan RI), dan 1956 (Irian Barat).
+   - Penyesuaian serentak (*quad-sync*): memperbarui status kerajaan, poligon wilayah aktif, situs sejarah yang telah berdiri, dan statistik secara *real-time*.
+   - **Deteksi Era Kemerdekaan & NKRI**: Menandai periode 1945–1956 M dengan aksen Merah Putih khusus pada linimasa.
 
-3. **Panel Detail Kerajaan & Bottom-Sheet Responsif**:
-   - Profil lengkap, variasi nama (*alternate names*), pendiri, ibu kota, dan koordinat GPS situs cagar budaya.
-   - Banner Era Keemasan dengan penjelasan historis mengenai faktor ekonomi, militer, dan intelektualnya.
-   - **Informasi Kartografi & Poligon Wilayah**: Menampilkan rujukan atlas sejarah, klasifikasi wilayah, metode digitasi, tingkat keyakinan (*confidence level*), serta catatan batas interpretatif. Jika kerajaan belum memiliki sumber kartografi terverifikasi, sistem menampilkan *disclaimer* transparan yang menegaskan ketiadaan batas fiktif.
-   - **Dropdown Interaktif Silsilah Sultan**: Pemilihan sultan yang menampilkan masa kekuasaan, biografi ringkas, dan daftar pencapaian/kebijakan utama. Dilengkapi deteksi otomatis: jika tahun pada linimasa sesuai dengan masa jabatan seorang sultan, sistem akan menandai *"[Sedang Memerintah pada Tahun Ini]"*.
-   - Kronologi peristiwa penting (*key historical events*).
-   - Inventaris peninggalan arkeologis & cagar budaya (masjid kuno, keraton, makam, naskah, mata uang dirham/koin emas).
-   - Catatan historiografi & status kepastian data (*certainty level*).
-   - Daftar sumber rujukan akademik yang mendukung narasi kerajaan tersebut.
+3. **Status Integrasi ke Negara Kesatuan Republik Indonesia (NKRI)**:
+   - Mendokumentasikan secara historiografis proses peralihan kedaulatan kerajaan ke Republik Indonesia:
+     - **Amanat 5 September 1945**: Sri Sultan Hamengkubuwono IX & KGPAA Paku Alam VIII (Daerah Istimewa Yogyakarta).
+     - **Maklumat 1 September 1945**: Kasunanan Surakarta & Mangkunegaran.
+     - **Proklamasi Siak 1945**: Sultan Syarif Kasim II menyerahkan 13 juta gulden & mahkota diraja kepada Presiden Soekarno.
+     - **Integrasi Swapraja Kalimantan & Indonesia Timur**: Kesultanan Pontianak (Sultan Hamid II perancang lambang Garuda Pancasila), Kutai Kartanegara, Buton, Luwu (Andi Djemma), Ternate, Bima, dan Tidore (Sultan Zainal Abidin Syah sebagai Gubernur Pertama Irian Barat 1956).
+     - Transformasi swapraja menjadi kabupaten/kota otonom (1950–1960) dan kelestarian keraton sebagai lembaga pemangku adat & cagar budaya.
 
-4. **Penyaringan, Pencarian & Kontrol Visual**:
-   - Pencarian teks instan terpadu (desktop dan overlay mobile) berdasarkan nama kesultanan, variasi nama lokal, maupun nama ibu kota.
-   - Tombol sakelar poligon (*Toggle Territories*) dengan indikator jumlah poligon aktif.
-   - Filter cepat wilayah kepulauan: Semua, Sumatera, Jawa, Kalimantan, Sulawesi, Maluku & Papua, Nusa Tenggara.
-   - Tombol filter khusus **Era Keemasan** (menyorot kesultanan yang sedang berada di masa puncak).
-   - Beralih mode: **Mode Kronologis Aktif** vs **Mode Semua Titik Terpetakan**.
+4. **Panel Detail Multi-Entitas (Kerajaan, Sultan, & Situs Cagar Budaya)**:
+   - **Detail Kerajaan**: Profil lengkap, variasi nama (*alternate names*), pendiri, ibu kota, koordinat GPS, banner era keemasan, dropdown sultan dinamis, inventaris tinggalan, historiografi kepastian, rujukan akademik, dan kartu integrasi NKRI.
+   - **Detail Situs Sejarah**: Kurun pembangunan, status cagar budaya nasional, signifikansi peradaban Islam, kondisi fisik kontemporer, dan relasi dinasti.
 
-5. **Pengalaman Mobile Native-Grade**:
-   - Desain responsif fleksibel dari layar ponsel kecil (360×800, 390×844) hingga tablet (768×1024) dan monitor ultrawide.
-   - *Bottom-Sheet Drawer* dengan drag handle ergonomis di layar ponsel: peta tetap leluasa dijelajahi tanpa tertutup panel samping kaku.
-   - Fitur *Collapse Timeline* untuk memaksimalkan bidang pandang peta di smartphone.
-   - Target sentuh ergonomis minimal 44×44 px serta dukungan CSS `env(safe-area-inset)` untuk layar berponi (*notch/island*).
+5. **Panel Kronologi Peristiwa Sejarah (1082–1956 M)**:
+   - Menampilkan 25 peristiwa penting: awal bukti Islam, konversi penguasa, pembangunan masjid raya, hegemoni maritim, perlawanan kolonial, perjanjian partisi (Bongaya, Giyanti), hingga pembentukan NKRI.
 
-5. **Panel Sumber Sejarah Akademik & Cagar Budaya**:
-   - Modal bibliografi yang memuat 20 literatur akademik, buku sejarah standar (Ricklefs, De Graaf & Pigeaud, Anthony Reid, Leonard Andaya, Marwati Poesponegoro), naskah primer (*Bo' Sangaji Kai*, *Suma Oriental* Tome Pires, *Rihlah* Ibnu Battuta), dan Sistem Registrasi Nasional Cagar Budaya Kemendikbudristek RI.
+6. **Desain Mobile Anti-Tumpang-Tindih & Bottom Sheet**:
+   - Layout mobile bebas tabrakan visual:
+     - Header ringkas dengan tombol aksi berjarak ergonomis.
+     - Filter pulau (*floating glass pills*) ramping tanpa kartu putih tebal yang menghalangi peta Sumatera.
+     - Linimasa multi-baris mobile: tahun `1636 M` dipastikan satu baris utuh (`white-space: nowrap`), slider 100% lebar layar, playback dan century jump berjajar rapi.
+     - Tombol *Collapse Timeline* untuk menyusutkan linimasa menjadi bilah tipis 38px saat menjelajah peta.
+     - Modal *Kontrol Lapisan & Filter* untuk memilih basemap dan switch layer pada layar sentuh.
 
 ---
 
@@ -83,21 +74,24 @@ webgis-islamic-history/
 ├── .gitignore                  # Berkas pengecualian Git
 ├── assets/
 │   ├── css/
-│   │   └── style.css           # Desain visual atlas sejarah responsif & mobile bottom sheet
+│   │   └── style.css           # Desain visual atlas responsif & layout mobile multi-row
 │   └── js/
-│       ├── app.js              # Inisialisasi utama, orchestrator, controller poligon & mobile UI
-│       ├── map.js              # Modul Leaflet, custom SVG marker, territory layer & popups
-│       ├── timeline.js         # Pengontrol linimasa slider, animasi play/pause & century jump
-│       ├── detail.js           # Panel detail kerajaan, dropdown sultan & historiografi kartografis
-│       └── filters.js          # Pengelola filter wilayah, pencarian, & status keemasan
+│       ├── app.js              # Orchestrator utama, pemuatan data paralel & modal controller
+│       ├── map.js              # Leaflet engine, custom SVG markers, territory & sites layers
+│       ├── timeline.js         # Pengontrol linimasa (1082–1956 M), animasi & status NKRI
+│       ├── detail.js           # Drawer detail kerajaan, sultan, situs cagar budaya & integrasi NKRI
+│       └── filters.js          # Pengelola filter wilayah, pencarian, mode & kategori situs
 ├── data/
-│   ├── kingdoms.json           # Database 36 kesultanan/kerajaan Islam Nusantara
+│   ├── kingdoms.json           # Database 36 kesultanan/kerajaan Islam Nusantara + metadata NKRI
 │   ├── sultans.json            # Database 101 sultan dengan biografi & tahun takhta
-│   ├── sources.json            # Database 20 referensi akademik & pustaka primer
+│   ├── sites.json              # Database 26 situs cagar budaya (masjid, keraton, makam, benteng, pelabuhan)
+│   ├── events.json             # Database 25 peristiwa sejarah dari 1082 M hingga 1956 M
+│   ├── sources.json            # Database 23 referensi akademik & dokumen arsip primer
 │   ├── historical-map-sources.json # Metadata kartografis, georeferensi GCP & lisensi peta
 │   └── historical-territories.geojson # 13 Feature Poligon temporal berstandar WGS84 (EPSG:4326)
 └── scripts/
-    └── process_historical_maps.py # Pipeline Python validasi geometri, CRS WGS84 & kompilasi GeoJSON
+    ├── process_historical_maps.py # Pipeline validasi geometri & ekspor GeoJSON tergeoreferensi
+    └── generate_sites_and_events.py # Pipeline kompilasi sites.json, events.json & integrasi NKRI
 ```
 
 ---

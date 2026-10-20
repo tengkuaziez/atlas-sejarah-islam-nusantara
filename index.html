@@ -55,47 +55,79 @@
       <!-- Header Action Buttons -->
       <div class="header-actions">
         <!-- Mobile Search Toggle Button -->
-        <button id="btn-mobile-search-toggle" class="btn-header btn-icon-only mobile-only" title="Cari Kerajaan">
+        <button id="btn-mobile-search-toggle" class="btn-header btn-icon-only mobile-only" title="Cari Kerajaan & Situs">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
             <circle cx="11" cy="11" r="8"></circle>
             <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
           </svg>
         </button>
 
-        <!-- Historical Territories Polygon Toggle -->
-        <button id="btn-toggle-territories" class="btn-header active" title="Tampilkan atau sembunyikan lapisan poligon wilayah historis">
+        <!-- Mobile Layers & Filters Sheet Button -->
+        <button id="btn-mobile-layers-toggle" class="btn-header btn-icon-only mobile-only btn-gold" title="Kontrol Lapisan & Filter">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+            <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+            <polyline points="2 17 12 22 22 17"></polyline>
+            <polyline points="2 12 12 17 22 12"></polyline>
+          </svg>
+        </button>
+
+        <!-- Mobile Events Chronology Toggle -->
+        <button id="btn-mobile-events-toggle" class="btn-header btn-icon-only mobile-only" title="Kronologi Peristiwa Sejarah">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"/>
+          </svg>
+        </button>
+
+        <!-- Historical Territories Polygon Toggle (Desktop) -->
+        <button id="btn-toggle-territories" class="btn-header active hide-on-mobile" title="Tampilkan atau sembunyikan lapisan poligon wilayah historis">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
             <path d="M20.5 3l-.16.03L15 5.1 9 3 3.36 4.9c-.21.07-.36.25-.36.48V20.5c0 .28.22.5.5.5l.16-.03L9 18.9l6 2.1 5.64-1.9c.21-.07.36-.25.36-.48V3.5c0-.28-.22-.5-.5-.5zM15 19l-6-2.11V5l6 2.11V19z"/>
           </svg>
           <span id="territories-btn-label">Wilayah: Aktif</span>
         </button>
 
-        <button id="btn-toggle-show-all" class="btn-header" title="Beralih antara mode kronologis aktif vs seluruh titik kerajaan">
+        <!-- Historical Sites Toggle (Desktop) -->
+        <button id="btn-toggle-sites" class="btn-header active hide-on-mobile" title="Tampilkan atau sembunyikan titik situs sejarah (masjid, makam, keraton, benteng)">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 3L2 12h3v8h6v-6h2v6h6v-8h3L12 3zm0 3.5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5-1.5-.67-1.5-1.5.67-1.5 1.5-1.5z"/>
+          </svg>
+          <span id="sites-btn-label">Situs: Aktif</span>
+        </button>
+
+        <button id="btn-toggle-show-all" class="btn-header hide-on-mobile" title="Beralih antara mode kronologis aktif vs seluruh titik kerajaan">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
             <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
           </svg>
           <span id="show-all-label">Mode: Kronologis</span>
         </button>
 
-        <button id="btn-filter-golden-age" class="btn-header" title="Filter hanya kerajaan yang berada dalam era keemasan">
+        <button id="btn-filter-golden-age" class="btn-header hide-on-mobile" title="Filter hanya kerajaan yang berada dalam era keemasan">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
             <path d="M12 2l2.4 7.2h7.6l-6.1 4.5 2.3 7.3-6.2-4.6-6.2 4.6 2.3-7.3-6.1-4.5h7.6z"/>
           </svg>
           <span>Keemasan</span>
         </button>
 
+        <!-- Chronology of Historical Events (Desktop) -->
+        <button id="btn-open-events-modal" class="btn-header hide-on-mobile" title="Kronologi Peristiwa Sejarah Islam hingga NKRI">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"/>
+          </svg>
+          <span>Peristiwa</span>
+        </button>
+
         <button id="btn-open-legend-modal" class="btn-header" title="Legenda Simbol & Metodologi Pemetaan">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
             <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
           </svg>
-          <span>Legenda</span>
+          <span class="hide-on-mobile">Legenda</span>
         </button>
 
         <button id="btn-open-sources-modal" class="btn-header btn-gold" title="Daftar Referensi Akademik Kredibel">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
             <path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/>
           </svg>
-          <span>Sumber</span>
+          <span class="hide-on-mobile">Sumber</span>
         </button>
       </div>
     </header>
@@ -182,17 +214,21 @@
         </div>
 
         <div class="timeline-stats-pills">
-          <div class="stat-pill">
+          <div class="stat-pill" title="Kerajaan Aktif">
             <span class="dot dot-active"></span>
-            <span>Kerajaan Aktif: <strong id="stat-active-count">0</strong></span>
+            <span class="pill-label">Kerajaan:</span> <strong id="stat-active-count">0</strong>
           </div>
-          <div class="stat-pill">
+          <div class="stat-pill" title="Era Keemasan">
             <span class="dot dot-golden"></span>
-            <span>Era Keemasan: <strong id="stat-golden-count">0</strong></span>
+            <span class="pill-label">Keemasan:</span> <strong id="stat-golden-count">0</strong>
           </div>
-          <div class="stat-pill">
+          <div class="stat-pill" title="Wilayah Historis">
             <span class="dot" style="background:#6366f1;"></span>
-            <span>Wilayah Historis: <strong id="stat-territories-count">0</strong></span>
+            <span class="pill-label">Wilayah:</span> <strong id="stat-territories-count">0</strong>
+          </div>
+          <div class="stat-pill" title="Situs Cagar Budaya Bersejarah">
+            <span class="dot" style="background:#0ea5e9;"></span>
+            <span class="pill-label">Situs:</span> <strong id="stat-sites-count">0</strong>
           </div>
           <div class="stat-pill hide-on-mobile">
             <span>Titik Terpetakan: <strong id="stat-total-rendered">0</strong></span>
@@ -200,7 +236,7 @@
         </div>
       </div>
 
-      <!-- Slider & Controls -->
+      <!-- Slider & Controls (Responsive Multi-Row Mobile Layout) -->
       <div class="timeline-controls-row">
         <!-- Playback Controls -->
         <div class="timeline-playback-btns">
@@ -228,20 +264,22 @@
 
         <!-- Range Slider -->
         <div class="slider-wrapper">
-          <input type="range" id="timeline-slider" class="timeline-slider" min="1200" max="1950" value="1625" step="1" aria-label="Slider Tahun Sejarah">
+          <input type="range" id="timeline-slider" class="timeline-slider" min="1082" max="1956" value="1625" step="1" aria-label="Slider Tahun Sejarah">
           <!-- Century Quick Jump Ticks (Touch-scrollable on mobile) -->
           <div class="century-ticks-row">
+            <button class="century-btn" data-year="1082">1082 (Leran)</button>
             <button class="century-btn" data-year="1267">1267 (Pasai)</button>
             <button class="century-btn" data-year="1400">1400 (Abad XV)</button>
             <button class="century-btn" data-year="1475">1475 (Demak)</button>
             <button class="century-btn" data-year="1526">1526 (Banten/Banjar)</button>
             <button class="century-btn" data-year="1575">1575 (Ternate)</button>
-            <button class="century-btn active-century" data-year="1625">1625 (Keemasan)</button>
+            <button class="century-btn active-century" data-year="1625">1625 (Puncak)</button>
             <button class="century-btn" data-year="1670">1670 (Makassar)</button>
             <button class="century-btn" data-year="1755">1755 (Giyanti)</button>
             <button class="century-btn" data-year="1825">1825 (Diponegoro)</button>
             <button class="century-btn" data-year="1900">1900 (Kolonial)</button>
-            <button class="century-btn" data-year="1945">1945 (Kemerdekaan)</button>
+            <button class="century-btn" data-year="1945">1945 (NKRI)</button>
+            <button class="century-btn" data-year="1956">1956 (Irian Barat)</button>
           </div>
         </div>
       </div>
@@ -365,6 +403,113 @@
                 <div style="font-size:0.72rem; color:#64748b;">Berdiri setelah tahun yang dipilih pada linimasa</div>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal / Bottom Sheet: Mobile Layers & Filters Control -->
+    <div id="modal-mobile-layers" class="modal-overlay" role="dialog" aria-modal="true">
+      <div class="modal-card">
+        <div class="modal-header">
+          <h3>Kontrol Lapisan Peta & Filter Spasial</h3>
+          <button id="btn-close-mobile-layers" class="btn-close-modal" aria-label="Tutup Kontrol">&times;</button>
+        </div>
+        <div class="modal-body" style="padding:16px;">
+          <!-- Section 1: Layer Switches -->
+          <div style="margin-bottom:18px;">
+            <div style="font-size:0.8rem; font-weight:700; color:#0f4c3a; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:8px;">Lapisan Peta Aktif</div>
+            <div style="display:flex; flex-direction:column; gap:8px;">
+              <label class="layer-switch-row">
+                <span style="display:flex; align-items:center; gap:8px; font-weight:600; font-size:0.85rem;">
+                  <span>👑</span> Penanda Kerajaan & Kesultanan
+                </span>
+                <input type="checkbox" id="chk-layer-kingdoms" checked>
+              </label>
+
+              <label class="layer-switch-row">
+                <span style="display:flex; align-items:center; gap:8px; font-weight:600; font-size:0.85rem;">
+                  <span>🗺️</span> Poligon Wilayah Historis (Atlas Cribb & Reid)
+                </span>
+                <input type="checkbox" id="chk-layer-territories" checked>
+              </label>
+
+              <label class="layer-switch-row">
+                <span style="display:flex; align-items:center; gap:8px; font-weight:600; font-size:0.85rem;">
+                  <span>🏛️</span> Situs Sejarah (Masjid, Makam, Keraton, Benteng)
+                </span>
+                <input type="checkbox" id="chk-layer-sites" checked>
+              </label>
+            </div>
+          </div>
+
+          <!-- Section 2: Historical Site Categories Filter -->
+          <div style="margin-bottom:18px;">
+            <div style="font-size:0.8rem; font-weight:700; color:#0f4c3a; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:8px;">Filter Kategori Situs Sejarah</div>
+            <div class="site-category-chips">
+              <button class="site-cat-chip active" data-site-cat="all">Semua Situs</button>
+              <button class="site-cat-chip" data-site-cat="mosque">🕌 Masjid Kuno</button>
+              <button class="site-cat-chip" data-site-cat="palace">👑 Keraton / Istana</button>
+              <button class="site-cat-chip" data-site-cat="tomb">🏛️ Makam Sultan</button>
+              <button class="site-cat-chip" data-site-cat="fortress">🛡️ Benteng</button>
+              <button class="site-cat-chip" data-site-cat="port">⚓ Pelabuhan Kuno</button>
+            </div>
+          </div>
+
+          <!-- Section 3: Island Region Filter -->
+          <div style="margin-bottom:18px;">
+            <div style="font-size:0.8rem; font-weight:700; color:#0f4c3a; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:8px;">Wilayah Kepulauan</div>
+            <div class="filter-badge-row" style="flex-wrap:wrap; gap:6px;">
+              <button class="filter-badge active" data-region="Semua">Semua</button>
+              <button class="filter-badge" data-region="Sumatera">Sumatera</button>
+              <button class="filter-badge" data-region="Jawa">Jawa</button>
+              <button class="filter-badge" data-region="Kalimantan">Kalimantan</button>
+              <button class="filter-badge" data-region="Sulawesi">Sulawesi</button>
+              <button class="filter-badge" data-region="Maluku & Papua">Maluku & Papua</button>
+              <button class="filter-badge" data-region="Nusa Tenggara">Nusa Tenggara</button>
+            </div>
+          </div>
+
+          <!-- Section 4: Display Mode & Highlights -->
+          <div style="margin-bottom:18px;">
+            <div style="font-size:0.8rem; font-weight:700; color:#0f4c3a; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:8px;">Opsi Tampilan & Waktu</div>
+            <div style="display:flex; flex-direction:column; gap:8px;">
+              <button id="btn-modal-toggle-mode" class="btn-ctrl-wide">
+                <span>🔄 Beralih Mode Kronologis Aktif / Seluruh Titik</span>
+              </button>
+              <button id="btn-modal-toggle-golden" class="btn-ctrl-wide">
+                <span>✨ Sorot Era Keemasan (Golden Age)</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Section 5: Basemap Selection -->
+          <div>
+            <div style="font-size:0.8rem; font-weight:700; color:#0f4c3a; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:8px;">Pilihan Gaya Basemap</div>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
+              <button class="basemap-choice-btn active" data-basemap="osm">OpenStreetMap</button>
+              <button class="basemap-choice-btn" data-basemap="natgeo">Esri NatGeo (Kuno)</button>
+              <button class="basemap-choice-btn" data-basemap="topo">OpenTopoMap</button>
+              <button class="basemap-choice-btn" data-basemap="satellite">Citra Satelit Esri</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal: Chronology of Historical Events (1082 M s.d. 1956 M) -->
+    <div id="modal-events" class="modal-overlay" role="dialog" aria-modal="true">
+      <div class="modal-card">
+        <div class="modal-header">
+          <h3>Kronologi Peristiwa Sejarah Islam Nusantara hingga NKRI</h3>
+          <button id="btn-close-events-modal" class="btn-close-modal" aria-label="Tutup Kronologi">&times;</button>
+        </div>
+        <div class="modal-body" style="padding:16px;">
+          <p style="font-size:0.82rem; color:#4b5563; margin-bottom:14px; background:#f4eee1; padding:10px 14px; border-radius:6px; border-left:3px solid var(--color-primary); line-height:1.4;">
+            Rangkaian peristiwa sejarah penting dari bukti epigrafi tertua Leran (1082 M), kemunculan kesultanan maritim, perlawanan kolonial, hingga proklamasi kemerdekaan dan integrasi kerajaan swapraja ke dalam Negara Kesatuan Republik Indonesia.
+          </p>
+          <div id="events-timeline-container" class="events-timeline-list">
+            <!-- Populated dynamically via assets/js/app.js -->
           </div>
         </div>
       </div>

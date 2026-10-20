@@ -73,7 +73,17 @@
       "ibn-battuta-1958",
       "kemendikbud-cagarbudaya"
     ],
-    "sultans_count": 6
+    "sultans_count": 6,
+    "nkri_integration": {
+      "integrated_into_nkri": false,
+      "integration_year": null,
+      "integration_date_display": "Telah berakhir sebelum era modern (1521 M (Ditaklukkan Portugis & diserap ke Aceh Darussalam 1524 M))",
+      "integration_type": "historical_predecessor",
+      "historical_figure": null,
+      "title_document": null,
+      "summary": "Kesultanan ini telah berakhir masa kedaulatan politiknya pada kurun historis 1521 M (Ditaklukkan Portugis & diserap ke Aceh Darussalam 1524 M). Seluruh wilayah teritorial historisnya kini menjadi bagian sah dan integral dari wilayah kedaulatan Negara Kesatuan Republik Indonesia, dengan tinggalan cagar budayanya dilindungi negara berdasarkan UU Cagar Budaya No. 11 Tahun 2010.",
+      "current_status": "Situs Cagar Budaya Arkeologi Nasional"
+    }
   },
   {
     "id": "perlak",
@@ -134,7 +144,17 @@
       "ricklefs-2008",
       "kemendikbud-cagarbudaya"
     ],
-    "sultans_count": 3
+    "sultans_count": 3,
+    "nkri_integration": {
+      "integrated_into_nkri": false,
+      "integration_year": null,
+      "integration_date_display": "Telah berakhir sebelum era modern (c. 1292 M (Menyatu dengan Samudera Pasai))",
+      "integration_type": "historical_predecessor",
+      "historical_figure": null,
+      "title_document": null,
+      "summary": "Kesultanan ini telah berakhir masa kedaulatan politiknya pada kurun historis c. 1292 M (Menyatu dengan Samudera Pasai). Seluruh wilayah teritorial historisnya kini menjadi bagian sah dan integral dari wilayah kedaulatan Negara Kesatuan Republik Indonesia, dengan tinggalan cagar budayanya dilindungi negara berdasarkan UU Cagar Budaya No. 11 Tahun 2010.",
+      "current_status": "Situs Cagar Budaya Arkeologi Nasional"
+    }
   },
   {
     "id": "aceh-darussalam",
@@ -209,7 +229,17 @@
       "reid-1993",
       "kemendikbud-cagarbudaya"
     ],
-    "sultans_count": 8
+    "sultans_count": 8,
+    "nkri_integration": {
+      "integrated_into_nkri": false,
+      "integration_year": null,
+      "integration_date_display": "Telah berakhir sebelum era modern (1903 M (Sultan Muhammad Daud Syah ditawan Belanda))",
+      "integration_type": "historical_predecessor",
+      "historical_figure": null,
+      "title_document": null,
+      "summary": "Kesultanan ini telah berakhir masa kedaulatan politiknya pada kurun historis 1903 M (Sultan Muhammad Daud Syah ditawan Belanda). Seluruh wilayah teritorial historisnya kini menjadi bagian sah dan integral dari wilayah kedaulatan Negara Kesatuan Republik Indonesia, dengan tinggalan cagar budayanya dilindungi negara berdasarkan UU Cagar Budaya No. 11 Tahun 2010.",
+      "current_status": "Situs Cagar Budaya Arkeologi Nasional"
+    }
   },
   {
     "id": "siak-sri-indrapura",
@@ -274,7 +304,17 @@
       "poesponegoro-notosusanto-2008",
       "kemendikbud-cagarbudaya"
     ],
-    "sultans_count": 4
+    "sultans_count": 4,
+    "nkri_integration": {
+      "integrated_into_nkri": true,
+      "integration_year": 1945,
+      "integration_date_display": "Oktober 1945 M",
+      "integration_type": "full_integration_heroic",
+      "historical_figure": "Sultan Syarif Kasim II (Pahlawan Nasional Indonesia)",
+      "title_document": "Surat Kawat Kesetiaan kepada Presiden RI & Penyerahan Mahkota Diraja",
+      "summary": "Salah satu peristiwa integrasi paling heroik dalam sejarah kemerdekaan: Sultan Syarif Kasim II menyatakan kesetiaan mutlak kepada Republik Indonesia, menyerahkan mahkota emas bertahtakan berlian dan dana kas kesultanan sebesar 13 juta gulden (setara Rp 1 triliun lebih) kepada Bung Karno untuk membiayai perjuangan kemerdekaan.",
+      "current_status": "Cagar Budaya Nasional & Kompleks Museum Istana Siak"
+    }
   },
   {
     "id": "palembang-darussalam",
@@ -348,7 +388,17 @@
       "poesponegoro-notosusanto-2008",
       "kemendikbud-cagarbudaya"
     ],
-    "sultans_count": 4
+    "sultans_count": 4,
+    "nkri_integration": {
+      "integrated_into_nkri": false,
+      "integration_year": null,
+      "integration_date_display": "Telah berakhir sebelum era modern (1823 M (Dihapuskan oleh Kolonial Belanda))",
+      "integration_type": "historical_predecessor",
+      "historical_figure": null,
+      "title_document": null,
+      "summary": "Kesultanan ini telah berakhir masa kedaulatan politiknya pada kurun historis 1823 M (Dihapuskan oleh Kolonial Belanda). Seluruh wilayah teritorial historisnya kini menjadi bagian sah dan integral dari wilayah kedaulatan Negara Kesatuan Republik Indonesia, dengan tinggalan cagar budayanya dilindungi negara berdasarkan UU Cagar Budaya No. 11 Tahun 2010.",
+      "current_status": "Situs Cagar Budaya Arkeologi Nasional"
+    }
   },
   {
     "id": "jambi",
@@ -412,7 +462,17 @@
       "poesponegoro-notosusanto-2008",
       "kemendikbud-cagarbudaya"
     ],
-    "sultans_count": 0
+    "sultans_count": 0,
+    "nkri_integration": {
+      "integrated_into_nkri": false,
+      "integration_year": null,
+      "integration_date_display": "Telah berakhir sebelum era modern (1904 M (Wafatnya Sultan Thaha Syaifuddin dalam pertempuran))",
+      "integration_type": "historical_predecessor",
+      "historical_figure": null,
+      "title_document": null,
+      "summary": "Kesultanan ini telah berakhir masa kedaulatan politiknya pada kurun historis 1904 M (Wafatnya Sultan Thaha Syaifuddin dalam pertempuran). Seluruh wilayah teritorial historisnya kini menjadi bagian sah dan integral dari wilayah kedaulatan Negara Kesatuan Republik Indonesia, dengan tinggalan cagar budayanya dilindungi negara berdasarkan UU Cagar Budaya No. 11 Tahun 2010.",
+      "current_status": "Situs Cagar Budaya Arkeologi Nasional"
+    }
   },
   {
     "id": "deli",
@@ -481,7 +541,17 @@
       "poesponegoro-notosusanto-2008",
       "kemendikbud-cagarbudaya"
     ],
-    "sultans_count": 0
+    "sultans_count": 0,
+    "nkri_integration": {
+      "integrated_into_nkri": true,
+      "integration_year": 1946,
+      "integration_date_display": "1946 M (Revolusi Sosial Sumatera Timur)",
+      "integration_type": "cultural_institution",
+      "historical_figure": "Sultan Otteman Mahmud Ma'amun",
+      "title_document": "Penyatuan Wilayah Sumatera Timur ke dalam NKRI",
+      "summary": "Melebur ke dalam Negara Kesatuan Republik Indonesia pasca-dinamika Revolusi Sosial Sumatera Timur 1946. Menjadi bagian dari Provinsi Sumatera Utara, sementara garis dinasti Kesultanan Deli terus lestari memelihara tradisi Melayu dan Istana Maimun.",
+      "current_status": "Lembaga Pemangku Adat Melayu Deli & Pengelola Warisan Istana Maimun"
+    }
   },
   {
     "id": "riau-lingga",
@@ -542,7 +612,17 @@
       "poesponegoro-notosusanto-2008",
       "kemendikbud-cagarbudaya"
     ],
-    "sultans_count": 0
+    "sultans_count": 0,
+    "nkri_integration": {
+      "integrated_into_nkri": false,
+      "integration_year": null,
+      "integration_date_display": "Telah berakhir sebelum era modern (1911 M (Dimakzulkan sepihak oleh Belanda))",
+      "integration_type": "historical_predecessor",
+      "historical_figure": null,
+      "title_document": null,
+      "summary": "Kesultanan ini telah berakhir masa kedaulatan politiknya pada kurun historis 1911 M (Dimakzulkan sepihak oleh Belanda). Seluruh wilayah teritorial historisnya kini menjadi bagian sah dan integral dari wilayah kedaulatan Negara Kesatuan Republik Indonesia, dengan tinggalan cagar budayanya dilindungi negara berdasarkan UU Cagar Budaya No. 11 Tahun 2010.",
+      "current_status": "Situs Cagar Budaya Arkeologi Nasional"
+    }
   },
   {
     "id": "indragiri",
@@ -601,7 +681,17 @@
       "poesponegoro-notosusanto-2008",
       "kemendikbud-cagarbudaya"
     ],
-    "sultans_count": 0
+    "sultans_count": 0,
+    "nkri_integration": {
+      "integrated_into_nkri": true,
+      "integration_year": 1945,
+      "integration_date_display": "1945 M",
+      "integration_type": "integrated",
+      "historical_figure": "Sultan Mahmud Syah",
+      "title_document": "Peleburan Swapraja Indragiri ke NKRI",
+      "summary": "Menyatakan dukungan terhadap kemerdekaan Indonesia dan melebur menjadi Kabupaten Indragiri Hulu dan Hilir di Riau.",
+      "current_status": "Cagar Budaya Kompleks Makam Raja-Raja Indragiri"
+    }
   },
   {
     "id": "pagaruyung-islam",
@@ -665,7 +755,17 @@
       "poesponegoro-notosusanto-2008",
       "kemendikbud-cagarbudaya"
     ],
-    "sultans_count": 0
+    "sultans_count": 0,
+    "nkri_integration": {
+      "integrated_into_nkri": false,
+      "integration_year": null,
+      "integration_date_display": "Telah berakhir sebelum era modern (1825 M (Perjanjian Padang & Perang Padri))",
+      "integration_type": "historical_predecessor",
+      "historical_figure": null,
+      "title_document": null,
+      "summary": "Kesultanan ini telah berakhir masa kedaulatan politiknya pada kurun historis 1825 M (Perjanjian Padang & Perang Padri). Seluruh wilayah teritorial historisnya kini menjadi bagian sah dan integral dari wilayah kedaulatan Negara Kesatuan Republik Indonesia, dengan tinggalan cagar budayanya dilindungi negara berdasarkan UU Cagar Budaya No. 11 Tahun 2010.",
+      "current_status": "Situs Cagar Budaya Arkeologi Nasional"
+    }
   },
   {
     "id": "demak",
@@ -740,7 +840,17 @@
       "ricklefs-2008",
       "kemendikbud-cagarbudaya"
     ],
-    "sultans_count": 5
+    "sultans_count": 5,
+    "nkri_integration": {
+      "integrated_into_nkri": false,
+      "integration_year": null,
+      "integration_date_display": "Telah berakhir sebelum era modern (1554 M (Peralihan kekuasaan ke Pajang))",
+      "integration_type": "historical_predecessor",
+      "historical_figure": null,
+      "title_document": null,
+      "summary": "Kesultanan ini telah berakhir masa kedaulatan politiknya pada kurun historis 1554 M (Peralihan kekuasaan ke Pajang). Seluruh wilayah teritorial historisnya kini menjadi bagian sah dan integral dari wilayah kedaulatan Negara Kesatuan Republik Indonesia, dengan tinggalan cagar budayanya dilindungi negara berdasarkan UU Cagar Budaya No. 11 Tahun 2010.",
+      "current_status": "Situs Cagar Budaya Arkeologi Nasional"
+    }
   },
   {
     "id": "pajang",
@@ -798,7 +908,17 @@
       "ricklefs-2008",
       "poesponegoro-notosusanto-2008"
     ],
-    "sultans_count": 0
+    "sultans_count": 0,
+    "nkri_integration": {
+      "integrated_into_nkri": false,
+      "integration_year": null,
+      "integration_date_display": "Telah berakhir sebelum era modern (1586 M (Diserap oleh Kesultanan Mataram))",
+      "integration_type": "historical_predecessor",
+      "historical_figure": null,
+      "title_document": null,
+      "summary": "Kesultanan ini telah berakhir masa kedaulatan politiknya pada kurun historis 1586 M (Diserap oleh Kesultanan Mataram). Seluruh wilayah teritorial historisnya kini menjadi bagian sah dan integral dari wilayah kedaulatan Negara Kesatuan Republik Indonesia, dengan tinggalan cagar budayanya dilindungi negara berdasarkan UU Cagar Budaya No. 11 Tahun 2010.",
+      "current_status": "Situs Cagar Budaya Arkeologi Nasional"
+    }
   },
   {
     "id": "mataram-islam",
@@ -872,7 +992,17 @@
       "vlekke-2008",
       "kemendikbud-cagarbudaya"
     ],
-    "sultans_count": 6
+    "sultans_count": 6,
+    "nkri_integration": {
+      "integrated_into_nkri": false,
+      "integration_year": null,
+      "integration_date_display": "Telah berakhir sebelum era modern (1755 M (Terbagi melalui Perjanjian Giyanti menjadi Surakarta & Yogyakarta))",
+      "integration_type": "historical_predecessor",
+      "historical_figure": null,
+      "title_document": null,
+      "summary": "Kesultanan ini telah berakhir masa kedaulatan politiknya pada kurun historis 1755 M (Terbagi melalui Perjanjian Giyanti menjadi Surakarta & Yogyakarta). Seluruh wilayah teritorial historisnya kini menjadi bagian sah dan integral dari wilayah kedaulatan Negara Kesatuan Republik Indonesia, dengan tinggalan cagar budayanya dilindungi negara berdasarkan UU Cagar Budaya No. 11 Tahun 2010.",
+      "current_status": "Situs Cagar Budaya Arkeologi Nasional"
+    }
   },
   {
     "id": "kasunanan-surakarta",
@@ -938,7 +1068,17 @@
       "lombard-2008",
       "kemendikbud-cagarbudaya"
     ],
-    "sultans_count": 2
+    "sultans_count": 2,
+    "nkri_integration": {
+      "integrated_into_nkri": true,
+      "integration_year": 1945,
+      "integration_date_display": "1 September 1945 M",
+      "integration_type": "cultural_institution",
+      "historical_figure": "Sri Susuhunan Pakubuwono XII",
+      "title_document": "Maklumat 1 September 1945 Sri Susuhunan Pakubuwono XII",
+      "summary": "Menyatakan Kasunanan Surakarta Hadiningrat menjadi bagian integral NKRI. Sempat ditetapkan sebagai Daerah Istimewa Surakarta sebelum status swapraja dibekukan pada 1946 akibat dinamika politik lokal. Saat ini bertahan sebagai episentrum pelestari adat, seni karawitan, dan cagar budaya adiluhung Jawa.",
+      "current_status": "Lembaga Pemangku Adat & Cagar Budaya Nasional"
+    }
   },
   {
     "id": "kasultanan-yogyakarta",
@@ -1007,7 +1147,17 @@
       "poesponegoro-notosusanto-2008",
       "kemendikbud-cagarbudaya"
     ],
-    "sultans_count": 3
+    "sultans_count": 3,
+    "nkri_integration": {
+      "integrated_into_nkri": true,
+      "integration_year": 1945,
+      "integration_date_display": "5 September 1945 M",
+      "integration_type": "special_region",
+      "historical_figure": "Sri Sultan Hamengkubuwono IX & KGPAA Paku Alam VIII",
+      "title_document": "Amanat 5 September 1945 & Piagam Kedudukan Presiden Soekarno 19 Agustus 1945",
+      "summary": "Bergabung secara sukarela dan penuh ke Republik Indonesia segera setelah proklamasi. Mengakui RI berdaulat dan menjadikan Keraton Yogyakarta sebagai benteng perlindungan dan ibu kota Republik Indonesia (1946–1949). Kini berstatus Daerah Istimewa Yogyakarta (UU Keistimewaan No. 13 Tahun 2012) di mana Sultan bertahta otomatis menjabat Gubernur DIY.",
+      "current_status": "Pusat Pemerintahan Daerah Istimewa & Lembaga Pelestari Budaya Dunia UNESCO"
+    }
   },
   {
     "id": "banten",
@@ -1082,7 +1232,17 @@
       "poesponegoro-notosusanto-2008",
       "kemendikbud-cagarbudaya"
     ],
-    "sultans_count": 6
+    "sultans_count": 6,
+    "nkri_integration": {
+      "integrated_into_nkri": false,
+      "integration_year": null,
+      "integration_date_display": "Telah berakhir sebelum era modern (1813 M (Dihapuskan Raffles saat pendudukan Inggris))",
+      "integration_type": "historical_predecessor",
+      "historical_figure": null,
+      "title_document": null,
+      "summary": "Kesultanan ini telah berakhir masa kedaulatan politiknya pada kurun historis 1813 M (Dihapuskan Raffles saat pendudukan Inggris). Seluruh wilayah teritorial historisnya kini menjadi bagian sah dan integral dari wilayah kedaulatan Negara Kesatuan Republik Indonesia, dengan tinggalan cagar budayanya dilindungi negara berdasarkan UU Cagar Budaya No. 11 Tahun 2010.",
+      "current_status": "Situs Cagar Budaya Arkeologi Nasional"
+    }
   },
   {
     "id": "cirebon",
@@ -1148,7 +1308,17 @@
       "poesponegoro-notosusanto-2008",
       "kemendikbud-cagarbudaya"
     ],
-    "sultans_count": 3
+    "sultans_count": 3,
+    "nkri_integration": {
+      "integrated_into_nkri": false,
+      "integration_year": null,
+      "integration_date_display": "Telah berakhir sebelum era modern (1677 M (Terbagi menjadi Kasepuhan & Kanoman / Dilanjutkan kultural))",
+      "integration_type": "historical_predecessor",
+      "historical_figure": null,
+      "title_document": null,
+      "summary": "Kesultanan ini telah berakhir masa kedaulatan politiknya pada kurun historis 1677 M (Terbagi menjadi Kasepuhan & Kanoman / Dilanjutkan kultural). Seluruh wilayah teritorial historisnya kini menjadi bagian sah dan integral dari wilayah kedaulatan Negara Kesatuan Republik Indonesia, dengan tinggalan cagar budayanya dilindungi negara berdasarkan UU Cagar Budaya No. 11 Tahun 2010.",
+      "current_status": "Situs Cagar Budaya Arkeologi Nasional"
+    }
   },
   {
     "id": "giri-kedaton",
@@ -1214,7 +1384,17 @@
       "poesponegoro-notosusanto-2008",
       "kemendikbud-cagarbudaya"
     ],
-    "sultans_count": 2
+    "sultans_count": 2,
+    "nkri_integration": {
+      "integrated_into_nkri": false,
+      "integration_year": null,
+      "integration_date_display": "Telah berakhir sebelum era modern (1680 M (Ditundukkan Amangkurat II bersama VOC))",
+      "integration_type": "historical_predecessor",
+      "historical_figure": null,
+      "title_document": null,
+      "summary": "Kesultanan ini telah berakhir masa kedaulatan politiknya pada kurun historis 1680 M (Ditundukkan Amangkurat II bersama VOC). Seluruh wilayah teritorial historisnya kini menjadi bagian sah dan integral dari wilayah kedaulatan Negara Kesatuan Republik Indonesia, dengan tinggalan cagar budayanya dilindungi negara berdasarkan UU Cagar Budaya No. 11 Tahun 2010.",
+      "current_status": "Situs Cagar Budaya Arkeologi Nasional"
+    }
   },
   {
     "id": "banjar",
@@ -1284,7 +1464,17 @@
       "poesponegoro-notosusanto-2008",
       "kemendikbud-cagarbudaya"
     ],
-    "sultans_count": 4
+    "sultans_count": 4,
+    "nkri_integration": {
+      "integrated_into_nkri": false,
+      "integration_year": null,
+      "integration_date_display": "Telah berakhir sebelum era modern (1860 M (Dihapuskan sepihak oleh Belanda / Perang Banjar berlanjut hingga 1905))",
+      "integration_type": "historical_predecessor",
+      "historical_figure": null,
+      "title_document": null,
+      "summary": "Kesultanan ini telah berakhir masa kedaulatan politiknya pada kurun historis 1860 M (Dihapuskan sepihak oleh Belanda / Perang Banjar berlanjut hingga 1905). Seluruh wilayah teritorial historisnya kini menjadi bagian sah dan integral dari wilayah kedaulatan Negara Kesatuan Republik Indonesia, dengan tinggalan cagar budayanya dilindungi negara berdasarkan UU Cagar Budaya No. 11 Tahun 2010.",
+      "current_status": "Situs Cagar Budaya Arkeologi Nasional"
+    }
   },
   {
     "id": "kutai-kartanegara",
@@ -1353,7 +1543,17 @@
       "ricklefs-2008",
       "kemendikbud-cagarbudaya"
     ],
-    "sultans_count": 4
+    "sultans_count": 4,
+    "nkri_integration": {
+      "integrated_into_nkri": true,
+      "integration_year": 1960,
+      "integration_date_display": "21 Januari 1960 M",
+      "integration_type": "cultural_institution",
+      "historical_figure": "Sultan Aji Muhammad Parikesit",
+      "title_document": "Penyerahan Kekuasaan Pemerintahan Swapraja kepada Bupati KDH Kutai",
+      "summary": "Menyatakan kesetiaan kepada RI sejak 1947 dan berstatus Daerah Istimewa Kutai hingga 1960 saat kekuasaan eksekutif resmi diserahkan kepada Pemda Kabupaten Kutai Kartanegara. Pada 2001, Kesultanan dihidupkan kembali sebagai lembaga pemangku adat dan kebudayaan.",
+      "current_status": "Lembaga Adat Resmi & Pusat Festival Budaya Erau"
+    }
   },
   {
     "id": "sambas",
@@ -1416,7 +1616,17 @@
       "poesponegoro-notosusanto-2008",
       "kemendikbud-cagarbudaya"
     ],
-    "sultans_count": 3
+    "sultans_count": 3,
+    "nkri_integration": {
+      "integrated_into_nkri": true,
+      "integration_year": 1950,
+      "integration_date_display": "1950 M",
+      "integration_type": "cultural_institution",
+      "historical_figure": "Sultan Muhammad Tarhan / Raden Sulaiman dinasti",
+      "title_document": "Penghapusan Swapraja Sambas menjadi Kabupaten Sambas",
+      "summary": "Melebur ke dalam NKRI pada 1950 dan wilayahnya bertransformasi menjadi Kabupaten Sambas, Kalimantan Barat.",
+      "current_status": "Lembaga Pemangku Adat Keraton Alwatzikhoebillah"
+    }
   },
   {
     "id": "pontianak",
@@ -1481,7 +1691,17 @@
       "poesponegoro-notosusanto-2008",
       "kemendikbud-cagarbudaya"
     ],
-    "sultans_count": 3
+    "sultans_count": 3,
+    "nkri_integration": {
+      "integrated_into_nkri": true,
+      "integration_year": 1950,
+      "integration_date_display": "1950 M",
+      "integration_type": "cultural_institution",
+      "historical_figure": "Sultan Hamid II (Syarif Abdul Hamid Alkadrie)",
+      "title_document": "Peleburan Daerah Swapraja Kalimantan Barat ke NKRI",
+      "summary": "Menjadi bagian dari Republik Indonesia Serikat (RIS) dan melebur ke NKRI pada 1950. Sultan Hamid II berjasa besar sebagai ketua BFO dan perancang utama lambang negara Indonesia, Garuda Pancasila.",
+      "current_status": "Lembaga Pemangku Adat Melayu Pontianak & Cagar Budaya Istana Kadriah"
+    }
   },
   {
     "id": "paser",
@@ -1540,7 +1760,17 @@
       "poesponegoro-notosusanto-2008",
       "kemendikbud-cagarbudaya"
     ],
-    "sultans_count": 0
+    "sultans_count": 0,
+    "nkri_integration": {
+      "integrated_into_nkri": false,
+      "integration_year": null,
+      "integration_date_display": "Telah berakhir sebelum era modern (1906 M (Dihapuskan pemerintah Hindia Belanda))",
+      "integration_type": "historical_predecessor",
+      "historical_figure": null,
+      "title_document": null,
+      "summary": "Kesultanan ini telah berakhir masa kedaulatan politiknya pada kurun historis 1906 M (Dihapuskan pemerintah Hindia Belanda). Seluruh wilayah teritorial historisnya kini menjadi bagian sah dan integral dari wilayah kedaulatan Negara Kesatuan Republik Indonesia, dengan tinggalan cagar budayanya dilindungi negara berdasarkan UU Cagar Budaya No. 11 Tahun 2010.",
+      "current_status": "Situs Cagar Budaya Arkeologi Nasional"
+    }
   },
   {
     "id": "bulungan",
@@ -1598,7 +1828,17 @@
       "poesponegoro-notosusanto-2008",
       "kemendikbud-cagarbudaya"
     ],
-    "sultans_count": 0
+    "sultans_count": 0,
+    "nkri_integration": {
+      "integrated_into_nkri": true,
+      "integration_year": 1958,
+      "integration_date_display": "1958 M",
+      "integration_type": "integrated",
+      "historical_figure": "Sultan Jalaluddin",
+      "title_document": "UU Pembentukan Daerah Tingkat II Bulungan",
+      "summary": "Bergabung ke RI dan berstatus Swapraja hingga dibentuknya Daerah Istimewa Bulungan dan Kabupaten Bulungan pada 1958.",
+      "current_condition": "Peninggalan sejarah dan kesultanan adat di Tanjung Palas."
+    }
   },
   {
     "id": "gowa",
@@ -1670,7 +1910,17 @@
       "reid-1993",
       "kemendikbud-cagarbudaya"
     ],
-    "sultans_count": 6
+    "sultans_count": 6,
+    "nkri_integration": {
+      "integrated_into_nkri": true,
+      "integration_year": 1946,
+      "integration_date_display": "1946–1950 M",
+      "integration_type": "cultural_institution",
+      "historical_figure": "Sultan Muhammad Tahir Muhibuddin (Karaeng Gowa)",
+      "title_document": "Peleburan Daerah Swapraja ke Provinsi Sulawesi",
+      "summary": "Menyatakan kesetiaan kepada proklamasi RI 1945 dan menolak pembentukan negara boneka NIT oleh Belanda. Wilayahnya menjadi Kabupaten Gowa, Sulawesi Selatan.",
+      "current_status": "Lembaga Adat Makassar & Pengelola Museum Balla Lompoa"
+    }
   },
   {
     "id": "bone",
@@ -1735,7 +1985,17 @@
       "poesponegoro-notosusanto-2008",
       "kemendikbud-cagarbudaya"
     ],
-    "sultans_count": 3
+    "sultans_count": 3,
+    "nkri_integration": {
+      "integrated_into_nkri": false,
+      "integration_year": null,
+      "integration_date_display": "Telah berakhir sebelum era modern (1905 M (Perang Rumpia / Ekspedisi Bone Belanda))",
+      "integration_type": "historical_predecessor",
+      "historical_figure": null,
+      "title_document": null,
+      "summary": "Kesultanan ini telah berakhir masa kedaulatan politiknya pada kurun historis 1905 M (Perang Rumpia / Ekspedisi Bone Belanda). Seluruh wilayah teritorial historisnya kini menjadi bagian sah dan integral dari wilayah kedaulatan Negara Kesatuan Republik Indonesia, dengan tinggalan cagar budayanya dilindungi negara berdasarkan UU Cagar Budaya No. 11 Tahun 2010.",
+      "current_status": "Situs Cagar Budaya Arkeologi Nasional"
+    }
   },
   {
     "id": "buton",
@@ -1800,7 +2060,17 @@
       "poesponegoro-notosusanto-2008",
       "kemendikbud-cagarbudaya"
     ],
-    "sultans_count": 4
+    "sultans_count": 4,
+    "nkri_integration": {
+      "integrated_into_nkri": true,
+      "integration_year": 1960,
+      "integration_date_display": "1960 M",
+      "integration_type": "cultural_institution",
+      "historical_figure": "Sultan La Ode Falihi (Sultan Buton ke-38)",
+      "title_document": "Integrasi Swapraja Buton ke Propinsi Sulawesi Tenggara",
+      "summary": "Menyatakan bergabung dengan NKRI tanpa perlawanan, mempertahankan nilai filosofi falsafah Sara Pataanguna (Pomae-maeaka, Popia-piara, Poangka-angkataka, Pomaa-maasiaka). Wilayah kesultanan bertransformasi menjadi Kabupaten Buton dan Kota Baubau.",
+      "current_status": "Lembaga Adat Kesultanan Buton & Penjaga Benteng Keraton Wolio"
+    }
   },
   {
     "id": "luwu-islam",
@@ -1860,7 +2130,17 @@
       "poesponegoro-notosusanto-2008",
       "kemendikbud-cagarbudaya"
     ],
-    "sultans_count": 0
+    "sultans_count": 0,
+    "nkri_integration": {
+      "integrated_into_nkri": true,
+      "integration_year": 1945,
+      "integration_date_display": "19 Agustus 1945 M",
+      "integration_type": "full_integration_heroic",
+      "historical_figure": "Datu Luwu Andi Djemma (Pahlawan Nasional)",
+      "title_document": "Pernyataan Kesetiaan Datu Luwu Mendukung Proklamasi RI",
+      "summary": "Datu Luwu Andi Djemma menyatakan Kerajaan Luwu adalah bagian tak terpisahkan dari Republik Indonesia hanya dua hari setelah Proklamasi, memimpin perlawanan heroik rakyat Luwu melawan tentara NICA Belanda.",
+      "current_status": "Lembaga Pemangku Adat Istana Luwu Palopo"
+    }
   },
   {
     "id": "ternate",
@@ -1930,7 +2210,17 @@
       "poesponegoro-notosusanto-2008",
       "kemendikbud-cagarbudaya"
     ],
-    "sultans_count": 6
+    "sultans_count": 6,
+    "nkri_integration": {
+      "integrated_into_nkri": true,
+      "integration_year": 1950,
+      "integration_date_display": "1950 M",
+      "integration_type": "cultural_institution",
+      "historical_figure": "Sultan Iskandar Muhammad Djabir Sjah",
+      "title_document": "Integrasi Maluku Utara ke dalam NKRI",
+      "summary": "Mendukung kemerdekaan Republik Indonesia dan berperan dalam penyatuan Maluku Utara ke pangkuan Ibu Pertiwi. Tetap menjaga kedaton dan tatanan adat Moloku Kie Raha hingga kini.",
+      "current_status": "Lembaga Adat Kesultanan Ternate & Kedaton Ternate"
+    }
   },
   {
     "id": "tidore",
@@ -2000,7 +2290,17 @@
       "poesponegoro-notosusanto-2008",
       "kemendikbud-cagarbudaya"
     ],
-    "sultans_count": 5
+    "sultans_count": 5,
+    "nkri_integration": {
+      "integrated_into_nkri": true,
+      "integration_year": 1950,
+      "integration_date_display": "1950 / 1956 M",
+      "integration_type": "cultural_institution",
+      "historical_figure": "Sultan Zainal Abidin Syah (Pahlawan Nasional)",
+      "title_document": "Keputusan Presiden RI Penetapan Ibu Kota Irian Barat di Soasio 1956",
+      "summary": "Berperan krusial dalam kedaulatan NKRI atas Papua Barat: Sultan Zainal Abidin Syah diangkat Bung Karno menjadi Gubernur pertama Irian Barat (1956) membuktikan keterikatan historis Papua dengan Nusantara sejak berabad-abad lampau.",
+      "current_status": "Lembaga Adat Kesultanan Tidore & Pengelola Kedaton Soasio"
+    }
   },
   {
     "id": "bacan",
@@ -2060,7 +2360,17 @@
       "poesponegoro-notosusanto-2008",
       "kemendikbud-cagarbudaya"
     ],
-    "sultans_count": 0
+    "sultans_count": 0,
+    "nkri_integration": {
+      "integrated_into_nkri": true,
+      "integration_year": 1950,
+      "integration_date_display": "1950 M",
+      "integration_type": "cultural_institution",
+      "historical_figure": "Sultan Kamarullah",
+      "title_document": "Integrasi Swapraja Bacan ke NKRI",
+      "summary": "Melebur ke dalam Negara Kesatuan Republik Indonesia pada 1950 dan bertransformasi menjadi bagian dari Kabupaten Halmahera Selatan.",
+      "current_status": "Lembaga Adat Kesultanan Bacan"
+    }
   },
   {
     "id": "rumbati-papua",
@@ -2120,7 +2430,17 @@
       "andaya-1993",
       "kemendikbud-cagarbudaya"
     ],
-    "sultans_count": 1
+    "sultans_count": 1,
+    "nkri_integration": {
+      "integrated_into_nkri": true,
+      "integration_year": 1950,
+      "integration_date_display": "1950–1963 M (Pembebasan Irian Barat)",
+      "integration_type": "cultural_institution",
+      "historical_figure": "Raja Abu Bakar Bauw / Klan Bauw",
+      "title_document": "Pernyataan Kesetiaan Petuanan Semenanjung Onin ke NKRI",
+      "summary": "Petuanan Islam di Semenanjung Onin (Fakfak, Papua Barat) yang secara historis terhubung dengan Kesultanan Tidore menegaskan kesetiaan penuh kepada NKRI dalam perjuangan Trikora dan Penentuan Pendapat Rakyat (Pepera) 1969.",
+      "current_status": "Lembaga Adat Petuanan Rumbati Fakfak"
+    }
   },
   {
     "id": "misool-papua",
@@ -2180,7 +2500,17 @@
       "andaya-1993",
       "poesponegoro-notosusanto-2008"
     ],
-    "sultans_count": 1
+    "sultans_count": 1,
+    "nkri_integration": {
+      "integrated_into_nkri": true,
+      "integration_year": 1950,
+      "integration_date_display": "1950–1963 M",
+      "integration_type": "cultural_institution",
+      "historical_figure": "Raja Umkabu / Matbat",
+      "title_document": "Integrasi Kepulauan Raja Ampat ke NKRI",
+      "summary": "Petuanan Islam di Kepulauan Raja Ampat yang bersatu teguh dengan NKRI mendukung integrasi Irian Barat ke Republik Indonesia.",
+      "current_status": "Lembaga Adat Petuanan Misool Raja Ampat"
+    }
   },
   {
     "id": "bima",
@@ -2246,7 +2576,17 @@
       "poesponegoro-notosusanto-2008",
       "kemendikbud-cagarbudaya"
     ],
-    "sultans_count": 6
+    "sultans_count": 6,
+    "nkri_integration": {
+      "integrated_into_nkri": true,
+      "integration_year": 1958,
+      "integration_date_display": "1958 M",
+      "integration_type": "cultural_institution",
+      "historical_figure": "Sultan Muhammad Salahuddin",
+      "title_document": "Maklumat Kesultanan Bima 1945 & UU Pembentukan Dati II Bima 1958",
+      "summary": "Sultan Muhammad Salahuddin menyatakan berdiri di belakang Republik Indonesia sejak 1945. Wilayahnya bertransformasi menjadi Kabupaten dan Kota Bima.",
+      "current_status": "Lembaga Adat Asi Mbojo & Museum Bima"
+    }
   },
   {
     "id": "sumbawa",
@@ -2306,7 +2646,17 @@
       "chambert-loir-salahuddin-1999",
       "kemendikbud-cagarbudaya"
     ],
-    "sultans_count": 2
+    "sultans_count": 2,
+    "nkri_integration": {
+      "integrated_into_nkri": true,
+      "integration_year": 1958,
+      "integration_date_display": "1958 M",
+      "integration_type": "cultural_institution",
+      "historical_figure": "Sultan Muhammad Kaharuddin III",
+      "title_document": "Maklumat Sumbawa 1945 & UU No. 69 Tahun 1958",
+      "summary": "Menyatakan integrasi swapraja ke NKRI pasca-kemerdekaan dan wilayah kesultanan bertransformasi menjadi Kabupaten Sumbawa.",
+      "current_status": "Lembaga Adat Kesultanan Sumbawa & Istana Bala Kuning"
+    }
   },
   {
     "id": "selaparang",
@@ -2366,6 +2716,16 @@
       "graaf-pigeaud-2001",
       "kemendikbud-cagarbudaya"
     ],
-    "sultans_count": 1
+    "sultans_count": 1,
+    "nkri_integration": {
+      "integrated_into_nkri": false,
+      "integration_year": null,
+      "integration_date_display": "Telah berakhir sebelum era modern (c. 1740 M (Ditundukkan oleh aliansi Karangasem Bali))",
+      "integration_type": "historical_predecessor",
+      "historical_figure": null,
+      "title_document": null,
+      "summary": "Kesultanan ini telah berakhir masa kedaulatan politiknya pada kurun historis c. 1740 M (Ditundukkan oleh aliansi Karangasem Bali). Seluruh wilayah teritorial historisnya kini menjadi bagian sah dan integral dari wilayah kedaulatan Negara Kesatuan Republik Indonesia, dengan tinggalan cagar budayanya dilindungi negara berdasarkan UU Cagar Budaya No. 11 Tahun 2010.",
+      "current_status": "Situs Cagar Budaya Arkeologi Nasional"
+    }
   }
 ]

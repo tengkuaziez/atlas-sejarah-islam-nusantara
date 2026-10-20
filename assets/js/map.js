@@ -7,12 +7,18 @@ window.HistoryMap = (function() {
   let map = null;
   let markersLayer = null;
   let territoriesLayer = null;
+  let sitesLayer = null;
   let territoriesData = null;
+  let sitesData = [];
   let tileLayers = {};
   let currentBaseLayer = 'osm';
   let kingdomMarkers = {}; // kingdomId -> Leaflet marker
+  let siteMarkers = {}; // siteId -> Leaflet marker
   let activePolygons = []; // currently rendered polygon layers
   let showTerritories = true; // layer toggle state
+  let showKingdoms = true;
+  let showSites = true;
+  let selectedSiteCategory = 'all';
 
   const INDONESIA_CENTER = [-0.7893, 118.9213];
   const DEFAULT_ZOOM = 5;
@@ -59,6 +65,7 @@ window.HistoryMap = (function() {
     }
 
     territoriesLayer = L.layerGroup().addTo(map);
+    sitesLayer = L.layerGroup().addTo(map);
     markersLayer = L.layerGroup().addTo(map);
 
     return map;
@@ -75,6 +82,10 @@ window.HistoryMap = (function() {
     territoriesData = geojsonData;
   }
 
+  function setSitesData(sitesArray) {
+    sitesData = sitesArray || [];
+  }
+
   function toggleTerritories(enable) {
     if (typeof enable === 'boolean') {
       showTerritories = enable;
@@ -86,6 +97,28 @@ window.HistoryMap = (function() {
 
   function isTerritoriesVisible() {
     return showTerritories;
+  }
+
+  function toggleKingdoms(enable) {
+    if (typeof enable === 'boolean') {
+      showKingdoms = enable;
+    } else {
+      showKingdoms = !showKingdoms;
+    }
+    return showKingdoms;
+  }
+
+  function toggleSites(enable) {
+    if (typeof enable === 'boolean') {
+      showSites = enable;
+    } else {
+      showSites = !showSites;
+    }
+    return showSites;
+  }
+
+  function setSiteCategoryFilter(cat) {
+    selectedSiteCategory = cat || 'all';
   }
 
   function getKingdomStatus(kingdom, year) {
@@ -404,6 +437,124 @@ window.HistoryMap = (function() {
     return renderedCount;
   }
 
+  function createSiteIcon(site) {
+    let pinClass = 'site-pin-mosque';
+    let iconChar = '🕌';
+
+    if (site.site_type === 'palace') {
+      pinClass = 'site-pin-palace';
+      iconChar = '👑';
+    } else if (site.site_type === 'tomb') {
+      pinClass = 'site-pin-tomb';
+      iconChar = '🏛️';
+    } else if (site.site_type === 'fortress') {
+      pinClass = 'site-pin-fortress';
+      iconChar = '🛡️';
+    } else if (site.site_type === 'port') {
+      pinClass = 'site-pin-port';
+      iconChar = '⚓';
+    }
+
+    return L.divIcon({
+      className: 'custom-site-marker',
+      html: `
+        <div class="site-marker-pin ${pinClass}" style="width:26px; height:26px; font-size:12px;" title="${site.site_name} (${site.construction_period_display})">
+          <span>${iconChar}</span>
+        </div>
+      `,
+      iconSize: [26, 26],
+      iconAnchor: [13, 13],
+      popupAnchor: [0, -14]
+    });
+  }
+
+  function buildSitePopupContent(site) {
+    let typeLabel = "Masjid Bersejarah";
+    if (site.site_type === 'palace') typeLabel = "Keraton / Istana";
+    if (site.site_type === 'tomb') typeLabel = "Makam Sultan & Tokoh";
+    if (site.site_type === 'fortress') typeLabel = "Benteng Pertahanan";
+    if (site.site_type === 'port') typeLabel = "Bandar Niaga / Pelabuhan Kuno";
+
+    return `
+      <div class="leaflet-popup-content">
+        <div class="popup-header" style="background: linear-gradient(135deg, #0f4c3a 0%, #1a5d48 100%);">
+          <div class="popup-region" style="color:#fde68a;">${typeLabel}</div>
+          <div class="popup-title">${site.site_name}</div>
+        </div>
+        <div class="popup-body">
+          <div class="popup-meta-item">
+            <span class="popup-meta-label">Pembangunan:</span>
+            <span class="popup-meta-value">${site.construction_period_display}</span>
+          </div>
+          <div class="popup-meta-item">
+            <span class="popup-meta-label">Status Cagar:</span>
+            <span class="popup-meta-value" style="font-size:0.75rem; color:#0f4c3a;">${site.heritage_status || 'Cagar Budaya Nasional'}</span>
+          </div>
+          <div class="popup-summary">
+            ${site.historical_significance}
+          </div>
+        </div>
+        <div class="popup-footer">
+          <button class="btn-popup-detail" onclick="window.DetailDrawer.openSite('${site.site_id}')">
+            <span>Buka Detail Situs & Historiografi</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </button>
+        </div>
+      </div>
+    `;
+  }
+
+  function renderSites(currentYear, filters) {
+    sitesLayer.clearLayers();
+    siteMarkers = {};
+
+    if (!showSites || !sitesData || sitesData.length === 0) {
+      return 0;
+    }
+
+    let renderedSites = 0;
+
+    sitesData.forEach(site => {
+      // Temporal filter: Site must be constructed by this year, unless showAllHistorical is true
+      if (!filters.showAllHistorical && site.construction_year > currentYear) {
+        return;
+      }
+
+      // Category filter
+      if (selectedSiteCategory !== 'all' && site.site_type !== selectedSiteCategory) {
+        return;
+      }
+
+      // Search filter
+      if (filters.search) {
+        const query = filters.search.toLowerCase();
+        const matchName = site.site_name.toLowerCase().includes(query);
+        const matchSignificance = site.historical_significance.toLowerCase().includes(query);
+        if (!matchName && !matchSignificance) {
+          return;
+        }
+      }
+
+      const icon = createSiteIcon(site);
+      const marker = L.marker([site.latitude, site.longitude], {
+        icon: icon,
+        title: site.site_name,
+        riseOnHover: true
+      });
+
+      marker.bindPopup(() => buildSitePopupContent(site), {
+        maxWidth: 300,
+        className: 'kingdom-popup-custom'
+      });
+
+      sitesLayer.addLayer(marker);
+      siteMarkers[site.site_id] = marker;
+      renderedSites++;
+    });
+
+    return renderedSites;
+  }
+
   function renderMarkers(kingdoms, currentYear, filters) {
     markersLayer.clearLayers();
     kingdomMarkers = {};
@@ -414,73 +565,97 @@ window.HistoryMap = (function() {
     // 1. Render Polygons First in dedicated pane (Z-Index 350)
     const territoryCount = renderTerritories(currentYear, filters, kingdoms);
 
-    // 2. Render Markers on Top in markerPane (Z-Index 600)
-    kingdoms.forEach(kingdom => {
-      const status = getKingdomStatus(kingdom, currentYear);
+    // 2. Render Historical Sites
+    const sitesCount = renderSites(currentYear, filters);
 
-      // Filter: Region
-      if (filters.region && filters.region !== 'Semua' && kingdom.region !== filters.region) {
-        return;
-      }
+    // 3. Render Kingdom Markers on Top in markerPane (Z-Index 600)
+    if (showKingdoms) {
+      kingdoms.forEach(kingdom => {
+        const status = getKingdomStatus(kingdom, currentYear);
 
-      // Filter: Search Text
-      if (filters.search) {
-        const query = filters.search.toLowerCase();
-        const matchName = kingdom.name.toLowerCase().includes(query);
-        const matchAlt = kingdom.alternate_names && kingdom.alternate_names.some(a => a.toLowerCase().includes(query));
-        const matchCapital = kingdom.capital_city.toLowerCase().includes(query);
-        if (!matchName && !matchAlt && !matchCapital) {
+        // Filter: Region
+        if (filters.region && filters.region !== 'Semua' && kingdom.region !== filters.region) {
           return;
         }
-      }
 
-      // Filter: Only Golden Age
-      if (filters.onlyGoldenAge && status !== 'golden_age') {
-        return;
-      }
+        // Filter: Search Text
+        if (filters.search) {
+          const query = filters.search.toLowerCase();
+          const matchName = kingdom.name.toLowerCase().includes(query);
+          const matchAlt = kingdom.alternate_names && kingdom.alternate_names.some(a => a.toLowerCase().includes(query));
+          const matchCapital = kingdom.capital_city.toLowerCase().includes(query);
+          if (!matchName && !matchAlt && !matchCapital) {
+            return;
+          }
+        }
 
-      // Filter: Show Active Only in Year vs All Historical
-      if (!filters.showAllHistorical) {
-        // Active-only mode: hide kingdoms not yet founded or already ended without cultural continuation
-        if (status === 'not_yet_founded' || status === 'ended') {
+        // Filter: Only Golden Age
+        if (filters.onlyGoldenAge && status !== 'golden_age') {
           return;
         }
-      }
 
-      if (status === 'active' || status === 'golden_age' || status === 'declining') {
-        activeCount++;
-      }
-      if (status === 'golden_age') {
-        goldenAgeCount++;
-      }
+        // Filter: Show Active Only in Year vs All Historical
+        if (!filters.showAllHistorical) {
+          // Active-only mode: hide kingdoms not yet founded or already ended without cultural continuation
+          if (status === 'not_yet_founded' || status === 'ended') {
+            return;
+          }
+        }
 
-      const icon = createMarkerIcon(kingdom, status);
-      const marker = L.marker([kingdom.coordinates.lat, kingdom.coordinates.lng], {
-        icon: icon,
-        title: kingdom.name,
-        riseOnHover: true
+        if (status === 'active' || status === 'golden_age' || status === 'declining') {
+          activeCount++;
+        }
+        if (status === 'golden_age') {
+          goldenAgeCount++;
+        }
+
+        const icon = createMarkerIcon(kingdom, status);
+        const marker = L.marker([kingdom.coordinates.lat, kingdom.coordinates.lng], {
+          icon: icon,
+          title: kingdom.name,
+          riseOnHover: true
+        });
+
+        marker.bindPopup(() => buildPopupContent(kingdom, status, currentYear), {
+          maxWidth: 320,
+          className: 'kingdom-popup-custom'
+        });
+
+        marker.on('click', () => {
+          map.panTo([kingdom.coordinates.lat, kingdom.coordinates.lng]);
+        });
+
+        markersLayer.addLayer(marker);
+        kingdomMarkers[kingdom.id] = marker;
       });
-
-      marker.bindPopup(() => buildPopupContent(kingdom, status, currentYear), {
-        maxWidth: 320,
-        className: 'kingdom-popup-custom'
-      });
-
-      marker.on('click', () => {
-        // Center smoothly without losing zoom
-        map.panTo([kingdom.coordinates.lat, kingdom.coordinates.lng]);
-      });
-
-      markersLayer.addLayer(marker);
-      kingdomMarkers[kingdom.id] = marker;
-    });
+    }
 
     return {
       activeCount: activeCount,
       goldenAgeCount: goldenAgeCount,
       totalRendered: Object.keys(kingdomMarkers).length,
-      territoriesRendered: territoryCount
+      territoriesRendered: territoryCount,
+      sitesRendered: sitesCount
     };
+  }
+
+  function focusSite(siteId) {
+    const site = sitesData.find(s => s.site_id === siteId);
+    if (!site) return;
+
+    const isMobile = window.innerWidth < 768;
+    const targetLat = isMobile ? site.latitude - 0.3 : site.latitude;
+
+    map.flyTo([targetLat, site.longitude], isMobile ? 8 : 10, {
+      duration: 1.1
+    });
+
+    const marker = siteMarkers[siteId];
+    if (marker) {
+      setTimeout(() => {
+        marker.openPopup();
+      }, 1150);
+    }
   }
 
   function focusKingdom(kingdomId, kingdoms) {
@@ -511,10 +686,15 @@ window.HistoryMap = (function() {
     initMap,
     setBaseLayer,
     setTerritoriesData,
+    setSitesData,
     toggleTerritories,
     isTerritoriesVisible,
+    toggleKingdoms,
+    toggleSites,
+    setSiteCategoryFilter,
     renderMarkers,
     focusKingdom,
+    focusSite,
     resetView,
     getKingdomStatus
   };

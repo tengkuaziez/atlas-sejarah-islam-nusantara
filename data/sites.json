@@ -1,0 +1,604 @@
+[
+  {
+    "site_id": "masjid-agung-demak",
+    "site_name": "Masjid Agung Demak",
+    "site_type": "mosque",
+    "latitude": -6.8946,
+    "longitude": 110.6373,
+    "associated_kingdom_ids": [
+      "demak"
+    ],
+    "associated_ruler_ids": [
+      "demak-1"
+    ],
+    "construction_year": 1479,
+    "construction_period_display": "1479 M (Tahun Saka 1401 berdasar Candra Sengkala Lawang Bledeg)",
+    "historical_significance": "Pusat transmisi dakwah dan permusyawaratan Wali Songo di tanah Jawa; ikon arsitektur atap tumpang tiga akulturasi Hindu-Jawa-Islam dengan tiang tatal legendaris buatan Sunan Kalijaga.",
+    "current_condition": "Terpelihara sangat baik, aktif digunakan sebagai pusat ibadah dan cagar budaya nasional.",
+    "heritage_status": "Cagar Budaya Peringkat Nasional (Kepmenbudpar No. PM.18/PW.007/MKP/2007)",
+    "source_references": [
+      "de-graaf-pigeaud-1985",
+      "kemendikbud-cagarbudaya"
+    ],
+    "confidence_level": "Sangat Tinggi",
+    "uncertainty_notes": "Tahun berdirinya didukung epigrafi candra sengkala Lawang Bledeg (1466 M / 1479 M)."
+  },
+  {
+    "site_id": "masjid-menara-kudus",
+    "site_name": "Masjid Menara Kudus (Al-Aqsha Manarat Qudus)",
+    "site_type": "mosque",
+    "latitude": -6.8048,
+    "longitude": 110.8327,
+    "associated_kingdom_ids": [
+      "demak"
+    ],
+    "associated_ruler_ids": [],
+    "construction_year": 1549,
+    "construction_period_display": "1549 M (956 H)",
+    "historical_significance": "Didirikan oleh Sunan Kudus (Ja'far Shadiq) dengan menara menyerupai candi berarsitektur bata merah Majapahit, melambangkan kearifan lokal toleransi budaya dan penghormatan tradisi Jawa-Hindu.",
+    "current_condition": "Terawat utuh dengan kompleks pemakaman Sunan Kudus di bagian belakang.",
+    "heritage_status": "Cagar Budaya Peringkat Nasional (Kepmenbudpar No. PM.18/PW.007/MKP/2007)",
+    "source_references": [
+      "de-graaf-pigeaud-1985",
+      "kemendikbud-cagarbudaya"
+    ],
+    "confidence_level": "Tinggi",
+    "uncertainty_notes": "Prasasti batu bertuliskan huruf Arab di atas mihrab menyebutkan tahun 956 H (1549 M)."
+  },
+  {
+    "site_id": "masjid-raya-baiturrahman",
+    "site_name": "Masjid Raya Baiturrahman",
+    "site_type": "mosque",
+    "latitude": 5.5536,
+    "longitude": 95.3193,
+    "associated_kingdom_ids": [
+      "aceh-darussalam"
+    ],
+    "associated_ruler_ids": [
+      "aceh-3"
+    ],
+    "construction_year": 1614,
+    "construction_period_display": "1614 M era Sultan Iskandar Muda (Rekonstruksi Belanda 1879–1881 M)",
+    "historical_significance": "Simbol kedaulatan agama dan benteng pertahanan rakyat Aceh dalam Perang Aceh; tempat gugurnya Jenderal Kohler pada 1873.",
+    "current_condition": "Megah dan aktif, bertahan kokoh saat bencana Tsunami Samudera Hindia 2004.",
+    "heritage_status": "Cagar Budaya Peringkat Nasional (Kemendikbud No. SK: PM.91/PW.007/MKP/2011)",
+    "source_references": [
+      "reid-2005",
+      "kemendikbud-cagarbudaya"
+    ],
+    "confidence_level": "Tinggi",
+    "uncertainty_notes": "Struktur asli kayu terbakar dalam Perang Aceh 1873, dibangun kembali oleh arsitek Gerrit van Bruins bergaya Moghul revivalis."
+  },
+  {
+    "site_id": "masjid-agung-banten",
+    "site_name": "Masjid Agung Banten",
+    "site_type": "mosque",
+    "latitude": -6.0357,
+    "longitude": 106.1554,
+    "associated_kingdom_ids": [
+      "banten"
+    ],
+    "associated_ruler_ids": [
+      "banten-1"
+    ],
+    "construction_year": 1556,
+    "construction_period_display": "1556–1570 M era Sultan Maulana Hasanuddin",
+    "historical_significance": "Mahakarya akulturasi arsitektur Jawa, Tiongkok (karya arsitek Tjek Ban Tjut), dan Eropa (menara mercusuar segi delapan karya Hendrik Lucasz Cardeel).",
+    "current_condition": "Terpelihara baik dalam kawasan Banten Lama, pusat ziarah makam kesultanan.",
+    "heritage_status": "Cagar Budaya Peringkat Nasional (SK Mendikbud No. 139/M/1998)",
+    "source_references": [
+      "guillot-1990",
+      "kemendikbud-cagarbudaya"
+    ],
+    "confidence_level": "Tinggi",
+    "uncertainty_notes": "Menara mercusuar ditambahkan pada masa kekuasaan Sultan Haji (akhir abad ke-17)."
+  },
+  {
+    "site_id": "masjid-tua-katangka",
+    "site_name": "Masjid Tua Katangka (Masjid Al-Hilal)",
+    "site_type": "mosque",
+    "latitude": -5.1978,
+    "longitude": 119.4528,
+    "associated_kingdom_ids": [
+      "gowa-tallo"
+    ],
+    "associated_ruler_ids": [
+      "gowa-1"
+    ],
+    "construction_year": 1603,
+    "construction_period_display": "1603 M era Sultan Alauddin (I Mangarangi Daeng Manrabbia)",
+    "historical_significance": "Masjid tertua di Sulawesi Selatan, didirikan segera setelah pembacaan dua kalimat syahadat oleh pembesar Gowa-Tallo dibimbing Dato ri Bandang.",
+    "current_condition": "Terawat baik dengan dinding kokoh setebal 1 meter dan kompleks makam para raja Gowa.",
+    "heritage_status": "Cagar Budaya Peringkat Nasional (SK Mendikbud RI)",
+    "source_references": [
+      "andaya-1981",
+      "kemendikbud-cagarbudaya"
+    ],
+    "confidence_level": "Tinggi",
+    "uncertainty_notes": "Inskripsi di pintu masjid menyebut renovasi 1816 M oleh Sultan Abdul Rauf."
+  },
+  {
+    "site_id": "masjid-sultan-suriansyah",
+    "site_name": "Masjid Sultan Suriansyah (Masjid Kuin)",
+    "site_type": "mosque",
+    "latitude": -3.2952,
+    "longitude": 114.5778,
+    "associated_kingdom_ids": [
+      "banjar"
+    ],
+    "associated_ruler_ids": [
+      "banjar-1"
+    ],
+    "construction_year": 1526,
+    "construction_period_display": "1526 M era Pangeran Samudera / Sultan Suriansyah",
+    "historical_significance": "Masjid tertua di Kalimantan Selatan di tepian Sungai Kuin, memadukan arsitektur panggung kayu ulin Banjar dengan atap tumpang khas Demak.",
+    "current_condition": "Terawat baik, menjadi monumen sejarah masuknya Islam pertama di Tanah Banjar.",
+    "heritage_status": "Cagar Budaya Peringkat Nasional (SK Mendikbud No. 047/M/1998)",
+    "source_references": [
+      "poesponegoro-notosusanto-2008",
+      "kemendikbud-cagarbudaya"
+    ],
+    "confidence_level": "Tinggi",
+    "uncertainty_notes": "Struktur kayu ulin mengalami beberapa kali pemugaran tanpa mengubah denah dasar."
+  },
+  {
+    "site_id": "masjid-tua-wapauwe",
+    "site_name": "Masjid Tua Wapauwe",
+    "site_type": "mosque",
+    "latitude": -3.5855,
+    "longitude": 128.0833,
+    "associated_kingdom_ids": [
+      "hitu-maluku"
+    ],
+    "associated_ruler_ids": [],
+    "construction_year": 1414,
+    "construction_period_display": "1414 M",
+    "historical_significance": "Masjid tertua di Kepulauan Maluku, dibangun dari pelepah sagu (gaba-gaba) dan pasak kayu tanpa paku oleh Perdana Jamilu; menyimpan mushaf Al-Qur'an tulisan tangan tertua Maluku bertahun 1590 M.",
+    "current_condition": "Terawat sangat autentik di Desa Kaitetu, Leihitu, Maluku Tengah.",
+    "heritage_status": "Cagar Budaya Peringkat Nasional (SK Mendikbud No. 012/M/1999)",
+    "source_references": [
+      "andaya-1993",
+      "kemendikbud-cagarbudaya"
+    ],
+    "confidence_level": "Tinggi",
+    "uncertainty_notes": "Dipindahkan dari Gunung Wawane ke Desa Kaitetu pada tahun 1614 M."
+  },
+  {
+    "site_id": "masjid-gedhe-kauman-jogja",
+    "site_name": "Masjid Gedhe Kauman Kraton Yogyakarta",
+    "site_type": "mosque",
+    "latitude": -7.8037,
+    "longitude": 110.3628,
+    "associated_kingdom_ids": [
+      "kasultanan-yogyakarta"
+    ],
+    "associated_ruler_ids": [
+      "jogja-1"
+    ],
+    "construction_year": 1773,
+    "construction_period_display": "1773 M (Tahun Jawa Alip 1699 berdasar Kyai Wiryokusumo)",
+    "historical_significance": "Masjid raya Kasultanan Yogyakarta beratap tumpang tiga bertakhta mustaka daun kluwih dan gada, pusat peringatan Sekaten dan peribadatan keraton berfilosofi Hamemayu Hayuning Bawana.",
+    "current_condition": "Terpelihara sangat agung di sisi barat Alun-alun Utara Yogyakarta.",
+    "heritage_status": "Cagar Budaya Peringkat Nasional (SK Mendikbud No. 210/M/2011)",
+    "source_references": [
+      "ricklefs-2008",
+      "kemendikbud-cagarbudaya"
+    ],
+    "confidence_level": "Sangat Tinggi",
+    "uncertainty_notes": "Dibangun oleh Sri Sultan Hamengkubuwono I didampingi penghulu keraton Kyai Faqih Ibrahim."
+  },
+  {
+    "site_id": "masjid-sultan-ternate",
+    "site_name": "Masjid Sultan Ternate (Sigi Lamo)",
+    "site_type": "mosque",
+    "latitude": 0.7981,
+    "longitude": 127.3872,
+    "associated_kingdom_ids": [
+      "ternate"
+    ],
+    "associated_ruler_ids": [],
+    "construction_year": 1606,
+    "construction_period_display": "1606 M era Sultan Saidi Berkat",
+    "historical_significance": "Masjid Kesultanan Ternate beratap tumpang tujuh dengan aturan adat ketat: jamaah dilarang memakai sarung (harus bercelana panjang/destar) melambangkan kesiapan berperang menegakkan kebenaran.",
+    "current_condition": "Terawat sakral di lereng Gunung Gamalama dekat Kedaton Sultan Ternate.",
+    "heritage_status": "Cagar Budaya Peringkat Nasional",
+    "source_references": [
+      "andaya-1993",
+      "kemendikbud-cagarbudaya"
+    ],
+    "confidence_level": "Tinggi",
+    "uncertainty_notes": "Tradisi lisan menyebut cikal bakal sejak abad ke-15 namun struktur batu permanen dibangun 1606 M."
+  },
+  {
+    "site_id": "keraton-kasepuhan-cirebon",
+    "site_name": "Keraton Kasepuhan Cirebon",
+    "site_type": "palace",
+    "latitude": -6.7265,
+    "longitude": 108.5714,
+    "associated_kingdom_ids": [
+      "cirebon"
+    ],
+    "associated_ruler_ids": [
+      "cirebon-1"
+    ],
+    "construction_year": 1445,
+    "construction_period_display": "1445–1529 M (Pengembangan Pangeran Cakrabuana & Sunan Gunung Jati)",
+    "historical_significance": "Pusat kekuasaan awal Kesultanan Cirebon, menyimpan kereta kencana legendaris Singa Barong (1549 M) dengan perpaduan ornamen gajah-garuda-naga simbol persahabatan Islam, Hindu, dan Tiongkok.",
+    "current_condition": "Terpelihara baik, museum aktif, dan kediaman Sultan Sepuh.",
+    "heritage_status": "Cagar Budaya Peringkat Nasional (SK Mendikbud No. 062/M/1998)",
+    "source_references": [
+      "de-graaf-pigeaud-1985",
+      "kemendikbud-cagarbudaya"
+    ],
+    "confidence_level": "Sangat Tinggi",
+    "uncertainty_notes": "Bermula dari Keraton Pakungwati yang didirikan 1445 M."
+  },
+  {
+    "site_id": "keraton-yogyakarta",
+    "site_name": "Keraton Ngayogyakarta Hadiningrat",
+    "site_type": "palace",
+    "latitude": -7.8053,
+    "longitude": 110.3642,
+    "associated_kingdom_ids": [
+      "kasultanan-yogyakarta"
+    ],
+    "associated_ruler_ids": [
+      "jogja-1",
+      "jogja-2"
+    ],
+    "construction_year": 1755,
+    "construction_period_display": "1755–1756 M era Sri Sultan Hamengkubuwono I",
+    "historical_significance": "Pusat pemerintahan dinasti Mataram Yogyakarta, poros filosofis garis imajiner Gunung Merapi–Tugu–Keraton–Panggung Krapyak–Laut Selatan, dinobatkan sebagai Warisan Dunia UNESCO (2023). Menjadi basis pertahanan Republik Indonesia 1946–1949.",
+    "current_condition": "Sangat terawat, kediaman resmi Gubernur DIY / Sultan Hamengkubuwono X.",
+    "heritage_status": "Warisan Dunia UNESCO (The Cosmological Axis of Yogyakarta and its Historic Landmarks)",
+    "source_references": [
+      "ricklefs-2008",
+      "kemendikbud-cagarbudaya"
+    ],
+    "confidence_level": "Sangat Tinggi",
+    "uncertainty_notes": "Sultan Hamengkubuwono I memasuki istana pada 7 Oktober 1756 (bertepatan tahun Jawa Dwi Naga Rasa Tunggal)."
+  },
+  {
+    "site_id": "keraton-surakarta",
+    "site_name": "Keraton Kasunanan Surakarta Hadiningrat",
+    "site_type": "palace",
+    "latitude": -7.5779,
+    "longitude": 110.8281,
+    "associated_kingdom_ids": [
+      "kasunanan-surakarta"
+    ],
+    "associated_ruler_ids": [
+      "surakarta-1"
+    ],
+    "construction_year": 1744,
+    "construction_period_display": "1744–1745 M era Susuhunan Pakubuwono II",
+    "historical_significance": "Penerus trah Mataram Islam setelah perpindahan pusat kerajaan dari Kartasura akibat Peristiwa Geger Pacinan 1742 M; memiliki menara Panggung Songgobuwono untuk kontemplasi spritual.",
+    "current_condition": "Terpelihara baik, museum pusaka aktif dan kediaman Susuhunan Pakubuwono.",
+    "heritage_status": "Cagar Budaya Peringkat Nasional (SK Mendikbud No. 064/M/1998)",
+    "source_references": [
+      "ricklefs-2008",
+      "kemendikbud-cagarbudaya"
+    ],
+    "confidence_level": "Sangat Tinggi",
+    "uncertainty_notes": "Pindah dari Kartasura pada 17 Februari 1745 M."
+  },
+  {
+    "site_id": "istana-maimun",
+    "site_name": "Istana Maimun Kesultanan Deli",
+    "site_type": "palace",
+    "latitude": 3.5753,
+    "longitude": 98.6838,
+    "associated_kingdom_ids": [
+      "deli"
+    ],
+    "associated_ruler_ids": [
+      "deli-1"
+    ],
+    "construction_year": 1888,
+    "construction_period_display": "1888–1891 M era Sultan Mahmud Al Rasyid Perkasa Alamsyah",
+    "historical_significance": "Istana megah rancangan Kapten KNIL Theodoor van Erp yang memadukan corak arsitektur Melayu deli, Islam Timur Tengah, Spanyol, dan Italia di masa kemakmuran tembakau Deli.",
+    "current_condition": "Terawat megah di pusat Kota Medan, menjadi destinasi budaya ikonik Sumatera Utara.",
+    "heritage_status": "Cagar Budaya Peringkat Nasional (SK Mendikbud No. 048/M/1998)",
+    "source_references": [
+      "ricklefs-2008",
+      "kemendikbud-cagarbudaya"
+    ],
+    "confidence_level": "Sangat Tinggi",
+    "uncertainty_notes": "Diresmikan 18 Mei 1891 M."
+  },
+  {
+    "site_id": "istana-siak",
+    "site_name": "Istana Siak Sri Indrapura (Asserayah Hasyimiah)",
+    "site_type": "palace",
+    "latitude": 0.7977,
+    "longitude": 102.0494,
+    "associated_kingdom_ids": [
+      "siak-sri-indrapura"
+    ],
+    "associated_ruler_ids": [
+      "siak-1"
+    ],
+    "construction_year": 1889,
+    "construction_period_display": "1889 M era Sultan Syarif Hasyim",
+    "historical_significance": "Istana 'Istana Matahari Timur' berarsitektur Moor-Melayu; tempat tinggal Sultan Syarif Kasim II yang menyerahkan mahkota berlapis berlian dan 13 juta gulden kepada Presiden Soekarno demi kemerdekaan RI 1945.",
+    "current_condition": "Terawat sangat megah di tepi Sungai Siak dengan koleksi alat musik gramofon Komet langka dunia.",
+    "heritage_status": "Cagar Budaya Peringkat Nasional (SK Mendikbud No. 011/M/1999)",
+    "source_references": [
+      "reid-2005",
+      "kemendikbud-cagarbudaya"
+    ],
+    "confidence_level": "Sangat Tinggi",
+    "uncertainty_notes": "Sultan Syarif Kasim II dinobatkan sebagai Pahlawan Nasional Indonesia."
+  },
+  {
+    "site_id": "istana-kadriah-pontianak",
+    "site_name": "Istana Kadriah Kesultanan Pontianak",
+    "site_type": "palace",
+    "latitude": -0.0298,
+    "longitude": 109.3486,
+    "associated_kingdom_ids": [
+      "pontianak"
+    ],
+    "associated_ruler_ids": [],
+    "construction_year": 1771,
+    "construction_period_display": "1771 M era Sultan Syarif Abdurrahman Alkadrie",
+    "historical_significance": "Pusat Kesultanan Pontianak di muara persimpangan Sungai Kapuas dan Landak, dibangun dari kayu belian pilihan; kediaman Sultan Hamid II perancang lambang negara Garuda Pancasila.",
+    "current_condition": "Terpelihara baik dengan koleksi meriam kuno dan tahta berlapis emas.",
+    "heritage_status": "Cagar Budaya Peringkat Nasional (SK Mendikbud No. 013/M/1999)",
+    "source_references": [
+      "poesponegoro-notosusanto-2008",
+      "kemendikbud-cagarbudaya"
+    ],
+    "confidence_level": "Tinggi",
+    "uncertainty_notes": "Didirikan pertama kali 23 Oktober 1771 M."
+  },
+  {
+    "site_id": "kedaton-sultan-ternate",
+    "site_name": "Kedaton Kesultanan Ternate",
+    "site_type": "palace",
+    "latitude": 0.8003,
+    "longitude": 127.3876,
+    "associated_kingdom_ids": [
+      "ternate"
+    ],
+    "associated_ruler_ids": [],
+    "construction_year": 1811,
+    "construction_period_display": "1811 M era Sultan Muhammad Ali",
+    "historical_significance": "Istana Kesultanan Ternate di Bukit Limau menghadap Laut Halmahera dan Gunung Gamalama; menyimpan Mahkota Berambut Sultan Ternate yang dikeramatkan dan tumbuh setiap tahun.",
+    "current_condition": "Museum cagar budaya aktif dan pusat adat Kesultanan Ternate.",
+    "heritage_status": "Cagar Budaya Peringkat Nasional",
+    "source_references": [
+      "andaya-1993",
+      "kemendikbud-cagarbudaya"
+    ],
+    "confidence_level": "Tinggi",
+    "uncertainty_notes": "Dibangun di atas tapak kedaton lama abad ke-16 M."
+  },
+  {
+    "site_id": "makam-fatimah-binti-maimun",
+    "site_name": "Makam Siti Fatimah binti Maimun",
+    "site_type": "tomb",
+    "latitude": -7.1332,
+    "longitude": 112.5786,
+    "associated_kingdom_ids": [],
+    "associated_ruler_ids": [],
+    "construction_year": 1082,
+    "construction_period_display": "1082 M (475 H)",
+    "historical_significance": "Bukti epigrafi arkeologis tertua keberadaan Muslim di Pulau Jawa dan Nusantara; batu nisan berinskripsi Arab bergaya Kufi kuno di Desa Leran, Manyar, Gresik.",
+    "current_condition": "Cungkup batu putih kuno terawat dan dikunjungi peziarah serta arkeolog internasional.",
+    "heritage_status": "Cagar Budaya Peringkat Nasional (SK Mendikbud RI)",
+    "source_references": [
+      "poesponegoro-notosusanto-2008",
+      "kemendikbud-cagarbudaya"
+    ],
+    "confidence_level": "Sangat Tinggi",
+    "uncertainty_notes": "Tahun wafat 7 Rajab 475 H (1082 M) tertera tegas dalam inskripsi nisan Kufi."
+  },
+  {
+    "site_id": "makam-malik-as-saleh",
+    "site_name": "Kompleks Makam Sultan Malik as-Saleh",
+    "site_type": "tomb",
+    "latitude": 5.1281,
+    "longitude": 97.2104,
+    "associated_kingdom_ids": [
+      "samudera-pasai"
+    ],
+    "associated_ruler_ids": [
+      "pasai-1"
+    ],
+    "construction_year": 1297,
+    "construction_period_display": "1297 M (696 H)",
+    "historical_significance": "Makam pendiri Kesultanan Samudera Pasai (Meurah Silu); nisannya berhiaskan kaligrafi kalimah tauhid dan syair tasawuf berbahasa Arab berakulturasi seni nisan Gujarat/Cambay.",
+    "current_condition": "Terpelihara dalam kompleks situs cagar budaya Geudong, Aceh Utara.",
+    "heritage_status": "Cagar Budaya Peringkat Nasional (SK Mendikbud No. PM.18/PW.007/MKP/2007)",
+    "source_references": [
+      "alfian-1999",
+      "kemendikbud-cagarbudaya"
+    ],
+    "confidence_level": "Sangat Tinggi",
+    "uncertainty_notes": "Tanggal wafat Ramadan 696 H (1297 M) menjadi patokan ilmiah berdirinya Pasai."
+  },
+  {
+    "site_id": "makam-troloyo-majapahit",
+    "site_name": "Kompleks Makam Islam Troloyo",
+    "site_type": "tomb",
+    "latitude": -7.5621,
+    "longitude": 112.3812,
+    "associated_kingdom_ids": [],
+    "associated_ruler_ids": [],
+    "construction_year": 1368,
+    "construction_period_display": "1368–1428 M (Masa Keemasan Kerajaan Majapahit)",
+    "historical_significance": "Kompleks pemakaman Muslim di pusat ibu kota Trowulan Majapahit dengan angka tahun Jawa Kuno dan ayat suci Al-Qur'an, membuktikan adanya pejabat dan kerabat istana Majapahit yang telah memeluk Islam.",
+    "current_condition": "Situs arkeologi aktif terpelihara di Trowulan, Mojokerto.",
+    "heritage_status": "Cagar Budaya Peringkat Nasional (Kawasan Cagar Budaya Trowulan)",
+    "source_references": [
+      "de-graaf-pigeaud-1985",
+      "kemendikbud-cagarbudaya"
+    ],
+    "confidence_level": "Sangat Tinggi",
+    "uncertainty_notes": "Nisan tertua berangka tahun Saka 1290 (1368 M) pada era Hayam Wuruk."
+  },
+  {
+    "site_id": "makam-imogiri",
+    "site_name": "Kompleks Pemakaman Raja-Raja Mataram Imogiri (Pajimatan Imogiri)",
+    "site_type": "tomb",
+    "latitude": -7.9208,
+    "longitude": 110.3922,
+    "associated_kingdom_ids": [
+      "mataram-islam",
+      "kasultanan-yogyakarta",
+      "kasunanan-surakarta"
+    ],
+    "associated_ruler_ids": [
+      "mataram-3"
+    ],
+    "construction_year": 1632,
+    "construction_period_display": "1632 M dibangun oleh Sultan Agung Hanyokrokusumo",
+    "historical_significance": "Kompleks pemakaman suci dinasti Mataram Islam di perbukitan Merak, tempat peristirahatan Sultan Agung, raja-raja Kasunanan Surakarta, dan sultan-sultan Kasultanan Yogyakarta.",
+    "current_condition": "Terpelihara sangat sakral dijaga abdi dalem kedua keraton bersatu.",
+    "heritage_status": "Cagar Budaya Peringkat Nasional (SK Mendikbud No. 210/M/2011)",
+    "source_references": [
+      "ricklefs-2008",
+      "kemendikbud-cagarbudaya"
+    ],
+    "confidence_level": "Sangat Tinggi",
+    "uncertainty_notes": "Sultan Agung memindahkan lokasi pemakaman dinasti dari Kotagede ke Imogiri pada 1632 M."
+  },
+  {
+    "site_id": "makam-katangka-gowa",
+    "site_name": "Kompleks Makam Raja-Raja Gowa Katangka",
+    "site_type": "tomb",
+    "latitude": -5.1983,
+    "longitude": 119.4533,
+    "associated_kingdom_ids": [
+      "gowa-tallo"
+    ],
+    "associated_ruler_ids": [
+      "gowa-1",
+      "gowa-2"
+    ],
+    "construction_year": 1670,
+    "construction_period_display": "Abad ke-17 M (Makam Sultan Hasanuddin wafat 1670 M)",
+    "historical_significance": "Tempat peristirahatan Sultan Hasanuddin (Ayam Jantan dari Timur) dan para penguasa Kesultanan Gowa yang gigih melawan monopoli dagang VOC Belanda.",
+    "current_condition": "Terawat baik di Kompleks Makam Pahlawan Nasional Sultan Hasanuddin, Somba Opu.",
+    "heritage_status": "Cagar Budaya Peringkat Nasional (SK Mendikbud No. 046/M/1998)",
+    "source_references": [
+      "andaya-1981",
+      "kemendikbud-cagarbudaya"
+    ],
+    "confidence_level": "Sangat Tinggi",
+    "uncertainty_notes": "Terdapat kubah cungkup khas arsitektur makam raja-raja Makassar."
+  },
+  {
+    "site_id": "benteng-somba-opu",
+    "site_name": "Benteng Somba Opu",
+    "site_type": "fortress",
+    "latitude": -5.1911,
+    "longitude": 119.3944,
+    "associated_kingdom_ids": [
+      "gowa-tallo"
+    ],
+    "associated_ruler_ids": [
+      "gowa-2"
+    ],
+    "construction_year": 1545,
+    "construction_period_display": "1545 M (Dibangun Karaeng Tumapa'risi' Kallonna, diperkuat batu bata merah 1630 M)",
+    "historical_significance": "Benteng pertahanan utama dan emporium niaga Kesultanan Gowa-Tallo tempat berkantornya loji dagang internasional (Inggris, Denmark, Portugis); memiliki meriam legendaris Anak Makassar berbobot 9,5 ton.",
+    "current_condition": "Situs arkeologi dan taman cagar budaya di tepi Sungai Jeneberang.",
+    "heritage_status": "Cagar Budaya Peringkat Nasional (SK Mendikbud No. 046/M/1998)",
+    "source_references": [
+      "andaya-1981",
+      "kemendikbud-cagarbudaya"
+    ],
+    "confidence_level": "Sangat Tinggi",
+    "uncertainty_notes": "Dihancurkan VOC setelah Perang Makassar 1669, diekskavasi kembali oleh Balai Arkeologi akhir abad ke-20."
+  },
+  {
+    "site_id": "benteng-keraton-wolio-buton",
+    "site_name": "Benteng Keraton Wolio (Benteng Buton)",
+    "site_type": "fortress",
+    "latitude": -5.4742,
+    "longitude": 122.6186,
+    "associated_kingdom_ids": [
+      "buton"
+    ],
+    "associated_ruler_ids": [],
+    "construction_year": 1634,
+    "construction_period_display": "1634 M era Sultan Buton IV Dayanu Ikhsanuddin",
+    "historical_significance": "Benteng pertahanan terluas di dunia (Guinness World Records 2006, keliling 2,74 km) yang mengelilingi seluruh ibu kota Wolio dan istana Kesultanan Buton dari serangan bajak laut dan penjajah.",
+    "current_condition": "Terawat utuh di atas bukit Baubau dengan pemandangan Selat Buton.",
+    "heritage_status": "Cagar Budaya Peringkat Nasional & Rekor Dunia Guinness",
+    "source_references": [
+      "ricklefs-2008",
+      "kemendikbud-cagarbudaya"
+    ],
+    "confidence_level": "Sangat Tinggi",
+    "uncertainty_notes": "Dibangun dari batu gunung menggunakan perekat tradisional kapur dan putih telur."
+  },
+  {
+    "site_id": "benteng-inong-balee",
+    "site_name": "Benteng Inong Balee",
+    "site_type": "fortress",
+    "latitude": 5.5978,
+    "longitude": 95.5342,
+    "associated_kingdom_ids": [
+      "aceh-darussalam"
+    ],
+    "associated_ruler_ids": [],
+    "construction_year": 1599,
+    "construction_period_display": "1599 M era Sultan Alauddin Ri'ayat Syah Sayyid al-Mukammal",
+    "historical_significance": "Benteng pangkalan armada laut beranggotakan para janda pahlawan (Inong Balee) yang dipimpin Laksamana perempuan pertama dunia modern, Malahayati, yang menewaskan Cornelis de Houtman dalam duel laut.",
+    "current_condition": "Reruntuhan dinding benteng kokoh di Teluk Krueng Raya, Aceh Besar.",
+    "heritage_status": "Cagar Budaya Peringkat Nasional",
+    "source_references": [
+      "reid-2005",
+      "kemendikbud-cagarbudaya"
+    ],
+    "confidence_level": "Tinggi",
+    "uncertainty_notes": "Laksamana Malahayati diakui sebagai Pahlawan Nasional Republik Indonesia."
+  },
+  {
+    "site_id": "pelabuhan-barus",
+    "site_name": "Bandar Niaga Kuno Barus (Fansur)",
+    "site_type": "port",
+    "latitude": 2.0089,
+    "longitude": 98.4039,
+    "associated_kingdom_ids": [],
+    "associated_ruler_ids": [],
+    "construction_year": 1200,
+    "construction_period_display": "Abad ke-7 s.d. 13 M",
+    "historical_significance": "Pelabuhan transito tertua di pantai barat Sumatera pengekspor kapur barus dan kemenyan yang disebut dalam naskah Claudius Ptolemaeus, catatan dinasti Tang, serta makam Mahligai dan Papan Tinggi.",
+    "current_condition": "Kawasan situs bersejarah Titik Nol Peradaban Islam Nusantara di Tapanuli Tengah.",
+    "heritage_status": "Kawasan Cagar Budaya Peringkat Nasional (Titik Nol Peradaban Islam Nusantara)",
+    "source_references": [
+      "guillot-1990",
+      "poesponegoro-notosusanto-2008"
+    ],
+    "confidence_level": "Tinggi",
+    "uncertainty_notes": "Inskripsi makam Syekh Mahmud di Papan Tinggi berangka tahun 44 H (klaim lokal) vs kajian arkeologi abad ke-13 M."
+  },
+  {
+    "site_id": "pelabuhan-sunda-kelapa",
+    "site_name": "Pelabuhan Sunda Kelapa / Jayakarta",
+    "site_type": "port",
+    "latitude": -6.1261,
+    "longitude": 106.8089,
+    "associated_kingdom_ids": [
+      "cirebon",
+      "demak",
+      "banten"
+    ],
+    "associated_ruler_ids": [],
+    "construction_year": 1527,
+    "construction_period_display": "22 Juni 1527 M penaklukan Fatahillah (Hari Jadi Kota Jakarta)",
+    "historical_significance": "Pelabuhan strategis muara Ciliwung tempat armada gabungan Demak-Cirebon pimpinan Fatahillah mengusir armada Portugis pimpinan Francisco de Sá, mengganti namanya menjadi Jayakarta (Kemenangan Sempurna).",
+    "current_condition": "Pelabuhan rakyat aktif untuk kapal kayu phinisi di muara Jakarta Utara.",
+    "heritage_status": "Kawasan Cagar Budaya DKI Jakarta",
+    "source_references": [
+      "ricklefs-2008",
+      "kemendikbud-cagarbudaya"
+    ],
+    "confidence_level": "Sangat Tinggi",
+    "uncertainty_notes": "Tanggal 22 Juni 1527 ditetapkan sebagai HUT Kota Jakarta berdasarkan riset Prof. Dr. Sukanto."
+  }
+]

@@ -6,12 +6,16 @@
 window.DetailDrawer = (function() {
   let drawerEl = null;
   let currentKingdom = null;
+  let currentSite = null;
   let kingdomsMap = {};
   let sultansMap = {}; // kingdom_id -> [sultans]
   let sourcesMap = {}; // source_id -> source
   let territoriesList = []; // Array of territory features
+  let sitesList = []; // Array of historical sites
+  let sitesMap = {}; // site_id -> site
+  let eventsList = []; // Array of historical events
 
-  function initDetailDrawer(kingdoms, sultans, sources, territoriesGeoJSON) {
+  function initDetailDrawer(kingdoms, sultans, sources, territoriesGeoJSON, sites, events) {
     drawerEl = document.getElementById('kingdom-detail-drawer');
     
     kingdoms.forEach(k => { kingdomsMap[k.id] = k; });
@@ -26,6 +30,15 @@ window.DetailDrawer = (function() {
 
     if (territoriesGeoJSON && territoriesGeoJSON.features) {
       territoriesList = territoriesGeoJSON.features;
+    }
+
+    if (sites && Array.isArray(sites)) {
+      sitesList = sites;
+      sites.forEach(st => { sitesMap[st.site_id] = st; });
+    }
+
+    if (events && Array.isArray(events)) {
+      eventsList = events;
     }
 
     // Close button listener
@@ -46,12 +59,28 @@ window.DetailDrawer = (function() {
     if (!kingdom || !drawerEl) return;
 
     currentKingdom = kingdom;
+    currentSite = null;
     renderDrawerContent(kingdom);
     drawerEl.classList.add('open');
 
     // Also focus map to kingdom
     if (window.HistoryMap) {
       window.HistoryMap.focusKingdom(kingdomId, Object.values(kingdomsMap));
+    }
+  }
+
+  function openSite(siteId) {
+    const site = sitesMap[siteId];
+    if (!site || !drawerEl) return;
+
+    currentSite = site;
+    currentKingdom = null;
+    renderSiteDrawerContent(site);
+    drawerEl.classList.add('open');
+
+    // Focus map to site
+    if (window.HistoryMap) {
+      window.HistoryMap.focusSite(siteId);
     }
   }
 
@@ -238,6 +267,70 @@ window.DetailDrawer = (function() {
       </div>
     `;
 
+    // NKRI Integration Section
+    let nkriIntegrationHtml = '';
+    if (kingdom.nkri_integration) {
+      const nkri = kingdom.nkri_integration;
+      nkriIntegrationHtml = `
+        <div class="nkri-integration-card">
+          <div class="nkri-card-header">
+            <span class="nkri-flag-icon">🇮🇩</span>
+            <span class="nkri-badge">${nkri.integrated_into_nkri ? 'INTEGRASI NKRI' : 'HISTORIOGRAFI KEDAULATAN'}</span>
+            <span style="font-size:0.72rem; color:#b91c1c; font-weight:700; margin-left:auto;">${nkri.integration_date_display || ''}</span>
+          </div>
+          <div style="font-size:0.84rem; font-weight:700; color:#1e293b; margin-bottom:4px;">
+            ${nkri.title_document || 'Kedudukan Teritorial & Cagar Budaya'}
+          </div>
+          <div style="font-size:0.78rem; color:#475569; margin-bottom:6px; line-height:1.45;">
+            ${nkri.summary}
+          </div>
+          ${nkri.historical_figure ? `
+            <div style="font-size:0.75rem; color:#0f4c3a; font-weight:600; margin-bottom:4px;">
+              <strong>Tokoh Kunci:</strong> ${nkri.historical_figure}
+            </div>
+          ` : ''}
+          <div style="font-size:0.73rem; background:#ffffff; border:1px solid #fecaca; padding:4px 8px; border-radius:4px; color:#991b1b; font-weight:600;">
+            Status Kontemporer: ${nkri.current_status}
+          </div>
+        </div>
+      `;
+    }
+
+    // Associated Historical Sites Section
+    let associatedSitesHtml = '';
+    const relatedSites = sitesList.filter(s => s.associated_kingdom_ids && s.associated_kingdom_ids.includes(kingdom.id));
+    if (relatedSites.length > 0) {
+      const siteRows = relatedSites.map(s => {
+        let icon = '🏛️';
+        if (s.site_type === 'mosque') icon = '🕌';
+        if (s.site_type === 'palace') icon = '👑';
+        if (s.site_type === 'fortress') icon = '🛡️';
+        if (s.site_type === 'port') icon = '⚓';
+        return `
+          <div style="display:flex; justify-content:space-between; align-items:center; background:#f8fafc; border:1px solid #e2e8f0; padding:8px 12px; border-radius:6px; margin-bottom:6px;">
+            <div>
+              <span style="font-size:1rem; margin-right:6px;">${icon}</span>
+              <strong style="font-size:0.8rem; color:#0f4c3a;">${s.site_name}</strong>
+              <div style="font-size:0.72rem; color:#64748b;">${s.construction_period_display}</div>
+            </div>
+            <button class="btn-ctrl" style="width:28px; height:28px; font-size:11px;" onclick="window.DetailDrawer.openSite('${s.site_id}')" title="Buka Detail Situs">
+              &rarr;
+            </button>
+          </div>
+        `;
+      }).join('');
+
+      associatedSitesHtml = `
+        <div class="detail-card">
+          <div class="detail-card-title">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3L2 12h3v8h6v-6h2v6h6v-8h3L12 3z"/></svg>
+            SITUS & TINGGALAN CAGAR BUDAYA TERKAIT (${relatedSites.length})
+          </div>
+          ${siteRows}
+        </div>
+      `;
+    }
+
     // Reference Sources
     let sourcesListHtml = '';
     if (kingdom.sources_ids && kingdom.sources_ids.length > 0) {
@@ -287,8 +380,10 @@ window.DetailDrawer = (function() {
       </div>
 
       ${goldenAgeHtml}
+      ${nkriIntegrationHtml}
       ${territoryCardHtml}
       ${sultanSectionHtml}
+      ${associatedSitesHtml}
       ${eventsHtml}
       ${relicsHtml}
       ${certaintyHtml}
@@ -351,9 +446,108 @@ window.DetailDrawer = (function() {
     `;
   }
 
+  function renderSiteDrawerContent(site) {
+    const container = document.getElementById('drawer-dynamic-content');
+    if (!container) return;
+
+    let typeLabel = "Masjid Bersejarah";
+    let iconChar = "🕌";
+    if (site.site_type === 'palace') { typeLabel = "Keraton / Istana Kesultanan"; iconChar = "👑"; }
+    if (site.site_type === 'tomb') { typeLabel = "Makam Sultan & Kompleks Diraja"; iconChar = "🏛️"; }
+    if (site.site_type === 'fortress') { typeLabel = "Benteng & Pertahanan Maritim"; iconChar = "🛡️"; }
+    if (site.site_type === 'port') { typeLabel = "Bandar Niaga & Pelabuhan Kuno"; iconChar = "⚓"; }
+
+    document.getElementById('drawer-kingdom-name').innerText = site.site_name;
+    document.getElementById('drawer-kingdom-alts').innerText = `${iconChar} ${typeLabel} • ${site.construction_period_display}`;
+
+    // Associated Kingdoms Badges
+    let relatedKingdomsHtml = '';
+    if (site.associated_kingdom_ids && site.associated_kingdom_ids.length > 0) {
+      const pills = site.associated_kingdom_ids.map(kid => {
+        const k = kingdomsMap[kid];
+        if (!k) return '';
+        return `
+          <button class="filter-badge" style="background:#0f4c3a; color:#fff; border-color:#0b382b; margin:2px;" onclick="window.DetailDrawer.openKingdom('${kid}')">
+            👑 ${k.name} &rarr;
+          </button>
+        `;
+      }).join('');
+      relatedKingdomsHtml = `
+        <div class="detail-card">
+          <div class="detail-card-title">KERAJAAN & KESULTANAN TERKAIT</div>
+          <div style="display:flex; flex-wrap:wrap; gap:4px; margin-top:6px;">
+            ${pills}
+          </div>
+        </div>
+      `;
+    }
+
+    // Sources
+    let siteSourcesHtml = '';
+    if (site.source_references && site.source_references.length > 0) {
+      const srcItems = site.source_references.map(sid => {
+        const src = sourcesMap[sid];
+        if (!src) return '';
+        return `
+          <li style="margin-bottom:6px; font-size:0.77rem; color:#475569;">
+            <strong>${src.authors} (${src.year})</strong>. <em>${src.title}</em>. ${src.publisher}.
+          </li>
+        `;
+      }).join('');
+      if (srcItems) {
+        siteSourcesHtml = `
+          <div class="detail-card">
+            <div class="detail-card-title">REFERENSI AKADEMIK & REGISTRASI CAGAR BUDAYA</div>
+            <ul style="padding-left:18px;">
+              ${srcItems}
+            </ul>
+          </div>
+        `;
+      }
+    }
+
+    container.innerHTML = `
+      <div class="detail-card" style="border-left: 4px solid #0ea5e9;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+          <span style="font-size:0.75rem; text-transform:uppercase; color:#0369a1; font-weight:700;">${typeLabel}</span>
+          <span style="font-size:0.75rem; color:#64748b; font-weight:600;">GPS: ${site.latitude.toFixed(4)}, ${site.longitude.toFixed(4)}</span>
+        </div>
+        <div style="font-size:0.83rem; line-height:1.45; color:#334155; margin-bottom:10px;">
+          <strong>Kurun Pembangunan:</strong> ${site.construction_period_display}<br>
+          <strong>Status Cagar Budaya:</strong> <span style="color:#0f4c3a; font-weight:600;">${site.heritage_status || 'Cagar Budaya Nasional'}</span>
+        </div>
+        <p style="font-size:0.82rem; line-height:1.55; color:#1e293b;">
+          ${site.historical_significance}
+        </p>
+      </div>
+
+      <div class="detail-card">
+        <div class="detail-card-title">KONDISI KONTEMPORER & ARSITEKTUR FISIK</div>
+        <p style="font-size:0.8rem; color:#334155; line-height:1.5; margin:0;">
+          ${site.current_condition}
+        </p>
+      </div>
+
+      ${relatedKingdomsHtml}
+
+      <div class="detail-card" style="background:#fafaf9;">
+        <div class="detail-card-title" style="color:#44403c;">HISTORIOGRAFI & TINGKAT KEPASTIAN DATA</div>
+        <div style="font-size:0.75rem; color:#78716c; margin-bottom:4px;">
+          <strong>Tingkat Kepastian Koordinat & Kronologi:</strong> ${site.confidence_level}
+        </div>
+        <div style="font-size:0.75rem; color:#78716c; line-height:1.4;">
+          ${site.uncertainty_notes}
+        </div>
+      </div>
+
+      ${siteSourcesHtml}
+    `;
+  }
+
   return {
     initDetailDrawer,
     openKingdom,
+    openSite,
     closeDrawer,
     onSultanSelected
   };

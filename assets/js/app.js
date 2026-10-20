@@ -7,18 +7,22 @@ window.App = (function() {
   let kingdoms = [];
   let sultans = [];
   let sources = [];
+  let sites = [];
+  let events = [];
   let territoriesGeoJSON = null;
 
   async function init() {
     try {
       showLoading(true);
 
-      // Fetch all four database files in parallel
-      const [kRes, sRes, srcRes, tRes] = await Promise.all([
+      // Fetch all database files in parallel
+      const [kRes, sRes, srcRes, tRes, sitesRes, eventsRes] = await Promise.all([
         fetch('data/kingdoms.json'),
         fetch('data/sultans.json'),
         fetch('data/sources.json'),
-        fetch('data/historical-territories.geojson')
+        fetch('data/historical-territories.geojson'),
+        fetch('data/sites.json'),
+        fetch('data/events.json')
       ]);
 
       if (!kRes.ok || !sRes.ok || !srcRes.ok) {
@@ -33,16 +37,27 @@ window.App = (function() {
         territoriesGeoJSON = await tRes.json();
       }
 
-      console.log(`[App] Berhasil memuat ${kingdoms.length} kerajaan, ${sultans.length} sultan, ${sources.length} sumber akademik, dan ${territoriesGeoJSON ? territoriesGeoJSON.features.length : 0} poligon historis.`);
+      if (sitesRes.ok) {
+        sites = await sitesRes.json();
+      }
+
+      if (eventsRes.ok) {
+        events = await eventsRes.json();
+      }
+
+      console.log(`[App] Berhasil memuat ${kingdoms.length} kerajaan, ${sultans.length} sultan, ${sources.length} sumber akademik, ${territoriesGeoJSON ? territoriesGeoJSON.features.length : 0} poligon historis, ${sites.length} situs cagar budaya, dan ${events.length} peristiwa sejarah.`);
 
       // 1. Initialize Map
       HistoryMap.initMap('map-container');
       if (territoriesGeoJSON) {
         HistoryMap.setTerritoriesData(territoriesGeoJSON);
       }
+      if (sites.length > 0) {
+        HistoryMap.setSitesData(sites);
+      }
 
       // 2. Initialize Detail Drawer
-      DetailDrawer.initDetailDrawer(kingdoms, sultans, sources, territoriesGeoJSON);
+      DetailDrawer.initDetailDrawer(kingdoms, sultans, sources, territoriesGeoJSON, sites, events);
 
       // 3. Initialize Filters
       FilterManager.initFilters(onFilterOrYearChanged);
@@ -79,15 +94,17 @@ window.App = (function() {
     const goldenStatEl = document.getElementById('stat-golden-count');
     const totalStatEl = document.getElementById('stat-total-rendered');
     const territoryStatEl = document.getElementById('stat-territories-count');
+    const sitesStatEl = document.getElementById('stat-sites-count');
 
     if (activeStatEl) activeStatEl.innerText = stats.activeCount;
     if (goldenStatEl) goldenStatEl.innerText = stats.goldenAgeCount;
     if (totalStatEl) totalStatEl.innerText = stats.totalRendered;
     if (territoryStatEl) territoryStatEl.innerText = stats.territoriesRendered;
+    if (sitesStatEl) sitesStatEl.innerText = stats.sitesRendered || 0;
   }
 
   function setupUIInteractions() {
-    // 1. Historical Territories Toggle Button
+    // 1. Historical Territories Toggle Button (Desktop)
     const territoriesBtn = document.getElementById('btn-toggle-territories');
     if (territoriesBtn) {
       territoriesBtn.addEventListener('click', () => {
@@ -97,7 +114,125 @@ window.App = (function() {
         if (label) {
           label.innerText = isVisible ? "Wilayah: Aktif" : "Wilayah: Mati";
         }
+        const chk = document.getElementById('chk-layer-territories');
+        if (chk) chk.checked = isVisible;
         onFilterOrYearChanged();
+      });
+    }
+
+    // 1b. Historical Sites Toggle Button (Desktop)
+    const sitesBtn = document.getElementById('btn-toggle-sites');
+    if (sitesBtn) {
+      sitesBtn.addEventListener('click', () => {
+        const isVisible = HistoryMap.toggleSites();
+        sitesBtn.classList.toggle('active', isVisible);
+        const label = document.getElementById('sites-btn-label');
+        if (label) {
+          label.innerText = isVisible ? "Situs: Aktif" : "Situs: Mati";
+        }
+        const chk = document.getElementById('chk-layer-sites');
+        if (chk) chk.checked = isVisible;
+        onFilterOrYearChanged();
+      });
+    }
+
+    // 1c. Mobile Layers & Filters Modal Sheet
+    const mobileLayersBtn = document.getElementById('btn-mobile-layers-toggle');
+    const mobileLayersModal = document.getElementById('modal-mobile-layers');
+    const closeMobileLayersBtn = document.getElementById('btn-close-mobile-layers');
+
+    if (mobileLayersBtn && mobileLayersModal) {
+      mobileLayersBtn.addEventListener('click', () => {
+        mobileLayersModal.classList.add('open');
+      });
+    }
+    if (closeMobileLayersBtn && mobileLayersModal) {
+      closeMobileLayersBtn.addEventListener('click', () => {
+        mobileLayersModal.classList.remove('open');
+      });
+    }
+
+    // Layer Checkboxes inside Mobile Sheet
+    const chkKingdoms = document.getElementById('chk-layer-kingdoms');
+    if (chkKingdoms) {
+      chkKingdoms.addEventListener('change', (e) => {
+        HistoryMap.toggleKingdoms(e.target.checked);
+        onFilterOrYearChanged();
+      });
+    }
+
+    const chkTerritories = document.getElementById('chk-layer-territories');
+    if (chkTerritories) {
+      chkTerritories.addEventListener('change', (e) => {
+        const isVisible = HistoryMap.toggleTerritories(e.target.checked);
+        if (territoriesBtn) {
+          territoriesBtn.classList.toggle('active', isVisible);
+          const label = document.getElementById('territories-btn-label');
+          if (label) label.innerText = isVisible ? "Wilayah: Aktif" : "Wilayah: Mati";
+        }
+        onFilterOrYearChanged();
+      });
+    }
+
+    const chkSites = document.getElementById('chk-layer-sites');
+    if (chkSites) {
+      chkSites.addEventListener('change', (e) => {
+        const isVisible = HistoryMap.toggleSites(e.target.checked);
+        if (sitesBtn) {
+          sitesBtn.classList.toggle('active', isVisible);
+          const label = document.getElementById('sites-btn-label');
+          if (label) label.innerText = isVisible ? "Situs: Aktif" : "Situs: Mati";
+        }
+        onFilterOrYearChanged();
+      });
+    }
+
+    // Basemap Choice in Mobile Sheet
+    document.querySelectorAll('.basemap-choice-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const layerKey = btn.getAttribute('data-basemap');
+        HistoryMap.setBaseLayer(layerKey);
+        document.querySelectorAll('.basemap-choice-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        document.querySelectorAll('.basemap-item').forEach(i => {
+          i.classList.toggle('active', i.getAttribute('data-layer') === layerKey);
+        });
+      });
+    });
+
+    // Mobile Sheet Action Buttons
+    const modalToggleModeBtn = document.getElementById('btn-modal-toggle-mode');
+    if (modalToggleModeBtn) {
+      modalToggleModeBtn.addEventListener('click', () => {
+        FilterManager.toggleHistoricalMode();
+        mobileLayersModal.classList.remove('open');
+      });
+    }
+
+    const modalToggleGoldenBtn = document.getElementById('btn-modal-toggle-golden');
+    if (modalToggleGoldenBtn) {
+      modalToggleGoldenBtn.addEventListener('click', () => {
+        FilterManager.toggleGoldenAge();
+        mobileLayersModal.classList.remove('open');
+      });
+    }
+
+    // 1d. Events Chronology Modal
+    const eventsBtn = document.getElementById('btn-open-events-modal');
+    const mobileEventsBtn = document.getElementById('btn-mobile-events-toggle');
+    const eventsModal = document.getElementById('modal-events');
+    const closeEventsBtn = document.getElementById('btn-close-events-modal');
+
+    const openEvents = () => {
+      renderEventsModal();
+      if (eventsModal) eventsModal.classList.add('open');
+    };
+
+    if (eventsBtn) eventsBtn.addEventListener('click', openEvents);
+    if (mobileEventsBtn) mobileEventsBtn.addEventListener('click', openEvents);
+    if (closeEventsBtn && eventsModal) {
+      closeEventsBtn.addEventListener('click', () => {
+        eventsModal.classList.remove('open');
       });
     }
 
@@ -208,6 +343,57 @@ window.App = (function() {
     });
   }
 
+  function renderEventsModal() {
+    const container = document.getElementById('events-timeline-container');
+    if (!container || !events) return;
+
+    // Sort events chronologically
+    const sortedEvents = [...events].sort((a, b) => a.event_year - b.event_year);
+
+    container.innerHTML = sortedEvents.map(evt => {
+      const isNkri = evt.event_type === 'nkri_integration';
+      let typeLabel = "Perkembangan Sejarah";
+      if (evt.event_type === 'early_evidence') typeLabel = "Bukti Awal Masuknya Islam";
+      if (evt.event_type === 'kingdom_emergence') typeLabel = "Kemunculan Kesultanan";
+      if (evt.event_type === 'golden_age') typeLabel = "Era Puncak Kejayaan";
+      if (evt.event_type === 'conflict_colonialism') typeLabel = "Perang & Penetrasi Kolonial";
+      if (evt.event_type === 'treaty_partition') typeLabel = "Perjanjian & Partisi Wilayah";
+      if (evt.event_type === 'nkri_integration') typeLabel = "🇮🇩 Kemerdekaan RI & Integrasi NKRI";
+
+      // Kingdom buttons
+      let kingdomButtons = '';
+      if (evt.related_kingdom_ids && evt.related_kingdom_ids.length > 0) {
+        const kPills = evt.related_kingdom_ids.map(kid => {
+          const k = kingdoms.find(item => item.id === kid);
+          if (!k) return '';
+          return `
+            <button class="filter-badge" style="font-size:10px; padding:2px 7px; background:#0f4c3a; color:#fff;" onclick="window.DetailDrawer.openKingdom('${kid}'); document.getElementById('modal-events').classList.remove('open');">
+              👑 ${k.name}
+            </button>
+          `;
+        }).join('');
+        kingdomButtons = `<div style="display:flex; flex-wrap:wrap; gap:4px; margin-top:6px;">${kPills}</div>`;
+      }
+
+      return `
+        <div class="event-item-card ${isNkri ? 'event-nkri' : ''}">
+          <div class="event-header-row">
+            <span class="event-year-badge">${evt.event_date_display || evt.event_year + ' M'}</span>
+            <span class="event-type-label">${typeLabel}</span>
+          </div>
+          <div class="event-title">${evt.event_name}</div>
+          <div class="event-desc">${evt.description}</div>
+          ${kingdomButtons}
+          ${evt.uncertainty_notes ? `
+            <div style="font-size:0.72rem; color:#64748b; margin-top:4px; font-style:italic;">
+              ${evt.uncertainty_notes}
+            </div>
+          ` : ''}
+        </div>
+      `;
+    }).join('');
+  }
+
   function renderSourcesModal() {
     const listContainer = document.getElementById('sources-list-container');
     if (!listContainer) return;
@@ -256,7 +442,9 @@ window.App = (function() {
     getKingdoms: () => kingdoms,
     getSultans: () => sultans,
     getSources: () => sources,
-    getTerritories: () => territoriesGeoJSON
+    getTerritories: () => territoriesGeoJSON,
+    getSites: () => sites,
+    getEvents: () => events
   };
 })();
 
