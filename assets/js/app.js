@@ -273,7 +273,24 @@ window.App = (function() {
       });
     }
 
-    // 3. Reset View Button
+    // 3. Zoom In & Zoom Out Buttons (Dedicated Top-Right Controls)
+    const zoomInBtn = document.getElementById('btn-zoom-in');
+    if (zoomInBtn) {
+      zoomInBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        HistoryMap.zoomIn();
+      });
+    }
+
+    const zoomOutBtn = document.getElementById('btn-zoom-out');
+    if (zoomOutBtn) {
+      zoomOutBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        HistoryMap.zoomOut();
+      });
+    }
+
+    // 4. Reset View Button
     const resetViewBtn = document.getElementById('btn-reset-map-view');
     if (resetViewBtn) {
       resetViewBtn.addEventListener('click', () => {
@@ -382,8 +399,9 @@ window.App = (function() {
         if (matchKingdoms.length > 0) {
           html += `<div class="search-group-header">👑 Kerajaan & Kesultanan (${matchKingdoms.length})</div>`;
           matchKingdoms.forEach(k => {
+            const kYear = (k.golden_age && k.golden_age.start_year) ? k.golden_age.start_year : (k.year_founded || 1600);
             html += `
-              <div class="search-result-item" data-action="kingdom" data-id="${k.id}" data-year="${k.year_founded || 1600}">
+              <div class="search-result-item" data-action="kingdom" data-id="${k.id}" data-year="${kYear}">
                 <div style="font-weight:700; color:#0f4c3a; font-size:0.83rem;">${k.name}</div>
                 <div style="font-size:0.72rem; color:#64748b;">${k.region} &bull; ${k.year_founded_display || ''} &ndash; ${k.year_ended_display || ''}</div>
               </div>
@@ -397,8 +415,9 @@ window.App = (function() {
           matchSultans.forEach(s => {
             const k = kingdoms.find(item => item.id === s.kingdom_id);
             const kName = k ? k.name : '';
+            const sYear = s.reign_start || (k ? (k.golden_age ? k.golden_age.start_year : k.year_founded) : 1600);
             html += `
-              <div class="search-result-item" data-action="sultan" data-id="${s.id}" data-kingdom="${s.kingdom_id}" data-year="${s.reign_start || (k ? k.year_founded : 1600)}">
+              <div class="search-result-item" data-action="sultan" data-id="${s.id}" data-kingdom="${s.kingdom_id}" data-year="${sYear}">
                 <div style="font-weight:700; color:#b45309; font-size:0.83rem;">${s.name}</div>
                 <div style="font-size:0.72rem; color:#64748b;">${kName} &bull; Masa Bertahta: ${s.reign_display || ''}</div>
               </div>
@@ -452,13 +471,20 @@ window.App = (function() {
               window.TimelineController.pause();
             }
 
-            // Jump timeline to target year
+            // Always adjust timeline to destination's year!
             if (!isNaN(targetYear) && window.TimelineController) {
               window.TimelineController.setYear(targetYear);
             }
 
-            // Close search dropdown
+            // Reset region filter to 'Semua' so destination from any archipelago is visible
+            if (window.FilterManager) {
+              window.FilterManager.setRegion('Semua', false);
+            }
+
+            // Close search dropdown and clear input
             searchDropdown.style.display = 'none';
+            searchInput.value = '';
+            searchInput.blur();
             if (searchCenterControls) {
               searchCenterControls.classList.remove('mobile-open');
             }

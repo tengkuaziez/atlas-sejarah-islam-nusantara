@@ -16,15 +16,6 @@ window.FilterManager = (function() {
   function initFilters(onChange) {
     onChangeCallback = onChange;
 
-    // Search Input Listener
-    const searchInput = document.getElementById('search-kingdom-input');
-    if (searchInput) {
-      searchInput.addEventListener('input', (e) => {
-        state.search = e.target.value.trim();
-        triggerChange();
-      });
-    }
-
     // Region Badges Listeners
     document.querySelectorAll('.filter-badge[data-region]').forEach(badge => {
       badge.addEventListener('click', () => {

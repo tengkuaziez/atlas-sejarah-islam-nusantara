@@ -54,9 +54,6 @@ window.HistoryMap = (function() {
       layers: [tileLayers.osm]
     });
 
-    // Custom Zoom Control at Top-Right
-    L.control.zoom({ position: 'topright' }).addTo(map);
-
     // CRITICAL: Dedicated Pane for Historical Territories (Z-Index 350)
     // Ensures polygons are placed below markers (Z-Index 600) so markers always stay clickable
     map.createPane('territoriesPane');
@@ -388,16 +385,6 @@ window.HistoryMap = (function() {
         }
       }
 
-      // Search Filter
-      if (filters.search) {
-        const query = filters.search.toLowerCase();
-        const matchName = p.kingdom_name.toLowerCase().includes(query);
-        const matchTitle = p.source_title.toLowerCase().includes(query);
-        if (!matchName && !matchTitle) {
-          return;
-        }
-      }
-
       const defaultStyle = getTerritoryStyle(p.territory_type);
 
       const polyLayer = L.geoJSON(feature, {
@@ -527,8 +514,6 @@ window.HistoryMap = (function() {
     }
 
     let renderedSites = 0;
-    const isSearching = Boolean(filters.search && filters.search.trim().length > 0);
-    const query = isSearching ? filters.search.toLowerCase().trim() : '';
 
     sitesData.forEach(site => {
       // Category filter (if selected)
@@ -536,22 +521,9 @@ window.HistoryMap = (function() {
         return;
       }
 
-      // Search filter across ALL TIME and ALL TYPES
-      if (isSearching) {
-        const matchName = site.site_name.toLowerCase().includes(query);
-        const matchSignificance = site.historical_significance && site.historical_significance.toLowerCase().includes(query);
-        const matchType = site.site_type && site.site_type.toLowerCase().includes(query);
-        const matchCondition = site.current_condition && site.current_condition.toLowerCase().includes(query);
-        const matchPeriod = site.construction_period_display && site.construction_period_display.toLowerCase().includes(query);
-        if (!matchName && !matchSignificance && !matchType && !matchCondition && !matchPeriod) {
-          return;
-        }
-        // When searching, bypass construction_year filter so sites appear across all time!
-      } else {
-        // Temporal filter: Site must be constructed by this year, unless showAllHistorical is true
-        if (!filters.showAllHistorical && site.construction_year > currentYear) {
-          return;
-        }
+      // Temporal filter: Site must be constructed by this year, unless showAllHistorical is true
+      if (!filters.showAllHistorical && site.construction_year > currentYear) {
+        return;
       }
 
       const icon = createSiteIcon(site);
@@ -614,9 +586,6 @@ window.HistoryMap = (function() {
     const sitesCount = renderSites(currentYear, filters);
 
     // 3. Render Kingdom Markers on Top in markerPane (Z-Index 600)
-    const isSearching = Boolean(filters.search && filters.search.trim().length > 0);
-    const query = isSearching ? filters.search.toLowerCase().trim() : '';
-
     if (showKingdoms) {
       kingdoms.forEach(kingdom => {
         const status = getKingdomStatus(kingdom, currentYear);
@@ -626,36 +595,15 @@ window.HistoryMap = (function() {
           return;
         }
 
-        // Filter: Search across ALL TIME and ALL TYPES (Kingdoms, Sultans, Capitals, Founders, Summaries)
-        if (isSearching) {
-          const matchName = kingdom.name.toLowerCase().includes(query);
-          const matchAlt = kingdom.alternate_names && kingdom.alternate_names.some(a => a.toLowerCase().includes(query));
-          const matchCapital = kingdom.capital_city && kingdom.capital_city.toLowerCase().includes(query);
-          const matchFounder = kingdom.founder && kingdom.founder.toLowerCase().includes(query);
-          const matchSummary = kingdom.historical_summary && kingdom.historical_summary.toLowerCase().includes(query);
+        // Filter: Only Golden Age
+        if (filters.onlyGoldenAge && status !== 'golden_age') {
+          return;
+        }
 
-          // Check if any sultan in this kingdom matches
-          const matchSultan = sultansData.some(s => s.kingdom_id === kingdom.id && (
-            s.name.toLowerCase().includes(query) || (s.biography && s.biography.toLowerCase().includes(query))
-          ));
-
-          if (!matchName && !matchAlt && !matchCapital && !matchFounder && !matchSummary && !matchSultan) {
+        // Filter: Show Active Only in Year vs All Historical
+        if (!filters.showAllHistorical) {
+          if (status === 'not_yet_founded' || status === 'ended') {
             return;
-          }
-          // Note: When isSearching is true, DO NOT filter out status === 'not_yet_founded' or 'ended'!
-          // The matched kingdom will be shown across all time!
-        } else {
-          // Normal mode (not searching):
-          // Filter: Only Golden Age
-          if (filters.onlyGoldenAge && status !== 'golden_age') {
-            return;
-          }
-
-          // Filter: Show Active Only in Year vs All Historical
-          if (!filters.showAllHistorical) {
-            if (status === 'not_yet_founded' || status === 'ended') {
-              return;
-            }
           }
         }
 
@@ -666,10 +614,7 @@ window.HistoryMap = (function() {
           goldenAgeCount++;
         }
 
-        // When searching, if the kingdom is outside current year range, render it with active visibility so user can see it
-        const effectiveStatus = (isSearching && (status === 'not_yet_founded' || status === 'ended')) ? 'active' : status;
-
-        const icon = createMarkerIcon(kingdom, effectiveStatus);
+        const icon = createMarkerIcon(kingdom, status);
         const marker = L.marker([kingdom.coordinates.lat, kingdom.coordinates.lng], {
           icon: icon,
           title: kingdom.name,
@@ -808,6 +753,14 @@ window.HistoryMap = (function() {
     }
   }
 
+  function zoomIn() {
+    if (map) map.zoomIn();
+  }
+
+  function zoomOut() {
+    if (map) map.zoomOut();
+  }
+
   return {
     initMap,
     setBaseLayer,
@@ -823,6 +776,8 @@ window.HistoryMap = (function() {
     focusKingdom,
     focusSite,
     resetView,
+    zoomIn,
+    zoomOut,
     zoomToRegion,
     getKingdomStatus
   };
