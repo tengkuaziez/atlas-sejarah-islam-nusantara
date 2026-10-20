@@ -1,21 +1,24 @@
 /**
  * WebGIS Islamic Kingdoms Nusantara - Master Application Orchestrator
+ * Upgraded with Historical Territories GeoJSON & Responsive Mobile Interaction
  */
 
 window.App = (function() {
   let kingdoms = [];
   let sultans = [];
   let sources = [];
+  let territoriesGeoJSON = null;
 
   async function init() {
     try {
       showLoading(true);
 
-      // Fetch all three database files in parallel
-      const [kRes, sRes, srcRes] = await Promise.all([
+      // Fetch all four database files in parallel
+      const [kRes, sRes, srcRes, tRes] = await Promise.all([
         fetch('data/kingdoms.json'),
         fetch('data/sultans.json'),
-        fetch('data/sources.json')
+        fetch('data/sources.json'),
+        fetch('data/historical-territories.geojson')
       ]);
 
       if (!kRes.ok || !sRes.ok || !srcRes.ok) {
@@ -25,14 +28,21 @@ window.App = (function() {
       kingdoms = await kRes.json();
       sultans = await sRes.json();
       sources = await srcRes.json();
+      
+      if (tRes.ok) {
+        territoriesGeoJSON = await tRes.json();
+      }
 
-      console.log(`[App] Berhasil memuat ${kingdoms.length} kerajaan, ${sultans.length} sultan, dan ${sources.length} sumber akademik.`);
+      console.log(`[App] Berhasil memuat ${kingdoms.length} kerajaan, ${sultans.length} sultan, ${sources.length} sumber akademik, dan ${territoriesGeoJSON ? territoriesGeoJSON.features.length : 0} poligon historis.`);
 
       // 1. Initialize Map
       HistoryMap.initMap('map-container');
+      if (territoriesGeoJSON) {
+        HistoryMap.setTerritoriesData(territoriesGeoJSON);
+      }
 
       // 2. Initialize Detail Drawer
-      DetailDrawer.initDetailDrawer(kingdoms, sultans, sources);
+      DetailDrawer.initDetailDrawer(kingdoms, sultans, sources, territoriesGeoJSON);
 
       // 3. Initialize Filters
       FilterManager.initFilters(onFilterOrYearChanged);
@@ -45,10 +55,10 @@ window.App = (function() {
         onFilterOrYearChanged
       );
 
-      // 5. Setup Modals & Basemap UI
+      // 5. Setup Modals, Mobile Nav, & Basemap UI
       setupUIInteractions();
 
-      // 6. Initial Render of Markers & Statistics
+      // 6. Initial Render of Markers, Polygons & Statistics
       onFilterOrYearChanged();
 
       showLoading(false);
@@ -68,14 +78,30 @@ window.App = (function() {
     const activeStatEl = document.getElementById('stat-active-count');
     const goldenStatEl = document.getElementById('stat-golden-count');
     const totalStatEl = document.getElementById('stat-total-rendered');
+    const territoryStatEl = document.getElementById('stat-territories-count');
 
     if (activeStatEl) activeStatEl.innerText = stats.activeCount;
     if (goldenStatEl) goldenStatEl.innerText = stats.goldenAgeCount;
     if (totalStatEl) totalStatEl.innerText = stats.totalRendered;
+    if (territoryStatEl) territoryStatEl.innerText = stats.territoriesRendered;
   }
 
   function setupUIInteractions() {
-    // Basemap toggle menu
+    // 1. Historical Territories Toggle Button
+    const territoriesBtn = document.getElementById('btn-toggle-territories');
+    if (territoriesBtn) {
+      territoriesBtn.addEventListener('click', () => {
+        const isVisible = HistoryMap.toggleTerritories();
+        territoriesBtn.classList.toggle('active', isVisible);
+        const label = document.getElementById('territories-btn-label');
+        if (label) {
+          label.innerText = isVisible ? "Wilayah: Aktif" : "Wilayah: Mati";
+        }
+        onFilterOrYearChanged();
+      });
+    }
+
+    // 2. Basemap toggle menu
     const basemapBtn = document.getElementById('btn-toggle-basemap');
     const basemapMenu = document.getElementById('basemap-menu');
     if (basemapBtn && basemapMenu) {
@@ -100,7 +126,7 @@ window.App = (function() {
       });
     }
 
-    // Reset View Button
+    // 3. Reset View Button
     const resetViewBtn = document.getElementById('btn-reset-map-view');
     if (resetViewBtn) {
       resetViewBtn.addEventListener('click', () => {
@@ -108,7 +134,7 @@ window.App = (function() {
       });
     }
 
-    // Modal: Sources
+    // 4. Modal: Sources
     const sourcesBtn = document.getElementById('btn-open-sources-modal');
     const sourcesModal = document.getElementById('modal-sources');
     const closeSourcesBtn = document.getElementById('btn-close-sources-modal');
@@ -125,7 +151,7 @@ window.App = (function() {
       });
     }
 
-    // Modal: Legend & Methodology
+    // 5. Modal: Legend & Methodology
     const legendBtn = document.getElementById('btn-open-legend-modal');
     const legendModal = document.getElementById('modal-legend');
     const closeLegendBtn = document.getElementById('btn-close-legend-modal');
@@ -141,7 +167,30 @@ window.App = (function() {
       });
     }
 
-    // Backdrop click close for modals
+    // 6. Mobile Search Toggle
+    const mobileSearchBtn = document.getElementById('btn-mobile-search-toggle');
+    const searchCenterControls = document.querySelector('.header-center-controls');
+    if (mobileSearchBtn && searchCenterControls) {
+      mobileSearchBtn.addEventListener('click', () => {
+        searchCenterControls.classList.toggle('mobile-open');
+        const input = document.getElementById('search-kingdom-input');
+        if (searchCenterControls.classList.contains('mobile-open') && input) {
+          setTimeout(() => input.focus(), 150);
+        }
+      });
+    }
+
+    // 7. Mobile Timeline Collapse/Expand Toggle
+    const timelineCollapseBtn = document.getElementById('btn-toggle-timeline-collapse');
+    const timelineContainer = document.querySelector('.timeline-bar-container');
+    if (timelineCollapseBtn && timelineContainer) {
+      timelineCollapseBtn.addEventListener('click', () => {
+        timelineContainer.classList.toggle('collapsed');
+        timelineCollapseBtn.classList.toggle('is-collapsed', timelineContainer.classList.contains('collapsed'));
+      });
+    }
+
+    // 8. Backdrop click close for modals
     document.querySelectorAll('.modal-overlay').forEach(overlay => {
       overlay.addEventListener('click', (e) => {
         if (e.target === overlay) {
@@ -150,7 +199,7 @@ window.App = (function() {
       });
     });
 
-    // Century jump clicks
+    // 9. Century jump clicks
     document.querySelectorAll('.century-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         const yr = parseInt(btn.getAttribute('data-year'), 10);
@@ -206,7 +255,8 @@ window.App = (function() {
     init,
     getKingdoms: () => kingdoms,
     getSultans: () => sultans,
-    getSources: () => sources
+    getSources: () => sources,
+    getTerritories: () => territoriesGeoJSON
   };
 })();
 

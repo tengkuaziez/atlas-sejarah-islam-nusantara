@@ -1,13 +1,18 @@
 /**
  * WebGIS Islamic Kingdoms Nusantara - Leaflet Map Module
+ * Upgraded with Historical Territory Mapping & Temporal Polygons
  */
 
 window.HistoryMap = (function() {
   let map = null;
   let markersLayer = null;
+  let territoriesLayer = null;
+  let territoriesData = null;
   let tileLayers = {};
   let currentBaseLayer = 'osm';
   let kingdomMarkers = {}; // kingdomId -> Leaflet marker
+  let activePolygons = []; // currently rendered polygon layers
+  let showTerritories = true; // layer toggle state
 
   const INDONESIA_CENTER = [-0.7893, 118.9213];
   const DEFAULT_ZOOM = 5;
@@ -45,6 +50,15 @@ window.HistoryMap = (function() {
     // Custom Zoom Control at Top-Right
     L.control.zoom({ position: 'topright' }).addTo(map);
 
+    // CRITICAL: Dedicated Pane for Historical Territories (Z-Index 350)
+    // Ensures polygons are placed below markers (Z-Index 600) so markers always stay clickable
+    map.createPane('territoriesPane');
+    const tPane = map.getPane('territoriesPane');
+    if (tPane) {
+      tPane.style.zIndex = 350;
+    }
+
+    territoriesLayer = L.layerGroup().addTo(map);
     markersLayer = L.layerGroup().addTo(map);
 
     return map;
@@ -55,6 +69,23 @@ window.HistoryMap = (function() {
     map.removeLayer(tileLayers[currentBaseLayer]);
     map.addLayer(tileLayers[layerKey]);
     currentBaseLayer = layerKey;
+  }
+
+  function setTerritoriesData(geojsonData) {
+    territoriesData = geojsonData;
+  }
+
+  function toggleTerritories(enable) {
+    if (typeof enable === 'boolean') {
+      showTerritories = enable;
+    } else {
+      showTerritories = !showTerritories;
+    }
+    return showTerritories;
+  }
+
+  function isTerritoriesVisible() {
+    return showTerritories;
   }
 
   function getKingdomStatus(kingdom, year) {
@@ -159,6 +190,17 @@ window.HistoryMap = (function() {
          </div>`
       : '';
 
+    // Check if kingdom has verified polygon in database
+    const hasPolygon = territoriesData && territoriesData.features.some(f => f.properties.kingdom_id === kingdom.id);
+    const territoryBadge = hasPolygon 
+      ? `<div style="font-size:10.5px; color:#047857; margin-top:5px; display:flex; align-items:center; gap:4px;">
+           <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+           <strong>Peta Wilayah Historis Tersedia</strong>
+         </div>`
+      : `<div style="font-size:10.5px; color:#64748b; margin-top:5px; font-style:italic;">
+           ℹ️ Poligon wilayah belum tersedia dari sumber historis terverifikasi.
+         </div>`;
+
     return `
       <div class="popup-header">
         <div class="popup-region">${kingdom.region} &bull; ${statusBadge}</div>
@@ -178,6 +220,7 @@ window.HistoryMap = (function() {
           <span class="popup-meta-value">${kingdom.founder}</span>
         </div>
         ${goldenAgeInfo}
+        ${territoryBadge}
         <div class="popup-summary">${kingdom.historical_summary}</div>
       </div>
       <div class="popup-footer">
@@ -189,6 +232,178 @@ window.HistoryMap = (function() {
     `;
   }
 
+  // =========================================================================
+  // HISTORICAL TERRITORY POLYGON STYLING & POPUP
+  // =========================================================================
+
+  function getTerritoryStyle(type) {
+    if (type === 'core') {
+      return {
+        pane: 'territoriesPane',
+        fillColor: '#059669', // Deep Emerald
+        color: '#047857',
+        weight: 2.2,
+        fillOpacity: 0.42,
+        dashArray: null
+      };
+    } else if (type === 'controlled') {
+      return {
+        pane: 'territoriesPane',
+        fillColor: '#d97706', // Warm Amber
+        color: '#b45309',
+        weight: 1.8,
+        fillOpacity: 0.32,
+        dashArray: null
+      };
+    } else if (type === 'influence') {
+      return {
+        pane: 'territoriesPane',
+        fillColor: '#6366f1', // Indigo / Slate
+        color: '#4f46e5',
+        weight: 1.6,
+        fillOpacity: 0.20,
+        dashArray: '6, 6'
+      };
+    } else {
+      return {
+        pane: 'territoriesPane',
+        fillColor: '#64748b',
+        color: '#475569',
+        weight: 1.5,
+        fillOpacity: 0.18,
+        dashArray: '4, 4'
+      };
+    }
+  }
+
+  function getTerritoryTypeLabel(type) {
+    if (type === 'core') return 'Wilayah Inti (Kutanegara / Negaragung)';
+    if (type === 'controlled') return 'Wilayah Taklukan & Dependensi Langsung (Mancanegara / Pasisir)';
+    if (type === 'influence') return 'Zona Pengaruh Maritim / Vasal Luar Negeri';
+    return 'Estimasi / Interpretasi Kartografis';
+  }
+
+  function buildTerritoryPopupContent(props) {
+    const typeLabel = getTerritoryTypeLabel(props.territory_type);
+    const confidenceBadge = props.confidence_level === 'Tinggi'
+      ? `<span style="background:#bbf7d0; color:#166534; font-size:10px; font-weight:700; padding:2px 8px; border-radius:99px;">Kepastian: Tinggi</span>`
+      : `<span style="background:#fef08a; color:#854d0e; font-size:10px; font-weight:700; padding:2px 8px; border-radius:99px;">Kepastian: Sedang</span>`;
+
+    return `
+      <div class="popup-header" style="background:linear-gradient(135deg, #18222d 0%, #2a3b4c 100%);">
+        <div class="popup-region" style="color:#fcd34d;">PETA WILAYAH HISTORIS &bull; ${confidenceBadge}</div>
+        <div class="popup-title">${props.kingdom_name}</div>
+      </div>
+      <div class="popup-body">
+        <div class="popup-meta-item">
+          <span class="popup-meta-label">Klasifikasi</span>
+          <span class="popup-meta-value">${typeLabel}</span>
+        </div>
+        <div class="popup-meta-item">
+          <span class="popup-meta-label">Periode Waktu</span>
+          <span class="popup-meta-value">${props.historical_period} (${props.year_start}&ndash;${props.year_end} M)</span>
+        </div>
+        <div class="popup-meta-item">
+          <span class="popup-meta-label">Sumber Peta</span>
+          <span class="popup-meta-value">${props.source_title} (${props.map_publication_year})</span>
+        </div>
+        <div class="popup-meta-item">
+          <span class="popup-meta-label">Metode Digitasi</span>
+          <span class="popup-meta-value">${props.digitization_method}</span>
+        </div>
+        <div style="font-size:11px; background:#f8fafc; border-left:3px solid #3b82f6; padding:6px 10px; border-radius:0 6px 6px 0; margin-top:8px; color:#475569;">
+          <strong>Keterbatasan & Ketidakpastian:</strong> ${props.uncertainty_notes}
+        </div>
+      </div>
+      <div class="popup-footer">
+        <button class="btn-popup-detail" onclick="window.DetailDrawer.openKingdom('${props.kingdom_id}')">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+          Lihat Profil Lengkap Kerajaan & Silsilah Sultan
+        </button>
+      </div>
+    `;
+  }
+
+  function renderTerritories(currentYear, filters, kingdoms) {
+    territoriesLayer.clearLayers();
+    activePolygons = [];
+
+    if (!showTerritories || !territoriesData || !territoriesData.features) {
+      return 0;
+    }
+
+    let renderedCount = 0;
+
+    territoriesData.features.forEach(feature => {
+      const p = feature.properties;
+
+      // Temporal Filter: Check if selected year is within territory active timeframe
+      if (currentYear < p.year_start || currentYear > p.year_end) {
+        return;
+      }
+
+      // Region Filter
+      if (filters.region && filters.region !== 'Semua') {
+        const k = kingdoms.find(k => k.id === p.kingdom_id);
+        if (k && k.region !== filters.region) {
+          return;
+        }
+      }
+
+      // Search Filter
+      if (filters.search) {
+        const query = filters.search.toLowerCase();
+        const matchName = p.kingdom_name.toLowerCase().includes(query);
+        const matchTitle = p.source_title.toLowerCase().includes(query);
+        if (!matchName && !matchTitle) {
+          return;
+        }
+      }
+
+      const defaultStyle = getTerritoryStyle(p.territory_type);
+
+      const polyLayer = L.geoJSON(feature, {
+        pane: 'territoriesPane',
+        style: defaultStyle,
+        onEachFeature: function(feat, layer) {
+          // Hover highlighting
+          layer.on({
+            mouseover: function(e) {
+              const l = e.target;
+              l.setStyle({
+                weight: defaultStyle.weight + 1.5,
+                fillOpacity: Math.min(defaultStyle.fillOpacity + 0.25, 0.75)
+              });
+            },
+            mouseout: function(e) {
+              polyLayer.resetStyle(e.target);
+            },
+            click: function(e) {
+              L.DomEvent.stopPropagation(e);
+            }
+          });
+
+          // Bind Tooltip & Popup
+          layer.bindTooltip(`<strong>${p.kingdom_name}</strong><br><small>${getTerritoryTypeLabel(p.territory_type)}</small>`, {
+            sticky: true,
+            className: 'historical-territory-tooltip'
+          });
+
+          layer.bindPopup(() => buildTerritoryPopupContent(p), {
+            maxWidth: 340,
+            className: 'kingdom-popup-custom'
+          });
+        }
+      });
+
+      territoriesLayer.addLayer(polyLayer);
+      activePolygons.push(polyLayer);
+      renderedCount++;
+    });
+
+    return renderedCount;
+  }
+
   function renderMarkers(kingdoms, currentYear, filters) {
     markersLayer.clearLayers();
     kingdomMarkers = {};
@@ -196,6 +411,10 @@ window.HistoryMap = (function() {
     let activeCount = 0;
     let goldenAgeCount = 0;
 
+    // 1. Render Polygons First in dedicated pane (Z-Index 350)
+    const territoryCount = renderTerritories(currentYear, filters, kingdoms);
+
+    // 2. Render Markers on Top in markerPane (Z-Index 600)
     kingdoms.forEach(kingdom => {
       const status = getKingdomStatus(kingdom, currentYear);
 
@@ -238,7 +457,8 @@ window.HistoryMap = (function() {
       const icon = createMarkerIcon(kingdom, status);
       const marker = L.marker([kingdom.coordinates.lat, kingdom.coordinates.lng], {
         icon: icon,
-        title: kingdom.name
+        title: kingdom.name,
+        riseOnHover: true
       });
 
       marker.bindPopup(() => buildPopupContent(kingdom, status, currentYear), {
@@ -258,7 +478,8 @@ window.HistoryMap = (function() {
     return {
       activeCount: activeCount,
       goldenAgeCount: goldenAgeCount,
-      totalRendered: Object.keys(kingdomMarkers).length
+      totalRendered: Object.keys(kingdomMarkers).length,
+      territoriesRendered: territoryCount
     };
   }
 
@@ -266,15 +487,19 @@ window.HistoryMap = (function() {
     const kingdom = kingdoms.find(k => k.id === kingdomId);
     if (!kingdom) return;
 
-    map.flyTo([kingdom.coordinates.lat, kingdom.coordinates.lng], 8, {
-      duration: 1.2
+    // Check if on mobile (screen width < 768px): offset center slightly upward so bottom sheet doesn't cover point
+    const isMobile = window.innerWidth < 768;
+    const targetLat = isMobile ? kingdom.coordinates.lat - 0.4 : kingdom.coordinates.lat;
+
+    map.flyTo([targetLat, kingdom.coordinates.lng], isMobile ? 7 : 8, {
+      duration: 1.1
     });
 
     const marker = kingdomMarkers[kingdomId];
     if (marker) {
       setTimeout(() => {
         marker.openPopup();
-      }, 1200);
+      }, 1150);
     }
   }
 
@@ -285,6 +510,9 @@ window.HistoryMap = (function() {
   return {
     initMap,
     setBaseLayer,
+    setTerritoriesData,
+    toggleTerritories,
+    isTerritoriesVisible,
     renderMarkers,
     focusKingdom,
     resetView,

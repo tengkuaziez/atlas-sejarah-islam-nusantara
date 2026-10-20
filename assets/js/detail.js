@@ -1,5 +1,6 @@
 /**
  * WebGIS Islamic Kingdoms Nusantara - Kingdom Detail Drawer & Sultan Viewer
+ * Upgraded with Historical Territory Metadata & Mobile Bottom Sheet UX
  */
 
 window.DetailDrawer = (function() {
@@ -8,8 +9,9 @@ window.DetailDrawer = (function() {
   let kingdomsMap = {};
   let sultansMap = {}; // kingdom_id -> [sultans]
   let sourcesMap = {}; // source_id -> source
+  let territoriesList = []; // Array of territory features
 
-  function initDetailDrawer(kingdoms, sultans, sources) {
+  function initDetailDrawer(kingdoms, sultans, sources, territoriesGeoJSON) {
     drawerEl = document.getElementById('kingdom-detail-drawer');
     
     kingdoms.forEach(k => { kingdomsMap[k.id] = k; });
@@ -22,10 +24,20 @@ window.DetailDrawer = (function() {
       sultansMap[s.kingdom_id].push(s);
     });
 
+    if (territoriesGeoJSON && territoriesGeoJSON.features) {
+      territoriesList = territoriesGeoJSON.features;
+    }
+
     // Close button listener
     const closeBtn = document.getElementById('btn-close-drawer');
     if (closeBtn) {
       closeBtn.addEventListener('click', closeDrawer);
+    }
+
+    // Drag handle listener for mobile bottom sheet
+    const dragHandle = document.getElementById('drawer-drag-handle');
+    if (dragHandle) {
+      dragHandle.addEventListener('click', closeDrawer);
     }
   }
 
@@ -55,6 +67,59 @@ window.DetailDrawer = (function() {
 
     const sultans = sultansMap[kingdom.id] || [];
     const currentYear = window.TimelineController ? window.TimelineController.getCurrentYear() : 1625;
+
+    // Check historical territory polygons available for this kingdom
+    const relatedTerritories = territoriesList.filter(t => t.properties.kingdom_id === kingdom.id);
+
+    // Territory Information Section
+    let territoryCardHtml = '';
+    if (relatedTerritories.length > 0) {
+      const territoryPills = relatedTerritories.map(t => {
+        const p = t.properties;
+        let badgeColor = '#059669';
+        if (p.territory_type === 'controlled') badgeColor = '#d97706';
+        if (p.territory_type === 'influence') badgeColor = '#6366f1';
+        return `
+          <div style="background:#f8fafc; border:1px solid #e2e8f0; border-left:3px solid ${badgeColor}; padding:8px 12px; border-radius:6px; margin-bottom:8px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+              <strong style="font-size:0.8rem; color:#1e293b;">${p.historical_period}</strong>
+              <span style="font-size:0.7rem; font-weight:700; color:${badgeColor}; text-transform:uppercase;">${p.territory_type}</span>
+            </div>
+            <div style="font-size:0.75rem; color:#475569; margin-bottom:4px;">
+              <strong>Sumber:</strong> ${p.source_title} (${p.map_publication_year}) &bull; ${p.source_publisher}
+            </div>
+            <div style="font-size:0.73rem; color:#64748b; line-height:1.35;">
+              ${p.uncertainty_notes}
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      territoryCardHtml = `
+        <div class="detail-card">
+          <div class="detail-card-title">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 3l-.16.03L15 5.1 9 3 3.36 4.9c-.21.07-.36.25-.36.48V20.5c0 .28.22.5.5.5l.16-.03L9 18.9l6 2.1 5.64-1.9c.21-.07.36-.25.36-.48V3.5c0-.28-.22-.5-.5-.5zM15 19l-6-2.11V5l6 2.11V19z"/></svg>
+            REKONSTRUKSI POLIGON WILAYAH HISTORIS (${relatedTerritories.length} Lapisan Peta)
+          </div>
+          <p style="font-size:0.78rem; color:#334155; margin-bottom:10px; line-height:1.4;">
+            Wilayah kerajaan ini telah berhasil digeoreferensi dan didigitasi dari atlas sejarah otoritatif (Robert Cribb 2000, Anthony Reid, Claude Guillot). Poligon otomatis berubah mengikuti linimasa.
+          </p>
+          ${territoryPills}
+        </div>
+      `;
+    } else {
+      territoryCardHtml = `
+        <div class="detail-card" style="background:#fafaf9; border-style:dashed;">
+          <div class="detail-card-title" style="color:#64748b;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+            STATUS PEMETAAN WILAYAH HISTORIS
+          </div>
+          <p style="font-size:0.76rem; color:#57534e; line-height:1.45; margin:0;">
+            Poligon spasial wilayah belum tersedia berdasarkan peta historis terverifikasi. Sesuai kaidah historiografi kemaritiman Nusantara (teori <em>Mandala</em>) dan prinsip integritas kartografi, batas wilayah administratif tidak dispekulasikan secara artifisial. Pusat kekuasaan dipetakan secara presisi melalui titik koordinat istana/keraton.
+          </p>
+        </div>
+      `;
+    }
 
     // Golden Age Section
     let goldenAgeHtml = '';
@@ -222,6 +287,7 @@ window.DetailDrawer = (function() {
       </div>
 
       ${goldenAgeHtml}
+      ${territoryCardHtml}
       ${sultanSectionHtml}
       ${eventsHtml}
       ${relicsHtml}
@@ -231,7 +297,6 @@ window.DetailDrawer = (function() {
 
     // Initialize first sultan view
     if (sultans.length > 0) {
-      // Find sultan reigning in currentYear if any, else default to index 0 or golden age ruler
       let activeSultan = sultans.find(s => s.reign_start && s.reign_end && currentYear >= s.reign_start && currentYear <= s.reign_end);
       if (!activeSultan) {
         activeSultan = sultans.find(s => s.is_golden_age_ruler) || sultans[0];
