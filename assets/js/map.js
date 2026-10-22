@@ -467,12 +467,27 @@ window.HistoryMap = (function() {
     if (site.site_type === 'fortress') typeLabel = "Benteng Pertahanan";
     if (site.site_type === 'port') typeLabel = "Bandar Niaga / Pelabuhan Kuno";
 
+    let imgThumbHtml = '';
+    if (site.documentation_image && site.documentation_image.thumb_url) {
+      imgThumbHtml = `
+        <div class="popup-photo-container">
+          <img src="${site.documentation_image.thumb_url}" 
+               alt="${site.site_name}" 
+               loading="lazy" 
+               class="popup-photo-img"
+               onerror="this.parentElement.style.display='none'">
+          <div class="popup-photo-caption-tag">📷 Foto Dokumentasi</div>
+        </div>
+      `;
+    }
+
     return `
       <div class="leaflet-popup-content">
         <div class="popup-header" style="background: linear-gradient(135deg, #0f4c3a 0%, #1a5d48 100%);">
           <div class="popup-region" style="color:#fde68a;">${typeLabel}</div>
           <div class="popup-title">${site.site_name}</div>
         </div>
+        ${imgThumbHtml}
         <div class="popup-body">
           <div class="popup-meta-item">
             <span class="popup-meta-label">Pembangunan:</span>
@@ -488,7 +503,7 @@ window.HistoryMap = (function() {
         </div>
         <div class="popup-footer">
           <button class="btn-popup-detail" onclick="window.DetailDrawer.openSite('${site.site_id}')">
-            <span>Buka Detail Situs & Historiografi</span>
+            <span>Buka Detail Situs & Foto</span>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
           </button>
         </div>

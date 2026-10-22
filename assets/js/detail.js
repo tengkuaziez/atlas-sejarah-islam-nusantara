@@ -316,14 +316,25 @@ window.DetailDrawer = (function() {
         if (s.site_type === 'palace') icon = '👑';
         if (s.site_type === 'fortress') icon = '🛡️';
         if (s.site_type === 'port') icon = '⚓';
+
+        let thumbImg = '';
+        if (s.documentation_image && s.documentation_image.thumb_url) {
+          thumbImg = `<img src="${s.documentation_image.thumb_url}" alt="${s.site_name}" loading="lazy" style="width:48px; height:48px; object-fit:cover; border-radius:6px; margin-right:10px; border:1px solid #cbd5e1; flex-shrink:0;" onerror="this.style.display='none'">`;
+        }
+
         return `
-          <div style="display:flex; justify-content:space-between; align-items:center; background:#f8fafc; border:1px solid #e2e8f0; padding:8px 12px; border-radius:6px; margin-bottom:6px;">
-            <div>
-              <span style="font-size:1rem; margin-right:6px;">${icon}</span>
-              <strong style="font-size:0.8rem; color:#0f4c3a;">${s.site_name}</strong>
-              <div style="font-size:0.72rem; color:#64748b;">${s.construction_period_display}</div>
+          <div style="display:flex; justify-content:space-between; align-items:center; background:#f8fafc; border:1px solid #e2e8f0; padding:8px 12px; border-radius:6px; margin-bottom:8px;">
+            <div style="display:flex; align-items:center; min-width:0; margin-right:8px;">
+              ${thumbImg}
+              <div style="min-width:0;">
+                <div style="display:flex; align-items:center; gap:4px;">
+                  <span style="font-size:0.95rem;">${icon}</span>
+                  <strong style="font-size:0.8rem; color:#0f4c3a; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${s.site_name}</strong>
+                </div>
+                <div style="font-size:0.72rem; color:#64748b; margin-top:2px;">${s.construction_period_display}</div>
+              </div>
             </div>
-            <button class="btn-ctrl" style="width:28px; height:28px; font-size:11px;" onclick="window.DetailDrawer.openSite('${s.site_id}')" title="Buka Detail Situs">
+            <button class="btn-ctrl" style="width:28px; height:28px; font-size:11px; flex-shrink:0;" onclick="window.DetailDrawer.openSite('${s.site_id}')" title="Buka Detail Situs & Foto">
               &rarr;
             </button>
           </div>
@@ -516,6 +527,39 @@ window.DetailDrawer = (function() {
       }
     }
 
+    // Historical Documentation Image Card
+    let imageCardHtml = '';
+    if (site.documentation_image && site.documentation_image.url) {
+      const img = site.documentation_image;
+      imageCardHtml = `
+        <div class="site-photo-card">
+          <div class="site-photo-wrapper">
+            <img src="${img.url}" 
+                 alt="${site.site_name}" 
+                 loading="lazy" 
+                 class="site-photo-img" 
+                 onerror="this.closest('.site-photo-card').style.display='none'">
+            <div class="site-photo-overlay">
+              <span class="site-photo-badge">📷 DOKUMENTASI HISTORIS</span>
+              <a href="${img.url}" target="_blank" rel="noopener noreferrer" class="btn-view-fullsize" title="Buka Gambar Resolusi Penuh">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+                Perbesar
+              </a>
+            </div>
+          </div>
+          <div style="padding:12px 14px; background:#ffffff;">
+            <div class="site-photo-caption">
+              ${img.caption}
+            </div>
+            <div class="site-photo-credit">
+              <span><strong>Sumber & Lisensi:</strong> ${img.credit}</span>
+              ${img.source_page ? `<a href="${img.source_page}" target="_blank" rel="noopener noreferrer" style="color:var(--color-primary); margin-left:8px; text-decoration:underline;">Lihat Berkas Wikimedia &rarr;</a>` : ''}
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
     container.innerHTML = `
       <div class="detail-card" style="border-left: 4px solid #0ea5e9;">
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
@@ -530,6 +574,8 @@ window.DetailDrawer = (function() {
           ${site.historical_significance}
         </p>
       </div>
+
+      ${imageCardHtml}
 
       <div class="detail-card">
         <div class="detail-card-title">KONDISI KONTEMPORER & ARSITEKTUR FISIK</div>
