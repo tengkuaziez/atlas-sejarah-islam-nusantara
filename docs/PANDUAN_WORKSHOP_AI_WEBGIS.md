@@ -1,257 +1,232 @@
 # MODUL WORKSHOP: PEMANFAATAN EKOSISTEM AI DALAM PENGEMBANGAN WEBGIS TEMATIK INTERAKTIF
-*Dari Konseptualisasi Cerdas, Perancangan UI, hingga Publikasi Otomatis ke GitHub Pages*
+*Dari Scraping Data, Validasi Geospasial, Prototyping UI, hingga Publikasi GitHub Pages (Durasi: 2 Jam)*
 
 ---
 
 ## DAFTAR ISI
 1. [Latar Belakang & Paradigma Baru Pengembangan GIS](#1-latar-belakang--paradigma-baru-pengembangan-gis)
-2. [Arsitektur Alur Kerja 3 Pilar AI (The 3-Pillar AI Workflow)](#2-arsitektur-alur-kerja-3-pilar-ai-the-3-pillar-ai-workflow)
-3. [Panduan Langkah demi Langkah (Hands-on Step-by-Step)](#3-panduan-langkah-demi-langkah-hands-on-step-by-step)
-   - [Fase 1: Konseptualisasi & Prompt Engineering bersama ChatGPT](#fase-1-konseptualisasi--prompt-engineering-bersama-chatgpt)
-   - [Fase 2: Perancangan UI/UX & Generative Interface di Google AI Studio](#fase-2-perancangan-uiux--generative-interface-di-google-ai-studio)
-   - [Fase 3: Pemrograman Otonom & Eksekusi Spasial di Google Antigravity](#fase-3-pemrograman-otonom--eksekusi-spasial-di-google-antigravity)
-   - [Fase 4: Otomasi Publikasi & Sinkronisasi Git/GitHub](#fase-4-otomasi-publikasi--sinkronisasi-gitgithub)
-4. [Studi Kasus Riil: WebGIS Atlas Sejarah Islam Nusantara](#4-studi-kasus-riil-webgis-atlas-sejarah-islam-nusantara)
-5. [Rekomendasi Alat AI Lain untuk Ekosistem Geospasial](#5-rekomendasi-alat-ai-lain-untuk-ekosistem-geospasial)
-6. [Best Practices, Etika Data & Mitigasi Halusinasi AI](#6-best-practices-etika-data--mitigasi-halusinasi-ai)
-7. [Checklist & Panduan Instruktur Workshop](#7-checklist--panduan-instruktur-workshop)
+2. [Rundown Workshop Intensif 2 Jam (120 Menit)](#2-rundown-workshop-intensif-2-jam-120-menit)
+3. [Arsitektur Alur Kerja 3 Pilar AI (The 3-Pillar AI Workflow)](#3-arsitektur-alur-kerja-3-pilar-ai-the-3-pillar-ai-workflow)
+4. [Fase 1: AI Web Scraping & Ekstraksi Data Spasial](#fase-1-ai-web-scraping--ekstraksi-data-spasial)
+5. [Fase 2: Koreksi & Pemeriksaan Keakuratan Data (Data Validation & Anti-Hallucination)](#fase-2-koreksi--pemeriksaan-keakuratan-data-data-validation--anti-hallucination)
+6. [Fase 3: Panduan Melampirkan Dataset Mandiri Peserta (Untuk Ujian / Proyek Akhir)](#fase-3-panduan-melampirkan-dataset-mandiri-peserta-untuk-ujian--proyek-akhir)
+7. [Fase 4: Perancangan UI/UX Cepat di Google AI Studio](#fase-4-perancangan-uiux-cepat-di-google-ai-studio)
+8. [Fase 5: Eksekusi Kode Otonom di Google Antigravity & Debugging](#fase-5-eksekusi-kode-otonom-di-google-antigravity--debugging)
+9. [Fase 6: Otomasi Publikasi & Hosting Gratis di GitHub Pages](#fase-6-otomasi-publikasi--hosting-gratis-di-github-pages)
+10. [Rekomendasi Alat AI Lain & Rekapitulasi](#10-rekomendasi-alat-ai-lain--rekapitulasi)
 
 ---
 
 ## 1. LATAR BELAKANG & PARADIGMA BARU PENGEMBANGAN GIS
 
-Secara konvensional, pembuatan aplikasi WebGIS memerlukan penguasaan berbagai disiplin ilmu sekaligus:
-- **Kartografi & GIS Desktop** (QGIS, ArcGIS, sistem proyeksi CRS, georeferensi).
-- **Struktur Data Geospasial** (GeoJSON, TopoJSON, Shapefile, integrasi temporal/waktu).
-- **Frontend Web Development** (HTML5, CSS modern, JavaScript asynchronous).
-- **Library Pemetaan Web** (Leaflet, MapLibre, OpenLayers).
-- **DevOps & Deployment** (Git, GitHub, hosting web).
+WebGIS tematik adalah instrumen penting dalam diseminasi informasi spasial, baik untuk penelitian akademik, pemetaan potensi wilayah, cagar budaya, maupun kebencanaan. 
 
-Hadirnya **Generative AI** dan **Agentic AI Coding Assistant** tidak menghilangkan kebutuhan pemahaman spasial, melainkan mengubah peran pengembang dari *"penulis kode baris-demi-baris"* (*manual coder*) menjadi **"Arsitek Sistem & Kurator Data"** (*System Architect & Quality Assurer*).
+Tantangan utama pembuat WebGIS pemula biasanya terletak pada:
+1. Kesulitan mengumpulkan data sebaran yang berserak di web.
+2. Risiko kesalahan/halusinasi koordinat geografis.
+3. Kerumitan coding frontend dan peta interaktif.
+4. Hambatan publikasi agar website bisa dibuka oleh orang lain tanpa biaya sewa server.
+
+Melalui integrasi **AI Web Scraping + Data Validation + Agentic Coding (Antigravity) + GitHub Pages**, proses yang dulunya memakan waktu berminggu-minggu kini dapat diselesaikan secara terstruktur dan terverifikasi dalam **2 jam**.
 
 ```mermaid
 flowchart LR
-    A["🧑‍💻 User / Researcher<br>(Konsep & Kurasi Data)"] --> B["🤖 ChatGPT<br>(Diskusi & Prompt Engineering)"]
-    B --> C["🎨 Google AI Studio<br>(Prototyping UI & Tata Letak)"]
-    C --> D["⚡ Google Antigravity<br>(Agentic Coding & Git Automation)"]
-    D --> E["🌐 GitHub Pages<br>(Live WebGIS Publik)"]
+    A["🌐 Sumber Web / Naskah"] --> B["🤖 AI Scraping & Parsing<br>(ChatGPT / Python)"]
+    B --> C["🔍 Validasi & Koreksi<br>(Cek Lat-Lng & Sumber)"]
+    C --> D["🎨 Desain UI Cepat<br>(Google AI Studio)"]
+    D --> E["⚡ Agentic Coding<br>(Google Antigravity)"]
+    E --> F["🚀 Live di GitHub Pages<br>(Bisa Dibuka di HP)"]
 ```
 
 ---
 
-## 2. ARSITEKTUR ALUR KERJA 3 PILAR AI (THE 3-PILLAR AI WORKFLOW)
+## 2. RUNDOWN WORKSHOP INTENSIF 2 JAM (120 MENIT)
 
-Alur kerja workshop ini dirancang menggunakan 3 platform AI dengan peran spesifik tanpa tumpang tindih:
+Jadwal disusun presisi dengan rasio 30% teori & konsep, 70% praktik langsung (*hands-on*):
 
-| Pilar AI | Peran Utama | Keunggulan Spesifik | Output yang Dihasilkan |
+| Waktu | Durasi | Agenda / Materi Utama | Output Peserta |
 | :--- | :--- | :--- | :--- |
-| **1. ChatGPT** (OpenAI) | *The Brain & Conceptualizer* | Penalaran konseptual, brainstorming historiografi/metodologi, formulasi skema basis data, dan generator prompt terstruktur. | Kerangka konsep, skema JSON, dan *Prompt Instruksi Utama*. |
-| **2. Google AI Studio** (Gemini) | *The UI/UX Prototyper* | Pemrosesan multimodal (gambar/sketsa/referensi), eksplorasi desain komponen interaktif, palet warna, dan kartu responsif. | Mockup visual, tata letak CSS/HTML dasar, skema visual drawer & popup. |
-| **3. Google Antigravity** | *The Autonomous Agent & Spatial Engineer* | Membaca seluruh file project, menulis kode, memvalidasi sintaks, menjalankan server lokal, menguji bug, dan mengeksekusi perintah terminal Git secara mandiri. | Kode aplikasi utuh (Leaflet WebGIS), perbaikan bug instan, dan auto-commit/push ke GitHub. |
+| **00:00 - 00:15** | 15 menit | **Pembukaan & Pengantar:** Paradigma AI dalam GIS dan pengenalan arsitektur 3 pilar. | Pemahaman alur kerja modern |
+| **00:15 - 00:40** | 25 menit | **Sesi 1: Scraping Data & Konversi Format:** Mengambil data tabular/naskah web menjadi JSON spasial terstruktur. | File data mentah terekstraksi |
+| **00:40 - 01:00** | 20 menit | **Sesi 2: Verifikasi & Koreksi Data:** Uji keakuratan koordinat WGS84, pencegahan *lat/lng flip*, dan format dataset mandiri peserta. | Dataset bersih & terverifikasi |
+| **01:00 - 01:35** | 35 menit | **Sesi 3: Hands-on Antigravity (Coding WebGIS):** Integrasi Leaflet, poligon temporal, foto dokumentasi, dan mobile responsive. | WebGIS berjalan di local server |
+| **01:35 - 01:50** | 15 menit | **Sesi 4: Publikasi Otomatis ke GitHub Pages:** Eksekusi `git push` via AI dan peluncuran website publik. | URL aktif WebGIS peserta |
+| **01:50 - 02:00** | 10 menit | **Evaluasi Ujian & Penutupan:** Review proyek peserta dan sesi tanya jawab. | Penilaian hasil karya |
 
 ---
 
-## 3. PANDUAN LANGKAH DEMI LANGKAH (HANDS-ON STEP-BY-STEP)
+## 3. ARSITEKTUR ALUR KERJA 3 PILAR AI (THE 3-PILLAR AI WORKFLOW)
 
 ```mermaid
 sequenceDiagram
     autonumber
-    actor Pengembang as Peserta Workshop
-    participant GPT as ChatGPT (Ide & Prompt)
-    participant AIS as Google AI Studio (UI/UX)
-    participant AGY as Google Antigravity (Agentic IDE)
-    participant GH as GitHub Pages
+    actor Peserta as Peserta Workshop
+    participant AI1 as ChatGPT / Perplexity (Scraping & Skema)
+    participant AI2 as Google AI Studio (UI/UX)
+    participant AI3 as Google Antigravity (Agentic IDE & Git)
+    participant Web as GitHub Pages (Live)
 
-    Pengembang->>GPT: Diskusi ide WebGIS sebaran & minta skema data
-    GPT-->>Pengembang: Skema data JSON & Mega-Prompt spesifikasi teknis
-    Pengembang->>AIS: Unggah sketsa UI / minta rancangan komponen interaktif
-    AIS-->>Pengembang: Struktur HTML/CSS kartu detail, popup, & tema visual
-    Pengembang->>AGY: Masukkan instruksi dari GPT & AIS ke Antigravity Chat
-    AGY->>AGY: Audit kode, tulis modul JS, atur Leaflet, benahi data JSON
-    AGY->>AGY: Jalankan tes lokal (node/python server) & perbaiki bug
-    AGY->>GH: Jalankan perintah Git (add, commit, push origin main)
-    GH-->>Pengembang: WebGIS Live dan Terpublikasi Otomatis!
+    Peserta->>AI1: Beri URL/teks web & minta ekstraksi tabel data + koordinat
+    AI1-->>Peserta: Data terstruktur JSON + deteksi anomali
+    Peserta->>Peserta: Validasi koordinat di OpenStreetMap/Google Maps
+    Peserta->>AI2: Minta rekomendasi palet warna & layout mobile
+    AI2-->>Peserta: Panduan visual & CSS snippet
+    Peserta->>AI3: Perintahkan Antigravity merakit WebGIS dengan dataset tsb
+    AI3->>AI3: Tulis Leaflet JS, GeoJSON, kartu detail & jalankan tes lokal
+    AI3->>Web: Eksekusi 'git push' ke GitHub Pages
+    Web-->>Peserta: Website live dapat diakses dari browser HP
 ```
 
 ---
 
-### FASE 1: KONSEPTUALISASI & PROMPT ENGINEERING BERSAMA CHATGPT
+## 4. FASE 1: AI WEB SCRAPING & EKSTRAKSI DATA SPASIAL
 
-#### Tujuan:
-Mematangkan ide tematik, menentukan atribut geospasial, dan menyusun *Mega-Prompt* yang jelas untuk dieksekusi oleh agentic AI.
+Banyak data sejarah, potensi wilayah, atau objek wisata tersimpan dalam artikel web, Wikipedia, rilis berita, atau portal pemerintah yang tidak menyediakan tombol "Download Shapefile/GeoJSON".
 
-#### Pola Diskusi dengan ChatGPT:
-1. **Brainstorming Topik & Batasan Ruang Lingkup:**
-   Jelaskan pada ChatGPT apa tema sebaran yang ingin dipetakan (misal: situs sejarah, sebaran fasilitas publik, sebaran komoditas unggulan).
-2. **Definisi Entitas & Skema Data:**
-   Minta ChatGPT merumuskan struktur data JSON/GeoJSON yang modular.
-3. **Penyusunan Mega-Prompt:**
-   Minta ChatGPT menulis prompt teknis dengan instruksi gaya developer senior.
+### Metode A: AI Text/Table Parsing (Tanpa Koding)
+Peserta dapat menyalin teks artikel/tabel panjang dari web, lalu meminta ChatGPT atau Gemini untuk melakukan *parsing*:
 
-#### Template Prompt ChatGPT (Contoh):
+#### Contoh Prompt AI Scraping:
 ```text
-"Saya ingin membuat WebGIS interaktif menggunakan Leaflet.js untuk memetakan [TEMA SEBARAN, misal: Sebaran Kerajaan Islam & Situs Sejarah di Nusantara]. 
+"Tolong bertindak sebagai Data Extraction Specialist. 
+Berikut adalah teks artikel berisi daftar 10 benteng bersejarah di Indonesia beserta keterangannya:
+[TEMPELKAN TEKS / TABEL DARI SITUS WEB DI SINI]
 
-Tolong bertindak sebagai Senior GIS System Architect:
-1. Buatkan skema struktur basis data JSON yang memisahkan antara entitas utama, linimasa peristiwa, dan situs peninggalan.
-2. Jelaskan atribut apa saja yang wajib ada (koordinat CRS WGS84 lat-lng, periode tahun, historiografi, sumber akademik).
-3. Setelah kita sepakati skemanya, tolong buatkan 'Master Prompt' lengkap dan detail yang siap saya kirimkan ke AI Coding Assistant (Antigravity) agar ia langsung membangun sistem WebGIS ini secara modular tanpa membuat dari nol."
+Tugasmu:
+1. Ekstrak entitas tersebut ke dalam format JSON array yang rapi.
+2. Setiap objek wajib memiliki kunci: id, nama_objek, tipe, tahun_didirikan, nama_kota_kabupaten, latitude, longitude, deskripsi_ringkas, dan referensi_sumber.
+3. Estimasi koordinat latitude dan longitude (CRS WGS84) berdasarkan pusat lokasi fisik benteng tersebut.
+4. Tampilkan hasilnya dalam satu blok kode JSON yang valid tanpa teks pembuka berlebih."
+```
+
+### Metode B: Otomasi Skrip Python Scraping (Untuk Halaman Berulang)
+Jika data berada di banyak halaman, minta AI membuatkan skrip Python ringkas dengan `BeautifulSoup` atau `requests`:
+```python
+# Contoh skrip scraping otomatis hasil arahan AI
+import requests
+from bs4 import BeautifulSoup
+import json
+
+url = "https://id.wikipedia.org/wiki/Daftar_masjid_kuno_di_Indonesia"
+resp = requests.get(url)
+soup = BeautifulSoup(resp.text, 'html.parser')
+# AI membantu mengekstrak baris <tr> dan <td> menjadi list dictionary
 ```
 
 ---
 
-### FASE 2: PERANCANGAN UI/UX & GENERATIVE INTERFACE DI GOOGLE AI STUDIO
+## 5. FASE 2: KOREKSI & PEMERIKSAAN KEAKURATAN DATA (DATA VALIDATION & ANTI-HALLUCINATION)
 
-#### Tujuan:
-Mengeksplorasi antarmuka yang modern, estetis, dan ramah seluler (*mobile-responsive*) menggunakan model Gemini berkecepatan tinggi dengan konteks luas.
+> [!CAUTION]
+> **Peringatan Kritis untuk Peserta Workshop:**
+> AI sering melakukan halusinasi pada angka koordinat dan tahun! Koordinat yang diberikan AI **HARUS DIUJI** sebelum dimasukkan ke peta.
 
-#### Langkah Pengerjaan:
-1. Buka [Google AI Studio](https://aistudio.google.com/).
-2. Pilih model terbaru (misal: `Gemini 1.5 Pro` atau `Gemini 2.0 Flash`).
-3. **Eksplorasi Skema Visual Tematik:**
-   * Masukkan konsep warna (misal: nuansa hijau zamrud nusantara `#0f4c3a`, emas `#d97706`, dan krem `#faf7f0`).
-   * Tanyakan bagaimana layout terbaik untuk *Floating Time Series Bar*, *Collapsible Detail Drawer*, dan *Filter Chips*.
-4. **Input Sketsa / Screenshot:**
-   * Anda bisa mengunggah tangkapan layar peta atau sketsa coretan tangan di kertas, lalu minta AI Studio:
-     *"Ubah sketsa panel kontrol ini menjadi markup HTML flexbox/grid yang responsif untuk layar handphone (viewport 360-400px)."*
-5. Simpan rekomendasi struktur CSS/HTML untuk digabungkan ke prompt Antigravity.
-
----
-
-### FASE 3: PEMROGRAMAN OTONOM & EKSEKUSI SPASIAL DI GOOGLE ANTIGRAVITY
-
-#### Apa itu Antigravity?
-Antigravity adalah **Agentic AI Coding Assistant** tingkat lanjut. Berbeda dari chat AI biasa yang hanya memberikan cuplikan kode di layar, Antigravity dapat:
-- Menjelajahi dan membaca seluruh file di workspace proyek.
-- Mengedit, menambahkan, dan menghapus file secara langsung.
-- Menjalankan perintah terminal (PowerShell, Node.js, Python, Git) tanpa pengguna harus menyalin kode manual.
-- Mendeteksi error sintaks atau layout secara otomatis dan langsung memperbaikinya.
-
-#### Langkah Eksekusi di Antigravity:
-1. Buka workspace proyek WebGIS di Antigravity.
-2. Salin dan kirimkan *Master Prompt* dari ChatGPT serta arahan visual dari AI Studio.
-3. Biarkan Antigravity melakukan audit kode, membangun logika spasial Leaflet, membagi modul JS (`map.js`, `timeline.js`, `detail.js`, `filters.js`), dan memformat GeoJSON.
-4. **Review & Iterasi Cepat:**
-   Jika ada fitur kurang pas (misal: *filter kepulauan kurang responsif*, *perlu foto dokumentasi cagar budaya*), cukup berikan feedback ringkas dalam bahasa manusia:
-   > *"Tolong tambahkan foto dokumentasi masjid dan makam bersejarah di popup dan drawer ketika diklik, ambil dari sumber legal seperti Wikimedia Commons, dan pastikan tidak bikin berat (gunakan lazy loading)."*
-
----
-
-### FASE 4: OTOMASI PUBLIKASI & SINKRONISASI GIT/GITHUB
-
-Salah satu fitur paling unggul dari alur kerja ini adalah **Anda tidak perlu membuka terminal atau aplikasi Git terpisah**.
-
-#### Alur Publikasi Otomatis via Antigravity:
-1. Buat repositori kosong di GitHub (misal: `nama-user/webgis-tematik`).
-2. Minta Antigravity melakukan konfigurasi remote dan publish:
-   > *"Tolong bantu inisialisasi Git, sambungkan ke repositori https://github.com/username/webgis-tematik.git, buat commit pertama, dan push ke branch main."*
-3. Antigravity akan mengeksekusi rangkaian perintah terminal:
-   ```powershell
-   git add .
-   git commit -m "feat: initial release thematic WebGIS"
-   git push origin main
-   ```
-4. **Aktifkan GitHub Pages (Sekali Saja di Web GitHub):**
-   * Buka Repositori di GitHub &rarr; Tab **Settings** &rarr; Menu **Pages**.
-   * Pada bagian **Branch**, pilih `main` dan folder `/ (root)`, lalu klik **Save**.
-   * Dalam 1–2 menit, WebGIS Anda live di URL: `https://username.github.io/webgis-tematik/`.
-5. **Auto-Update Setiap Kali Ada Perubahan:**
-   Setiap kali Anda meminta Antigravity menambah data atau memperbaiki tampilan, cukup katakan:
-   > *"Bagus, tolong langsung commit dan push perubahan terbaru ke GitHub."*
-   WebGIS online akan otomatis terbarui secara instan!
-
----
-
-## 4. STUDI KASUS RIIL: WEBGIS ATLAS SEJARAH ISLAM NUSANTARA
-
-Sebagai contoh nyata yang dapat dipresentasikan dalam workshop, proyek WebGIS ini mengintegrasikan:
-1. **Pemetaan Spasial Temporal:**
-   * Slider linimasa dinamis dari abad ke-12 M hingga kemerdekaan NKRI (1945 M).
-   * Poligon wilayah kekuasaan yang berevolusi sesuai tahun historis berdasarkan atlas Robert Cribb.
-2. **Layer Multi-Kategori:**
-   * Titik istana/keraton kesultanan, masjid kuno, makam bersejarah, benteng pertahanan, dan bandar niaga.
-3. **Detail Drawer Kaya Data (Rich Media):**
-   * Foto dokumentasi beresolusi tinggi dengan lisensi CC-BY-SA Wikimedia Commons.
-   * Narasi arsitektur, historiografi kepastian data, dan referensi akademik otoritatif.
-4. **Desain Mobile-First:**
-   * Bottom sheet interaktif, zoom control yang tidak tertutup, tombol reset kompas, dan pencarian universal lintas masa.
-
----
-
-## 5. REKOMENDASI ALAT AI LAIN UNTUK EKOSISTEM GEOSPASIAL
-
-Selain kombinasi **ChatGPT + Google AI Studio + Antigravity**, berikut beberapa AI alternatif yang sangat direkomendasikan untuk materi tambahan workshop:
+### Checklist Wajib Pemeriksaan Keakuratan Data:
 
 ```mermaid
-graph TD
-    subgraph "Generatif UI & Frontend"
-        V0["v0.dev by Vercel<br>(Instan UI Component Generator)"]
-        CL["Claude 3.5 Sonnet<br>(Logika SVG, Spasial & Analisis Teks)"]
-    end
-
-    subgraph "GIS & Spatial Engineering"
-        QGIS_AI["QGIS GeoAI / ChatGIS Plugin<br>(Otomasi Python di QGIS Desktop)"]
-        GEE_AI["Google Earth Engine + Gemini<br>(Analisis Citra Satelit Skala Besar)"]
-        OVERPASS["Overpass Turbo + AI Natural Language<br>(Ekstraksi Data OpenStreetMap Otomatis)"]
-    end
-
-    subgraph "Alternative Agentic IDE"
-        CUR["Cursor IDE / Windsurf<br>(AI Code Editor Berbasis VS Code)"]
-    end
+flowchart TD
+    V1["1. Cek Lat/Lng Inversion<br>(Apakah titik terlempar ke Samudera?)"] --> V2["2. Verifikasi Satelit / OSM<br>(Apakah koordinat tepat di atas atap objek?)"]
+    V2 --> V3["3. Validasi Kronologi<br>(Tahun berdirinya logis & terbukti sumber?)"]
+    V3 --> V4["4. Penetapan Confidence Level<br>(Tinggi / Sedang / Interpretatif)"]
+    V4 --> V5["✅ Data Lolos Validasi"]
 ```
 
-### 1. Claude 3.5 Sonnet (Anthropic)
-- **Kelebihan Spesifik:** Model AI terbaik saat ini untuk analisis kode spasial kompleks, manipulasi vektor SVG, dan pembacaan naskah kuno/transkripsi teks historis untuk diekstrak menjadi koordinat toponimi.
-- **Kasus Penggunaan:** Sangat tepat untuk mengekstrak tabel daftar raja, tahun bertahta, dan koordinat dari file PDF jurnal sejarah menjadi format JSON siap pakai.
-
-### 2. v0.dev (by Vercel)
-- **Kelebihan Spesifik:** Menghasilkan antarmuka web interaktif berbasis prompt teks dalam hitungan detik (menggunakan Tailwind CSS dan komponen React/HTML).
-- **Kasus Penggunaan:** Jika peserta workshop ingin mendesain purwarupa dashboard GIS sebelum digabungkan ke Leaflet.
-
-### 3. QGIS AI / GeoAI Plugins
-- **Kelebihan Spesifik:** Integrasi LLM langsung di dalam software QGIS Desktop.
-- **Kasus Penggunaan:** Membantu pengguna menulis skrip PyQGIS untuk otomatisasi pemotongan buffer, georeferensi batch raster peta kuno, dan kalkulasi luas poligon.
-
-### 4. Overpass Turbo dengan Bantuan AI
-- **Kelebihan Spesifik:** Mengubah bahasa manusia menjadi query Overpass QL untuk mengunduh data batas wilayah, masjid, sungai, atau jalan dari OpenStreetMap secara gratis dan legal.
+1. **Pencegahan Lat/Lng Inversion (*Tertukar Lintang dan Bujur*):**
+   * Wilayah Indonesia membentang di sekitar:
+     * **Latitude (Lintang):** Antara $+6^\circ\text{ LU}$ (Sabang) hingga $-11^\circ\text{ LS}$ (Rote).
+     * **Longitude (Bujur):** Antara $+95^\circ\text{ BT}$ hingga $+141^\circ\text{ BT}$.
+   * *Jika latitude bernilai 110 dan longitude bernilai -7, maka koordinat tertukar! Titik akan terlempar ke kutub atau samudera antah berantah.*
+2. **Koreksi Toponimi Kuno vs Modern:**
+   * Nama tempat bersejarah seringkali berbeda dengan administrasi modern (misal: *Sunda Kelapa* $\rightarrow$ *Pelabuhan Sunda Kelapa, Jakarta Utara*; *Barus* $\rightarrow$ *Tapanuli Tengah*). Peserta harus memverifikasi bahwa titik mengacu pada lokasi cagar budaya sebenarnya, bukan hanya kantor kecamatan.
+3. **Pemberian Skor Keyakinan (*Confidence Level*):**
+   * **Tinggi:** Memiliki koordinat presisi dari registrasi Cagar Budaya Kemendikbudristek / BPCB / GPS lapangan.
+   * **Sedang / Interpretatif:** Berdasarkan perkiraan teks babad/arsip kolonial tanpa sisa fondasi fisik yang utuh.
 
 ---
 
-## 6. BEST PRACTICES, ETIKA DATA & MITIGASI HALUSINASI AI
+## 6. FASE 3: PANDUAN MELAMPIRKAN DATASET MANDIRI PESERTA (UNTUK UJIAN / PROYEK AKHIR)
 
-> [!WARNING]
-> **Perangkap Terbesar Pengembang WebGIS Berbasis AI:**
-> AI sering melakukan *hallucination* (mengarang fakta) jika diminta menentukan koordinat geografis atau batas wilayah politik masa lalu yang tidak pasti.
+Untuk keperluan ujian atau tugas mandiri workshop, peserta diwajibkan menyiapkan data tematik mereka sendiri (misal: sebaran kuliner lokal, sebaran puskesmas, sebaran peninggalan kolonial kota masing-masing).
 
-### Prinsip Integritas Spasial-Sejarah:
-1. **Hindari Batas Imajiner (No Artificial Polygons):**
-   * Jika tidak ada peta arsip resmi yang menggambarkan batas kerajaan, jangan gunakan *convex hull* atau *buffer* otomatis untuk mengklaim wilayah kekuasaan administratif.
-   * Gunakan konsep *Mandala* / *Sphere of Influence* (titik pusat kekuasaan + label daerah pengaruh).
-2. **Kewajiban Referensi Sumber Akademik:**
-   * Setiap titik dan poligon harus memiliki atribut `source_title`, `source_year`, dan `confidence_level` (Tinggi / Sedang / Interpretatif).
-3. **Lisensi Terbuka & Atribusi Legal:**
-   * Utamakan foto dokumentasi dari Wikimedia Commons, Tropenmuseum, Perpustakaan Nasional (Perpusnas), atau inventaris cagar budaya Kemendikbudristek dengan atribusi lisensi yang jelas.
-4. **Optimasi Performa WebGIS (Anti-Lag):**
-   * Selalu gunakan `loading="lazy"` pada elemen `<img>`.
-   * Simpan geometri poligon dalam format GeoJSON yang sudah disederhanakan (*simplified tolerance* $\approx 0.001^\circ$) agar ukuran berkas tidak membengkak di koneksi mobile.
+### Format Standar Spreadsheet (Excel / Google Sheets / CSV):
+Instruktur dapat membagikan format template CSV sederhana berikut kepada peserta:
+
+| id | nama_objek | kategori | latitude | longitude | tahun_awal | tahun_akhir | deskripsi | foto_url | sumber_data |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| `obj-01` | Masjid Agung Demak | ibadah | -6.8946 | 110.6373 | 1479 | 9999 | Peninggalan Wali Songo | `https://...jpg` | BPCB Jateng |
+| `obj-02` | Benteng Vredeburg | benteng | -7.8003 | 110.3662 | 1767 | 9999 | Benteng kolonial Yogya | `https://...jpg` | Kemendikbud |
+
+### Cara Mengimpor Dataset Sendiri ke Antigravity:
+Peserta cukup menyimpan file tabel tersebut sebagai `data/dataset_mandiri.csv` di folder proyek, lalu memberikan perintah ke Antigravity:
+> *"Saya sudah melampirkan dataset saya di `data/dataset_mandiri.csv`. Tolong periksa validitas koordinatnya, konversikan menjadi format JSON/GeoJSON WGS84, dan integrasikan layer sebaran ini ke dalam WebGIS Leaflet kita lengkap dengan filter kategori dan popup foto."*
 
 ---
 
-## 7. CHECKLIST & PANDUAN INSTRUKTUR WORKSHOP
+## 7. FASE 4: PERANCANGAN UI/UX CEPAT DI GOOGLE AI STUDIO
 
-### Persiapan Peserta (Prerequisites):
-- [ ] Akun GitHub aktif.
-- [ ] Browser modern (Chrome, Edge, atau Firefox).
-- [ ] Akses internet stabil.
-- [ ] Akun ChatGPT (Free atau Plus) & akun Google AI Studio.
-- [ ] Perangkat lunak editor / agentic assistant (Google Antigravity atau VS Code + Git).
-
-### Alokasi Waktu Workshop (Contoh Sesi 3 Jam):
-* **00:00 - 00:30 (30 Menit):** Teori Pengantar WebGIS & Demonstrasi Arsitektur 3 Pilar AI.
-* **00:30 - 01:15 (45 Menit):** Sesi 1 - Konseptualisasi Topik & Pembuatan Skema Data di ChatGPT.
-* **01:15 - 01:45 (30 Menit):** Sesi 2 - Eksplorasi Desain Komponen di Google AI Studio.
-* **01:45 - 02:30 (45 Menit):** Sesi 3 - Hands-on Pemrograman Otomatis & Debugging di Antigravity.
-* **02:30 - 03:00 (30 Menit):** Sesi 4 - Publikasi GitHub Pages, Pengujian di Smartphone, & Tanya Jawab.
+*(Waktu: 10–15 menit)*
+1. Buka [Google AI Studio](https://aistudio.google.com/).
+2. Tentukan identitas visual:
+   * **Warna Utama:** Pilih warna sesuai tema (misal: Hijau hutan `#1b4332` untuk ekowisata, Biru bahari `#0077b6` untuk pesisir/maritim, Merah marun `#780000` untuk situs perjuangan).
+3. Buat rancangan popup dan panel samping (*drawer*) yang ramah layar smartphone:
+   * Header judul yang tidak terpotong.
+   * Wadah foto dengan aspek rasio `16:9` atau `4:3`.
+   * Label metadata ringkas (Tahun, Kategori, Status Cagar).
 
 ---
-*Modul ini disusun berdasarkan alur kerja riil produksi WebGIS Atlas Sejarah Islam Nusantara.*
+
+## 8. FASE 5: EKSEKUSI KODE OTONOM DI GOOGLE ANTIGRAVITY & DEBUGGING
+
+*(Waktu: 30–35 menit)*
+Peserta bekerja sama secara *pair programming* dengan Antigravity:
+1. **Pemberian Instruksi Inti:**
+   Kirimkan prompt gabungan (dataset terverifikasi + konsep UI AI Studio) ke Antigravity.
+2. **Observasi Kerja Agentic AI:**
+   Antigravity secara otomatis:
+   * Membaca struktur file proyek.
+   * Menulis file `index.html`, `assets/css/style.css`, dan modul-modul JS.
+   * Menyiapkan base map (OpenStreetMap / CartoDB Voyager / Esri Satelit).
+   * Menambahkan fitur pencarian (*search box*), filter kategori, dan linimasa (*timeline slider*).
+3. **Penyempurnaan Bug Cepat:**
+   Jika pada tampilan mobile tombol zoom tertutup atau pencarian belum responsif, peserta cukup mengetik:
+   > *"Tombol zoom ketutupan panel bawah di layar HP, tolong naikkan posisinya dan pastikan drawer bisa di-scroll."*
+
+---
+
+## 9. FASE 6: OTOMASI PUBLIKASI & HOSTING GRATIS DI GITHUB PAGES
+
+*(Waktu: 15 menit)*
+
+### Keunggulan Alur Antigravity:
+Peserta **tidak perlu** mengetik perintah command line secara manual jika belum menguasai Git. Cukup instruksikan kepada Antigravity:
+> *"Tolong push semua kode terbaru proyek ini ke repositori GitHub saya di https://github.com/username/nama-repo.git pada branch main."*
+
+### Langkah Aktivasi GitHub Pages (Hanya 3 Klik):
+1. Buka repositori GitHub Anda di browser.
+2. Masuk ke **Settings** &rarr; menu **Pages** (di bilah kiri).
+3. Di bagian **Build and deployment**:
+   * *Source*: **Deploy from a branch**
+   * *Branch*: Pilih `main` dan folder `/ (root)` &rarr; Klik **Save**.
+4. Tunggu 1–2 menit, refresh halaman. Website WebGIS peserta kini resmi tayang di alamat:
+   **`https://username.github.io/nama-repo/`**
+5. Buka link tersebut di smartphone masing-masing untuk demonstrasi hasil karya.
+
+---
+
+## 10. REKOMENDASI ALAT AI LAIN & REKAPITULASI
+
+Sebagai suplemen wawasan untuk peserta, perkenalkan beberapa alat AI geospasial mutakhir lainnya:
+
+| Nama Alat AI | Fungsi Spesifik dalam GIS | Keunggulan Utama |
+| :--- | :--- | :--- |
+| **Claude 3.5 Sonnet** | Ekstraksi Dokumen Sejarah / Arsip | Sangat akurat dalam membaca tabel di dokumen PDF dan naskah kuno. |
+| **v0 by Vercel** | Desain Antarmuka Generatif | Menghasilkan kode HTML/Tailwind komponen kartu GIS dalam hitungan detik. |
+| **Overpass Turbo + AI** | Ekstraksi Data OpenStreetMap | Mengunduh data sebaran batas wilayah atau masjid tanpa scraping manual. |
+| **QGIS GeoAI / ChatGIS** | Otomasi GIS Desktop | Membantu menulis skrip Python pengolahan spasial di software QGIS. |
+
+---
+
+### Tips Khusus untuk Instruktur Workshop:
+1. **Siapkan Akun GitHub Lebih Awal:** Minta peserta mendaftar GitHub H-1 sebelum workshop agar tidak membuang waktu di sesi verifikasi email.
+2. **Koneksi Internet:** Karena menggunakan Leaflet basemap dan model AI cloud, pastikan koneksi internet stabil minimal 5–10 Mbps per peserta.
+3. **Fokus pada Alur Logika, Bukan Menghafal Kode:** Tekankan bahwa tujuan workshop adalah menguasai alur kurasi data, perumusan instruksi AI, dan verifikasi kualitas—bukan menghafal sintaks JavaScript.
