@@ -34,7 +34,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 36px 28px;
+    padding: 34px 26px;
     border: 3px solid #0f4c3a;
     border-radius: 8px;
     background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
@@ -72,33 +72,50 @@
   }
 
   .cover-title-group {
-    margin-top: 25px;
+    margin-top: 20px;
   }
 
   .cover-title {
-    font-size: 24pt;
+    font-size: 23pt;
     font-weight: 800;
     color: #0f4c3a;
     line-height: 1.25;
-    margin: 0 0 16px 0;
+    margin: 0 0 14px 0;
   }
 
   .cover-subtitle {
     font-size: 11.5pt;
     color: #475569;
     line-height: 1.5;
-    margin-bottom: 20px;
+    margin-bottom: 18px;
     border-left: 4px solid #d97706;
     padding-left: 14px;
     text-align: justify;
+  }
+
+  .cover-highlight-box {
+    background: #ecfdf5;
+    border: 1.5px solid #059669;
+    border-radius: 6px;
+    padding: 12px 16px;
+    margin: 10px 0;
+    font-size: 9pt;
+    color: #065f46;
+  }
+
+  .cover-highlight-box strong {
+    color: #047857;
+    display: block;
+    font-size: 9.5pt;
+    margin-bottom: 4px;
   }
 
   .cover-meta {
     background: #f8fafc;
     border: 1px solid #cbd5e1;
     border-radius: 6px;
-    padding: 16px 20px;
-    font-size: 9pt;
+    padding: 14px 18px;
+    font-size: 8.5pt;
     color: #334155;
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -117,26 +134,26 @@
   }
 
   h1 {
-    font-size: 15pt;
+    font-size: 14.5pt;
     border-bottom: 2px solid #0f4c3a;
-    padding-bottom: 6px;
-    margin-top: 28px;
+    padding-bottom: 5px;
+    margin-top: 26px;
     margin-bottom: 12px;
     text-transform: uppercase;
     letter-spacing: 0.5px;
   }
 
   h2 {
-    font-size: 12pt;
+    font-size: 11.5pt;
     color: #1a5d48;
-    margin-top: 20px;
+    margin-top: 18px;
     margin-bottom: 8px;
     border-bottom: 1px solid #e2e8f0;
     padding-bottom: 4px;
   }
 
   h3 {
-    font-size: 10.5pt;
+    font-size: 10pt;
     color: #334155;
     margin-top: 14px;
     margin-bottom: 6px;
@@ -161,7 +178,7 @@
   table {
     width: 100%;
     border-collapse: collapse;
-    margin: 14px 0;
+    margin: 12px 0;
     font-size: 8.5pt;
     page-break-inside: avoid;
   }
@@ -197,6 +214,12 @@
     background: #ecfdf5;
     border-left: 4px solid #059669;
     color: #065f46;
+  }
+
+  .callout-highlight {
+    background: #eff6ff;
+    border-left: 4px solid #2563eb;
+    color: #1e40af;
   }
 
   .callout-warning {
@@ -270,13 +293,6 @@
   .page-break {
     page-break-before: always;
   }
-
-  .rubric-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    margin: 12px 0;
-  }
 </style>
 </head>
 <body>
@@ -291,51 +307,56 @@
   <div class="cover-badge">Modul Pelatihan & Pedoman Praktikum Mandiri (120 Menit)</div>
   
   <div class="cover-title-group">
-    <h1 class="cover-title">Pengembangan Sistem Informasi Geografis Berbasis Web (WebGIS) Tematik Menggunakan Ekosistem Artificial Intelligence</h1>
+    <h1 class="cover-title">Pengembangan WebGIS Tematik Menggunakan Ekosistem AI & Paradigma Zero-Manual Deployment</h1>
     <div class="cover-subtitle">
-      Panduan Lengkap Alur Kerja: Ekstraksi Data Spasial Otomatis (AI Web Scraping), Protokol Validasi Geodesi Anti-Halusinasi, Perancangan Antarmuka Responsif Seluler, Pemrograman Otonom (Agentic Pair-Programming), hingga Publikasi Terbuka di GitHub Pages.
+      Panduan Lengkap Alur Kerja: Ekstraksi Data Spasial Otomatis, Protokol Validasi Geodesi Anti-Halusinasi, Perancangan Antarmuka Responsif, hingga Publikasi Terbuka Tanpa Perlu Deploy Ulang Manual ke GitHub.
     </div>
   </div>
 
-  <div style="text-align: center; margin: 15px 0;">
+  <div class="cover-highlight-box">
+    <strong>🌟 FOKUS UTAMA & NILAI KEUNGGULAN MODUL:</strong>
+    Modul ini menggarisbawahi simplisitas modern di mana pengembang <em>tidak perlu lagi repot membuka terminal Git atau mengunggah berkas secara berulang-ulang ke web GitHub</em>. Seluruh proses pembaruan data, perbaikan bug tampilan, dan publikasi ke GitHub Pages dieksekusi secara otonom oleh AI Agent melalui satu kalimat instruksi.
+  </div>
+
+  <div style="text-align: center; margin: 10px 0;">
     <!-- SVG ILLUSTRATION 1: ARSITEKTUR EKOSISTEM 3 PILAR AI -->
-    <svg width="600" height="135" viewBox="0 0 600 135" xmlns="http://www.w3.org/2000/svg">
+    <svg width="600" height="125" viewBox="0 0 600 125" xmlns="http://www.w3.org/2000/svg">
       <!-- Step 1: ChatGPT -->
-      <rect x="10" y="18" width="125" height="95" rx="8" fill="#10a37f" />
-      <text x="72" y="45" fill="#ffffff" font-weight="bold" font-size="11" text-anchor="middle">1. THE BRAIN</text>
-      <text x="72" y="65" fill="#ffffff" font-size="8.5" text-anchor="middle">ChatGPT / Perplexity</text>
-      <text x="72" y="80" fill="#e6fffa" font-size="8" text-anchor="middle">Scraping & Skema Data</text>
-      <text x="72" y="95" fill="#e6fffa" font-size="7.5" text-anchor="middle">Prompt Engineering</text>
+      <rect x="10" y="15" width="125" height="90" rx="8" fill="#10a37f" />
+      <text x="72" y="40" fill="#ffffff" font-weight="bold" font-size="10.5" text-anchor="middle">1. THE BRAIN</text>
+      <text x="72" y="60" fill="#ffffff" font-size="8.5" text-anchor="middle">ChatGPT / Perplexity</text>
+      <text x="72" y="75" fill="#e6fffa" font-size="8" text-anchor="middle">Scraping & Skema Data</text>
+      <text x="72" y="90" fill="#e6fffa" font-size="7.5" text-anchor="middle">Prompt Engineering</text>
 
       <!-- Arrow 1 -->
-      <path d="M 140 65 L 165 65" stroke="#d97706" stroke-width="2.5" fill="none" marker-end="url(#arrow)" />
+      <path d="M 140 60 L 165 60" stroke="#d97706" stroke-width="2.5" fill="none" marker-end="url(#arrow)" />
       
       <!-- Step 2: Google AI Studio -->
-      <rect x="170" y="18" width="125" height="95" rx="8" fill="#1a73e8" />
-      <text x="232" y="45" fill="#ffffff" font-weight="bold" font-size="11" text-anchor="middle">2. THE DESIGNER</text>
-      <text x="232" y="65" fill="#ffffff" font-size="8.5" text-anchor="middle">Google AI Studio</text>
-      <text x="232" y="80" fill="#e8f0fe" font-size="8" text-anchor="middle">Prototyping UI/UX</text>
-      <text x="232" y="95" fill="#e8f0fe" font-size="7.5" text-anchor="middle">Mobile Layout & Cards</text>
+      <rect x="170" y="15" width="125" height="90" rx="8" fill="#1a73e8" />
+      <text x="232" y="40" fill="#ffffff" font-weight="bold" font-size="10.5" text-anchor="middle">2. THE DESIGNER</text>
+      <text x="232" y="60" fill="#ffffff" font-size="8.5" text-anchor="middle">Google AI Studio</text>
+      <text x="232" y="75" fill="#e8f0fe" font-size="8" text-anchor="middle">Prototyping UI/UX</text>
+      <text x="232" y="90" fill="#e8f0fe" font-size="7.5" text-anchor="middle">Mobile Layout & Cards</text>
 
       <!-- Arrow 2 -->
-      <path d="M 300 65 L 325 65" stroke="#d97706" stroke-width="2.5" fill="none" />
+      <path d="M 300 60 L 325 60" stroke="#d97706" stroke-width="2.5" fill="none" />
 
       <!-- Step 3: Google Antigravity -->
-      <rect x="330" y="18" width="125" height="95" rx="8" fill="#0f4c3a" />
-      <text x="392" y="45" fill="#fde68a" font-weight="bold" font-size="11" text-anchor="middle">3. THE ENGINEER</text>
-      <text x="392" y="65" fill="#ffffff" font-size="8.5" text-anchor="middle">Agentic Coding</text>
-      <text x="392" y="80" fill="#fef08a" font-size="8" text-anchor="middle">Leaflet Engine & Test</text>
-      <text x="392" y="95" fill="#fef08a" font-size="7.5" text-anchor="middle">Git Push Otomatis</text>
+      <rect x="330" y="15" width="125" height="90" rx="8" fill="#0f4c3a" />
+      <text x="392" y="40" fill="#fde68a" font-weight="bold" font-size="10.5" text-anchor="middle">3. THE ENGINEER</text>
+      <text x="392" y="60" fill="#ffffff" font-size="8.5" text-anchor="middle">Agentic Coding</text>
+      <text x="392" y="75" fill="#fef08a" font-size="8" text-anchor="middle">Leaflet Engine & Test</text>
+      <text x="392" y="90" fill="#fef08a" font-size="7.5" text-anchor="middle">Auto-Deploy Git Push</text>
 
       <!-- Arrow 3 -->
-      <path d="M 460 65 L 485 65" stroke="#d97706" stroke-width="2.5" fill="none" />
+      <path d="M 460 60 L 485 60" stroke="#d97706" stroke-width="2.5" fill="none" />
 
       <!-- Step 4: GitHub Pages -->
-      <rect x="490" y="18" width="100" height="95" rx="8" fill="#1e293b" />
-      <text x="540" y="45" fill="#ffffff" font-weight="bold" font-size="11" text-anchor="middle">4. DEPLOY</text>
-      <text x="540" y="65" fill="#4ade80" font-size="8.5" text-anchor="middle">GitHub Pages</text>
-      <text x="540" y="80" fill="#ffffff" font-size="8" text-anchor="middle">Hosting Publik</text>
-      <text x="540" y="95" fill="#94a3b8" font-size="7.5" text-anchor="middle">Live Website</text>
+      <rect x="490" y="15" width="100" height="90" rx="8" fill="#1e293b" />
+      <text x="540" y="40" fill="#ffffff" font-weight="bold" font-size="10.5" text-anchor="middle">4. DEPLOY</text>
+      <text x="540" y="60" fill="#4ade80" font-size="8.5" text-anchor="middle">GitHub Pages</text>
+      <text x="540" y="75" fill="#ffffff" font-size="8" text-anchor="middle">Zero-Manual Action</text>
+      <text x="540" y="90" fill="#94a3b8" font-size="7.5" text-anchor="middle">Live dalam 60 Detik</text>
     </svg>
   </div>
 
@@ -347,7 +368,7 @@
     </div>
     <div>
       <strong>Prasyarat Teknis:</strong> Koneksi Internet, Akun GitHub, Web Browser Modern<br>
-      <strong>Perangkat Lunak:</strong> Leaflet.js, CRS WGS84, Agentic AI Environment<br>
+      <strong>Keunggulan Spesifik:</strong> Eliminasi Friksi Terminal & Deployment Manual<br>
       <strong>Studi Kasus Rujukan:</strong> Atlas Spasial Sejarah Nusantara
     </div>
   </div>
@@ -356,30 +377,32 @@
 <!-- BAGIAN I: PENDAHULUAN & LANDASAN TEORI -->
 <h1>Bagian I: Pendahuluan & Landasan Teori</h1>
 
-<h2>1.1 Transformasi Paradigma Geospasial di Era Artificial Intelligence</h2>
+<h2>1.1 Mengapa Alur Kerja Ini Menawarkan Simplisitas Nyata?</h2>
 <p>
-  Sistem Informasi Geografis Berbasis Web (WebGIS) telah menjadi media paling efektif dalam mendemokratisasikan data geospasial kepada publik. Melalui peramban web tanpa memerlukan instalasi perangkat lunak GIS desktop yang berat, pengguna awam dapat mengeksplorasi data sebaran, pola keruangan, hingga analisis temporal.
+  Tantangan paling menyita waktu dan kerap menjadi momok bagi peserta pelatihan WebGIS non-IT adalah <strong>Friksi DevOps dan Deployment</strong>. Secara tradisional, setiap kali seorang peneliti ingin memperbaiki satu baris koordinat atau mengganti foto cagar budaya di peta, ia diwajibkan melewati prosedur manual yang rumit:
 </p>
+<ol>
+  <li>Membuka terminal Git Bash atau aplikasi command line.</li>
+  <li>Mengetik sintaks terminal yang rawan salah: <code>git status</code>, <code>git add .</code>, <code>git commit -m "update"</code>, dan <code>git push origin main</code>.</li>
+  <li>Jika terjadi konflik atau galat otentikasi Git, pemula kerap frustrasi dan terpaksa melakukan metode darurat: mengunduh ZIP, menghapus repositori, atau menyeret file satu-per-satu (*drag and drop*) ke antarmuka web GitHub.</li>
+  <li>Mengulangi kembali konfigurasi hosting dan menunggu pengecekan ulang.</li>
+</ol>
 <p>
-  Namun, kurva pembelajaran pengembangan WebGIS konvensional sangat terjal. Pengembang dituntut menguasai kartografi geodesi (sistem proyeksi, datum WGS84, koordinat desimal), penataan format data (GeoJSON, TopoJSON), pemrograman frontend modern (HTML5, CSS Flexbox/Grid, JavaScript asynchronous), pustaka pemetaan (Leaflet.js, OpenLayers), serta manajemen server dan deployment (Git, GitHub, web server).
-</p>
-<p>
-  Hadirnya <strong>Generative AI</strong> dan <strong>Agentic AI Coding Assistant</strong> tidak menghilangkan kaidah keilmuan geospasial, melainkan mentransformasi alur kerja: pengembang tidak lagi disibukkan oleh penulisan kode sintaksis baris-demi-baris yang rawan galat (syntax error), melainkan fokus sebagai <strong>Arsitek Sistem (System Architect)</strong> dan <strong>Kurator Kualitas Data (Quality Assurer)</strong>.
+  Melalui paradigma <strong>Agentic AI (Google Antigravity)</strong>, seluruh friksi administratif ini <strong>dihapuskan secara total</strong>. Pengembang tidak perlu lagi membuka terminal, tidak perlu mengetik perintah Git, dan tidak perlu mengunggah berkas ulang ke peramban. AI bertindak sebagai teknisi DevOps otonom yang memproses, memeriksa sintaksis, melakukan commit, dan mengeksekusi push ke GitHub hanya berdasarkan satu kalimat instruksi santai.
 </p>
 
 <h2>1.2 Capaian Pembelajaran Workshop (Learning Outcomes)</h2>
-<p>Setelah menyelesaikan modul pelatihan ini selama 120 menit, peserta diharapkan mampu:</p>
 <ul>
-  <li><strong>Capaian Kognitif:</strong> Memahami arsitektur alur kerja multi-AI dalam rekayasa geospasial serta prinsip dasar mitigasi halusinasi toponimi.</li>
-  <li><strong>Capaian Psikomotorik:</strong> Mampu mengekstrak data tabel web menjadi JSON spasial terstruktur, mengoreksi anomali pembalikan koordinat (lat/lng inversion), merancang antarmuka Leaflet interaktif, dan mempublikasikan kode ke GitHub Pages secara otonom.</li>
-  <li><strong>Capaian Afektif:</strong> Memiliki etika integritas data ilmiah dengan melampirkan atribusi sumber, lisensi berkas terbuka, dan indikator kepastian historis (confidence level).</li>
+  <li><strong>Capaian Kognitif:</strong> Menguasai konsep dasar arsitektur multi-AI geospasial serta mekanisme <em>Continuous Deployment (CD)</em> otomatis berbasis GitHub Pages.</li>
+  <li><strong>Capaian Psikomotorik:</strong> Mampu melakukan scraping data tabel web menjadi GeoJSON, memvalidasi koordinat anti-halusinasi, merakit antarmuka Leaflet mobile, dan memperbarui website live secara instan via instruksi AI.</li>
+  <li><strong>Capaian Afektif:</strong> Memiliki etika integritas data ilmiah (atribusi lisensi terbuka dan indikator <em>confidence level</em>) serta kepercayaan diri membangun solusi geospasial modern tanpa hambatan koding rumit.</li>
 </ul>
 
 <!-- BAGIAN II: ALOKASI WAKTU 120 MENIT -->
 <div class="page-break"></div>
 <h1>Bagian II: Alokasi Waktu & Silabus Pelatihan (120 Menit)</h1>
 <p>
-  Pelatihan disusun menggunakan pendekatan <em>Action Learning</em> dengan rasio 25% pemahaman konsep dan 75% praktik laboratorium terbimbing:
+  Pelatihan disusun presisi agar setiap peserta dapat menghasilkan produk WebGIS yang tayang di internet sebelum sesi berakhir:
 </p>
 
 <table>
@@ -395,37 +418,37 @@
     <tr>
       <td><strong>00:00 - 00:15</strong></td>
       <td>15 menit</td>
-      <td><strong>Pengantar Paradigma & Ekosistem 3 Pilar AI:</strong> Peran ChatGPT (Konsep), Google AI Studio (Desain UI), dan Antigravity (Eksekusi Coding & Git).</td>
-      <td>Pemahaman arsitektur sistem & persiapan workspace</td>
+      <td><strong>Pengantar Paradigma & Ekosistem 3 Pilar AI:</strong> Konsep WebGIS spasial temporal, peran ChatGPT, Google AI Studio, dan Antigravity.</td>
+      <td>Pemahaman alur kerja modern</td>
     </tr>
     <tr>
       <td><strong>00:15 - 00:40</strong></td>
       <td>25 menit</td>
-      <td><strong>Fase 1: AI Web Scraping & Ekstraksi Data:</strong> Teknik mengambil tabel dari web/Wikipedia dan konversi ke skema data JSON/GeoJSON terstandar WGS84.</td>
-      <td>Berkas dataset mentah terstruktur (<code>data/raw.json</code>)</td>
+      <td><strong>Fase 1: AI Web Scraping & Ekstraksi Data:</strong> Mengambil tabel dari web/Wikipedia dan konversi ke skema data JSON terstandar WGS84.</td>
+      <td>Dataset mentah terstruktur</td>
     </tr>
     <tr>
       <td><strong>00:40 - 01:00</strong></td>
       <td>20 menit</td>
-      <td><strong>Fase 2: Validasi Geospasial & Anti-Halusinasi:</strong> Verifikasi koordinat (deteksi Lat/Lng flip), validasi toponimi citra satelit, dan penetapan <em>Confidence Level</em>.</td>
-      <td>Dataset bersih terverifikasi (<code>data/sites.json</code>)</td>
+      <td><strong>Fase 2: Validasi Geospasial & Anti-Halusinasi:</strong> Verifikasi koordinat (anti Lat/Lng flip), validasi toponimi citra satelit, dan penyusunan dataset ujian mandiri.</td>
+      <td>Dataset bersih & terverifikasi</td>
     </tr>
     <tr>
       <td><strong>01:00 - 01:35</strong></td>
       <td>35 menit</td>
       <td><strong>Fase 3: Agentic Coding (Leaflet Engine):</strong> Merakit peta Leaflet, popup foto lazy-loading, drawer informasi responsif seluler, dan filter pencarian.</td>
-      <td>Aplikasi WebGIS fungsional di server lokal</td>
+      <td>Aplikasi WebGIS aktif di server lokal</td>
     </tr>
     <tr>
       <td><strong>01:35 - 01:50</strong></td>
       <td>15 menit</td>
-      <td><strong>Fase 4: Otomasi Publikasi ke GitHub Pages:</strong> Perintah Git otomatis via AI, konfigurasi branch deployment, dan peluncuran website publik.</td>
-      <td>URL aktif WebGIS (dapat dibuka di smartphone)</td>
+      <td><strong>Fase 4: Zero-Manual Deployment ke GitHub Pages:</strong> Instruksi AI untuk auto-push Git, aktivasi Pages 1x klik, dan penerbitan website live global.</td>
+      <td>URL aktif WebGIS (dapat dibuka di HP)</td>
     </tr>
     <tr>
       <td><strong>01:50 - 02:00</strong></td>
       <td>10 menit</td>
-      <td><strong>Fase 5: Evaluasi Mandiri & Pengumpulan Ujian:</strong> Presentasi hasil proyek, pengujian fitur responsif, dan evaluasi capaian tugas.</td>
+      <td><strong>Fase 5: Evaluasi Mandiri & Uji Live Update:</strong> Mendemonstrasikan pembaruan instan (*one-prompt live update*) dan penilaian ujian praktikum.</td>
       <td>Penilaian proyek mandiri peserta</td>
     </tr>
   </tbody>
@@ -434,44 +457,40 @@
 <!-- BAGIAN III: AI WEB SCRAPING & EKSTRAKSI DATA -->
 <h1>Bagian III: Ekstraksi Data Spasial (AI Web Scraping)</h1>
 <p>
-  Tantangan utama pemetaan tematik adalah ketiadaan data spasial siap pakai (seperti format SHP atau GeoJSON) dari institusi resmi. Sebagian besar data cagar budaya, fasilitas kesehatan, atau pariwisata tersimpan dalam format teks artikel, siaran pers, atau tabel Wikipedia.
+  Banyak informasi geospasial tematik (situs bersejarah, cagar budaya, fasilitas kesehatan, atau potensi wisata) tersebar dalam artikel web atau tabel Wikipedia yang tidak memiliki opsi unduh data spasial.
 </p>
 
 <div class="diagram-box">
   <!-- SVG ILLUSTRATION 2: DATA EXTRACTION WORKFLOW -->
-  <svg width="560" height="95" viewBox="0 0 560 95" xmlns="http://www.w3.org/2000/svg">
-    <rect x="10" y="15" width="120" height="65" rx="6" fill="#f1f5f9" stroke="#64748b" stroke-width="1.5" />
-    <text x="70" y="38" fill="#1e293b" font-size="9" font-weight="bold" text-anchor="middle">Sumber Web</text>
-    <text x="70" y="52" fill="#64748b" font-size="7.5" text-anchor="middle">Wikipedia, Berita,</text>
-    <text x="70" y="65" fill="#64748b" font-size="7.5" text-anchor="middle">Tabel HTML, PDF</text>
+  <svg width="560" height="90" viewBox="0 0 560 90" xmlns="http://www.w3.org/2000/svg">
+    <rect x="10" y="15" width="120" height="60" rx="6" fill="#f1f5f9" stroke="#64748b" stroke-width="1.5" />
+    <text x="70" y="38" fill="#1e293b" font-size="8.5" font-weight="bold" text-anchor="middle">Sumber Web</text>
+    <text x="70" y="52" fill="#64748b" font-size="7.5" text-anchor="middle">Wikipedia, Berita, PDF</text>
 
-    <path d="M 130 47 L 155 47" stroke="#0f4c3a" stroke-width="2" />
+    <path d="M 130 45 L 155 45" stroke="#0f4c3a" stroke-width="2" />
 
-    <rect x="155" y="15" width="130" height="65" rx="6" fill="#ecfdf5" stroke="#059669" stroke-width="1.5" />
-    <text x="220" y="38" fill="#065f46" font-size="9" font-weight="bold" text-anchor="middle">AI Parsing Prompt</text>
-    <text x="220" y="52" fill="#047857" font-size="7.5" text-anchor="middle">Ekstraksi Entitas &</text>
-    <text x="220" y="65" fill="#047857" font-size="7.5" text-anchor="middle">Estimasi Koordinat</text>
+    <rect x="155" y="15" width="130" height="60" rx="6" fill="#ecfdf5" stroke="#059669" stroke-width="1.5" />
+    <text x="220" y="38" fill="#065f46" font-size="8.5" font-weight="bold" text-anchor="middle">AI Parsing Prompt</text>
+    <text x="220" y="52" fill="#047857" font-size="7.5" text-anchor="middle">Ekstraksi & Koordinat</text>
 
-    <path d="M 285 47 L 310 47" stroke="#0f4c3a" stroke-width="2" />
+    <path d="M 285 45 L 310 45" stroke="#0f4c3a" stroke-width="2" />
 
-    <rect x="310" y="15" width="115" height="65" rx="6" fill="#fef3c7" stroke="#d97706" stroke-width="1.5" />
-    <text x="367" y="38" fill="#92400e" font-size="9" font-weight="bold" text-anchor="middle">Skema Terstruktur</text>
-    <text x="367" y="52" fill="#b45309" font-size="7.5" text-anchor="middle">JSON Array Object</text>
-    <text x="367" y="65" fill="#b45309" font-size="7.5" text-anchor="middle">Atribut Tematik</text>
+    <rect x="310" y="15" width="115" height="60" rx="6" fill="#fef3c7" stroke="#d97706" stroke-width="1.5" />
+    <text x="367" y="38" fill="#92400e" font-size="8.5" font-weight="bold" text-anchor="middle">JSON Array Object</text>
+    <text x="367" y="52" fill="#b45309" font-size="7.5" text-anchor="middle">Atribut Tematik</text>
 
-    <path d="M 425 47 L 450 47" stroke="#0f4c3a" stroke-width="2" />
+    <path d="M 425 45 L 450 45" stroke="#0f4c3a" stroke-width="2" />
 
-    <rect x="450" y="15" width="100" height="65" rx="6" fill="#e0f2fe" stroke="#0284c7" stroke-width="1.5" />
-    <text x="500" y="38" fill="#0369a1" font-size="9" font-weight="bold" text-anchor="middle">GeoJSON WGS84</text>
-    <text x="500" y="52" fill="#0284c7" font-size="7.5" text-anchor="middle">FeatureCollection</text>
-    <text x="500" y="65" fill="#0284c7" font-size="7.5" text-anchor="middle">Siap Leaflet.js</text>
+    <rect x="450" y="15" width="100" height="60" rx="6" fill="#e0f2fe" stroke="#0284c7" stroke-width="1.5" />
+    <text x="500" y="38" fill="#0369a1" font-size="8.5" font-weight="bold" text-anchor="middle">GeoJSON WGS84</text>
+    <text x="500" y="52" fill="#0284c7" font-size="7.5" text-anchor="middle">Siap Leaflet.js</text>
   </svg>
   <div class="diagram-caption">Gambar 2: Alur Konversi Data Semi-Terstruktur Web Menjadi Standar Geospasial</div>
 </div>
 
 <h3>3.1 Metode AI Table & Text Parsing (Tanpa Koding)</h3>
 <p>
-  Peserta dapat menyalin tabel atau teks panjang dari halaman web, kemudian menggunakan prompt terstruktur pada model AI (ChatGPT atau Gemini):
+  Peserta dapat menyalin tabel dari peramban, lalu mengirimkan instruksi terstruktur ke model AI:
 </p>
 
 <pre><code>"Anda adalah Data Extraction Specialist. Berikut teks daftar cagar budaya yang saya salin:
@@ -481,7 +500,7 @@ Tugas:
 1. Ekstrak menjadi format JSON array murni tanpa narasi pembuka/penutup.
 2. Setiap objek wajib memuat atribut: id, nama_objek, kategori, tahun_pembangunan, latitude, longitude, deskripsi, sumber_referensi.
 3. Estimasi koordinat geografis dalam sistem proyeksi CRS WGS84 (EPSG:4326).
-4. Verifikasi bahwa nilai Latitude bernilai negatif untuk belahan bumi selatan Indonesia (0 s/d -11) dan Longitude berkisar antara 95 s/d 141 BT."</code></pre>
+4. Verifikasi bahwa nilai Latitude bernilai negatif untuk wilayah Indonesia (0 s/d -11) dan Longitude berkisar antara 95 s/d 141 BT."</code></pre>
 
 <div class="page-break"></div>
 
@@ -490,55 +509,50 @@ Tugas:
 
 <div class="callout callout-caution">
   <div class="callout-title">⚠️ PERINGATAN KRITIS: KARAKTERISTIK HALUSINASI AI PADA DATA SPASIAL</div>
-  Model bahasa besar (LLM) bekerja memprediksi probabilitas kata berikutnya, bukan menghitung posisi geodesi di permukaan bumi. Oleh sebab itu, AI sangat rentan mengarang desimal koordinat geografis. Seluruh data spasial yang dihasilkan oleh AI <strong>WAJIB</strong> melalui protokol pengujian berikut sebelum dimasukkan ke peta.
+  Model AI generatif bekerja memprediksi probabilitas linguistik dan rentan mengarang desimal koordinat. Seluruh data spasial hasil AI <strong>WAJIB</strong> melalui protokol pengujian sebelum dimasukkan ke peta.
 </div>
 
 <div class="diagram-box">
   <!-- SVG ILLUSTRATION 3: QUALITY CONTROL WORKFLOW -->
-  <svg width="560" height="90" viewBox="0 0 560 90" xmlns="http://www.w3.org/2000/svg">
-    <rect x="10" y="15" width="120" height="60" rx="6" fill="#e0f2fe" stroke="#0284c7" stroke-width="1.5" />
-    <text x="70" y="42" fill="#0369a1" font-size="8.5" font-weight="bold" text-anchor="middle">1. Cek Lat/Lng Flip</text>
-    <text x="70" y="58" fill="#0284c7" font-size="7.5" text-anchor="middle">Rentang Bounding Box</text>
+  <svg width="560" height="85" viewBox="0 0 560 85" xmlns="http://www.w3.org/2000/svg">
+    <rect x="10" y="12" width="120" height="58" rx="6" fill="#e0f2fe" stroke="#0284c7" stroke-width="1.5" />
+    <text x="70" y="38" fill="#0369a1" font-size="8.5" font-weight="bold" text-anchor="middle">1. Cek Lat/Lng Flip</text>
+    <text x="70" y="52" fill="#0284c7" font-size="7.5" text-anchor="middle">Rentang Bounding Box</text>
 
-    <path d="M 130 45 L 150 45" stroke="#64748b" stroke-width="2" />
+    <path d="M 130 41 L 150 41" stroke="#64748b" stroke-width="2" />
 
-    <rect x="150" y="15" width="120" height="60" rx="6" fill="#fef3c7" stroke="#d97706" stroke-width="1.5" />
-    <text x="210" y="42" fill="#92400e" font-size="8.5" font-weight="bold" text-anchor="middle">2. Verifikasi Satelit</text>
-    <text x="210" y="58" fill="#b45309" font-size="7.5" text-anchor="middle">Tapak Cagar Budaya</text>
+    <rect x="150" y="12" width="120" height="58" rx="6" fill="#fef3c7" stroke="#d97706" stroke-width="1.5" />
+    <text x="210" y="38" fill="#92400e" font-size="8.5" font-weight="bold" text-anchor="middle">2. Verifikasi Satelit</text>
+    <text x="210" y="52" fill="#b45309" font-size="7.5" text-anchor="middle">Tapak Cagar Budaya</text>
 
-    <path d="M 270 45 L 290 45" stroke="#64748b" stroke-width="2" />
+    <path d="M 270 41 L 290 41" stroke="#64748b" stroke-width="2" />
 
-    <rect x="290" y="15" width="125" height="60" rx="6" fill="#f3e8ff" stroke="#7c3aed" stroke-width="1.5" />
-    <text x="352" y="42" fill="#6b21a8" font-size="8.5" font-weight="bold" text-anchor="middle">3. Kronologi & Epigrafi</text>
-    <text x="352" y="58" fill="#7c3aed" font-size="7.5" text-anchor="middle">Bukti Penulisan Sejarah</text>
+    <rect x="290" y="12" width="125" height="58" rx="6" fill="#f3e8ff" stroke="#7c3aed" stroke-width="1.5" />
+    <text x="352" y="38" fill="#6b21a8" font-size="8.5" font-weight="bold" text-anchor="middle">3. Kronologi & Epigrafi</text>
+    <text x="352" y="52" fill="#7c3aed" font-size="7.5" text-anchor="middle">Bukti Penulisan Sejarah</text>
 
-    <path d="M 415 45 L 435 45" stroke="#64748b" stroke-width="2" />
+    <path d="M 415 41 L 435 41" stroke="#64748b" stroke-width="2" />
 
-    <rect x="435" y="15" width="115" height="60" rx="6" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5" />
-    <text x="492" y="42" fill="#15803d" font-size="8.5" font-weight="bold" text-anchor="middle">4. Confidence Level</text>
-    <text x="492" y="58" fill="#16a34a" font-size="7.5" text-anchor="middle">Tinggi / Interpretatif</text>
+    <rect x="435" y="12" width="115" height="58" rx="6" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5" />
+    <text x="492" y="38" fill="#15803d" font-size="8.5" font-weight="bold" text-anchor="middle">4. Confidence Level</text>
+    <text x="492" y="52" fill="#16a34a" font-size="7.5" text-anchor="middle">Tinggi / Interpretatif</text>
   </svg>
   <div class="diagram-caption">Gambar 3: Empat Pilar Protokol Verifikasi Integritas Data Geospasial</div>
 </div>
 
 <h3>4.1 Uji Inversi Koordinat (Latitude / Longitude Flip Test)</h3>
 <p>
-  Kesalahan paling lazim yang dilakukan pemula maupun sistem AI adalah tertukarnya kolom lintang (Latitude) dan bujur (Longitude). Wilayah Negara Kesatuan Republik Indonesia berada pada batas koordinat (<em>Bounding Box</em>):
+  Wilayah Indonesia berada pada rentang batas koordinat geografis (<em>Bounding Box</em>):
 </p>
 <ul>
-  <li><strong>Latitude ($\phi$):</strong> $+6^\circ	ext{ LU}$ (Pulau Weh/Sabang) hingga $-11^\circ	ext{ LS}$ (Pulau Rote).</li>
-  <li><strong>Longitude ($\lambda$):</strong> $+95^\circ	ext{ BT}$ (Ujung barat Sumatera) hingga $+141^\circ	ext{ BT}$ (Merauke).</li>
+  <li><strong>Latitude (&phi;):</strong> Antara $+6^\circ	ext{ LU}$ (Sabang) hingga $-11^\circ	ext{ LS}$ (Rote).</li>
+  <li><strong>Longitude (&lambda;):</strong> Antara $+95^\circ	ext{ BT}$ hingga $+141^\circ	ext{ BT}$.</li>
 </ul>
 <p>
   <em>Aturan Baku: Jika nilai latitude bernilai positif di atas $6$ atau bernilai lebih dari $90$ (misal $110.36$), berarti koordinat tertukar dengan longitude! Jika tidak dikoreksi, titik akan terlempar ke Samudera Hindia atau kutub bumi.</em>
 </p>
 
-<h3>4.2 Verifikasi Toponimi Fisik vs Administrasi Modern</h3>
-<p>
-  Pencarian lokasi sejarah di peta modern seringkali keliru mengarah ke pusat kecamatan atau kantor bupati masa kini. Contoh: <em>Sunda Kelapa</em> harus diposisikan di muara pelabuhan tua Jakarta Utara (bukan Monas), dan <em>Bandar Kuno Barus</em> harus diletakkan pada situs arkeologi Makam Papan Tinggi / Lobu Tua di Tapanuli Tengah (bukan terminal bus kota).
-</p>
-
-<h3>4.3 Penentuan Indikator Kepastian Data (Confidence Level)</h3>
+<h3>4.2 Standarisasi Indikator Kepastian Data (Confidence Level)</h3>
 <table>
   <thead>
     <tr>
@@ -550,32 +564,26 @@ Tugas:
   <tbody>
     <tr>
       <td><strong>Tinggi (High)</strong></td>
-      <td>Struktur fisik bangunan cagar budaya masih berdiri utuh; koordinat diverifikasi melalui GPS geodetik / citra satelit resolusi tinggi; didukung SK Cagar Budaya Nasional.</td>
+      <td>Struktur fisik cagar budaya berdiri utuh; koordinat terverifikasi GPS geodetik / citra satelit resolusi tinggi; didukung SK Cagar Budaya.</td>
       <td>Titik solid; poligon batas definitif terverifikasi peta arsip resmi.</td>
     </tr>
     <tr>
       <td><strong>Sedang (Medium)</strong></td>
-      <td>Sisa fondasi berupa reruntuhan arkeologis ditemukan; toponimi didukung prasasti/laporan kolonial (Oudheidkundige Dienst), namun batas lingkungan luar bersifat estimasi.</td>
+      <td>Sisa reruntuhan arkeologis ditemukan; toponimi didukung prasasti/laporan arsip, namun batas lingkungan luar bersifat perkiraan.</td>
       <td>Titik solid; poligon batas diberi garis putus-putus (*dashed line*).</td>
     </tr>
     <tr>
       <td><strong>Interpretatif</strong></td>
-      <td>Hanya disebutkan dalam naskah babad/hikayat tanpa sisa arsitektur fisik yang dapat diidentifikasi secara pasti di lapangan.</td>
-      <td>Dilarang membuat batas administratif rekaan; wajib diberi label perkiraan wilayah mandala.</td>
+      <td>Disebutkan dalam naskah babad tanpa bukti sisa fisik yang utuh.</td>
+      <td>Dilarang membuat batas administratif rekaan; label perkiraan mandala.</td>
     </tr>
   </tbody>
 </table>
 
 <!-- BAGIAN V: PANDUAN DATASET MANDIRI UJIAN -->
-<div class="page-break"></div>
 <h1>Bagian V: Panduan Melampirkan Dataset Mandiri Peserta (Ujian Praktikum)</h1>
 <p>
-  Sebagai syarat kelulusan pelatihan, peserta diwajibkan menyusun dan memetakan satu dataset tematik mandiri yang relevan dengan bidang studinya (misal: <em>sebaran puskesmas dan apotek</em>, <em>sebaran peninggalan era kolonial di kota asal</em>, atau <em>sebaran destinasi ekowisata</em>).
-</p>
-
-<h3>5.1 Standar Format Berkas Spreadsheet (CSV / Excel)</h3>
-<p>
-  Peserta wajib menyusun data dalam format berkas <code>data/dataset_mandiri.csv</code> dengan struktur kolom baku sebagai berikut:
+  Peserta wajib menyusun data dalam format berkas <code>data/dataset_mandiri.csv</code> dengan struktur kolom baku:
 </p>
 
 <table>
@@ -615,127 +623,168 @@ Tugas:
       <td>https://commons.../Somba.jpg</td>
       <td>Balai Arkeologi Sulsel</td>
     </tr>
-    <tr>
-      <td><code>obj-03</code></td>
-      <td>Keraton Kasepuhan</td>
-      <td>istana</td>
-      <td>-6.7265</td>
-      <td>108.5711</td>
-      <td>1529</td>
-      <td>9999</td>
-      <td>https://commons.../Cirebon.jpg</td>
-      <td>Disbudpar Cirebon</td>
-    </tr>
   </tbody>
 </table>
 
-<h3>5.2 Instruksi Eksekusi Konversi Data pada Antigravity</h3>
-<p>
-  Setelah menyalin file CSV ke dalam direktori <code>data/</code>, peserta cukup memberikan instruksi bahasa alami berikut pada konsol asisten AI:
-</p>
+<pre><code>"Saya telah menyiapkan dataset mandiri untuk ujian praktikum di 'data/dataset_mandiri.csv'.
+Tolong validasi koordinatnya, konversikan ke 'data/sites.json' berstandar WGS84, dan integrasikan layernya ke WebGIS Leaflet lengkap dengan penanda kustom dan popup foto."</code></pre>
 
-<pre><code>"Saya telah menyiapkan dataset mandiri untuk ujian praktikum di berkas 'data/dataset_mandiri.csv'.
-Tolong lakukan audit terhadap berkas tersebut:
-1. Validasi nilai latitude dan longitude pada setiap baris data agar berada dalam Bounding Box Indonesia.
-2. Konversikan berkas CSV tersebut menjadi format 'data/sites.json' berstandar GeoJSON/WGS84.
-3. Sambungkan layer ini ke modul pemetaan Leaflet pada 'assets/js/map.js' lengkap dengan ikon penanda sesuai kategori dan popup kartu foto yang responsif."</code></pre>
-
-<!-- BAGIAN VI: PERANCANGAN UI/UX & AGENTIC CODING -->
+<!-- BAGIAN VI: PERANCANGAN UI/UX -->
+<div class="page-break"></div>
 <h1>Bagian VI: Perancangan UI & Pemrograman Otonom (Agentic Coding)</h1>
 
 <div class="diagram-box">
   <!-- SVG ILLUSTRATION 4: WIREFRAME UI MOBILE -->
-  <svg width="550" height="150" viewBox="0 0 550 150" xmlns="http://www.w3.org/2000/svg">
+  <svg width="550" height="130" viewBox="0 0 550 130" xmlns="http://www.w3.org/2000/svg">
     <!-- Smartphone Frame -->
-    <rect x="25" y="10" width="105" height="130" rx="8" fill="#ffffff" stroke="#334155" stroke-width="2" />
-    <rect x="30" y="15" width="95" height="15" fill="#0f4c3a" />
-    <text x="77" y="25" fill="#fde68a" font-size="6" text-anchor="middle">WebGIS Sebaran</text>
+    <rect x="25" y="8" width="95" height="115" rx="6" fill="#ffffff" stroke="#334155" stroke-width="1.5" />
+    <rect x="30" y="12" width="85" height="12" fill="#0f4c3a" />
+    <text x="72" y="21" fill="#fde68a" font-size="5.5" text-anchor="middle">WebGIS Sebaran</text>
     <!-- Map Canvas -->
-    <rect x="30" y="32" width="95" height="60" fill="#e2e8f0" />
-    <circle cx="55" cy="55" r="4" fill="#059669" />
-    <circle cx="85" cy="65" r="4" fill="#d97706" />
+    <rect x="30" y="26" width="85" height="52" fill="#e2e8f0" />
+    <circle cx="50" cy="45" r="3.5" fill="#059669" />
+    <circle cx="75" cy="55" r="3.5" fill="#d97706" />
     <!-- Floating Slider -->
-    <rect x="35" y="78" width="85" height="10" rx="3" fill="#ffffff" opacity="0.9" stroke="#cbd5e1" />
-    <line x1="45" y1="83" x2="110" y2="83" stroke="#0f4c3a" stroke-width="1.5" />
-    <circle cx="75" cy="83" r="2.5" fill="#d97706" />
+    <rect x="35" y="65" width="75" height="8" rx="2" fill="#ffffff" opacity="0.9" stroke="#cbd5e1" />
+    <line x1="42" y1="69" x2="100" y2="69" stroke="#0f4c3a" stroke-width="1" />
+    <circle cx="68" cy="69" r="2" fill="#d97706" />
     <!-- Bottom Sheet / Drawer -->
-    <rect x="30" y="95" width="95" height="40" rx="4" fill="#ffffff" stroke="#cbd5e1" />
-    <line x1="68" y1="98" x2="87" y2="98" stroke="#94a3b8" stroke-width="1.5" stroke-linecap="round" />
-    <rect x="35" y="103" width="20" height="20" fill="#0f172a" rx="2" />
-    <text x="60" y="110" fill="#0f4c3a" font-size="5" font-weight="bold">Masjid Demak</text>
-    <text x="60" y="118" fill="#64748b" font-size="4">Tahun: 1479 M</text>
+    <rect x="30" y="80" width="85" height="38" rx="3" fill="#ffffff" stroke="#cbd5e1" />
+    <rect x="34" y="86" width="16" height="16" fill="#0f172a" rx="2" />
+    <text x="54" y="93" fill="#0f4c3a" font-size="4.5" font-weight="bold">Masjid Demak</text>
+    <text x="54" y="100" fill="#64748b" font-size="3.5">Tahun: 1479 M</text>
 
     <!-- Legend Arrows -->
-    <path d="M 140 25 L 200 25" stroke="#0f4c3a" stroke-width="1.5" marker-end="url(#arrow)" />
-    <text x="210" y="28" fill="#1e293b" font-size="8.5" font-weight="bold">1. Header Responsif & Bilah Pencarian Cepat</text>
+    <path d="M 130 20 L 180 20" stroke="#0f4c3a" stroke-width="1.5" />
+    <text x="190" y="23" fill="#1e293b" font-size="8" font-weight="bold">1. Header Responsif & Bilah Pencarian Cepat</text>
 
-    <path d="M 140 60 L 200 60" stroke="#0f4c3a" stroke-width="1.5" />
-    <text x="210" y="63" fill="#1e293b" font-size="8.5" font-weight="bold">2. Kanvas Peta Interaktif Leaflet (Tile OpenStreetMap / CartoDB)</text>
+    <path d="M 130 50 L 180 50" stroke="#0f4c3a" stroke-width="1.5" />
+    <text x="190" y="53" fill="#1e293b" font-size="8" font-weight="bold">2. Kanvas Peta Interaktif Leaflet (OpenStreetMap / CartoDB)</text>
 
-    <path d="M 140 85 L 200 85" stroke="#0f4c3a" stroke-width="1.5" />
-    <text x="210" y="88" fill="#1e293b" font-size="8.5" font-weight="bold">3. Floating Timeline Bar (Pengatur Filter Periode Waktu Temporal)</text>
+    <path d="M 130 72 L 180 72" stroke="#0f4c3a" stroke-width="1.5" />
+    <text x="190" y="75" fill="#1e293b" font-size="8" font-weight="bold">3. Floating Timeline Bar (Filter Periode Temporal Dinamis)</text>
 
-    <path d="M 140 115 L 200 115" stroke="#0f4c3a" stroke-width="1.5" />
-    <text x="210" y="118" fill="#1e293b" font-size="8.5" font-weight="bold">4. Interactive Bottom Sheet (Drawer Detail Cagar Budaya & Foto)</text>
+    <path d="M 130 100 L 180 100" stroke="#0f4c3a" stroke-width="1.5" />
+    <text x="190" y="103" fill="#1e293b" font-size="8" font-weight="bold">4. Interactive Bottom Sheet (Drawer Detail Cagar Budaya & Foto)</text>
   </svg>
   <div class="diagram-caption">Gambar 4: Rancangan Tata Letak Wireframe Antarmuka Mobile-First WebGIS</div>
 </div>
 
-<h3>6.1 Arsitektur Modular Kode JavaScript</h3>
 <p>
-  Aplikasi dibangun tidak dalam satu berkas raksasa, melainkan modular agar mudah dipelihara dan diperbaiki:
+  Arsitektur kode dipecah secara modular: <code>assets/js/map.js</code> (manajemen Leaflet & basemap), <code>assets/js/timeline.js</code> (slider temporal & animasi), <code>assets/js/detail.js</code> (drawer informasi & foto <code>loading="lazy"</code>), dan <code>assets/js/filters.js</code> (filter kategori).
 </p>
-<ul>
-  <li><code>assets/js/map.js</code>: Mengatur inisialisasi peta Leaflet, pergeseran pusat pandang (zoom to bounding box), penanganan marker cluster, dan pergantian basemap.</li>
-  <li><code>assets/js/timeline.js</code>: Mengatur kontrol linimasa dinamis, pemutaran animasi otomatis (play/pause), dan penyaringan layer berdasarkan tahun historis.</li>
-  <li><code>assets/js/detail.js</code>: Mengelola panel informasi detail (*drawer*), penayangan foto resolusi tinggi, data silsilah penguasa, dan daftar referensi akademik.</li>
-  <li><code>assets/js/filters.js</code>: Mengatur penyaringan spasial berdasarkan kepulauan dan kategori situs.</li>
-</ul>
 
+<!-- BAGIAN VII: ZERO-MANUAL DEPLOYMENT & GITHUB AUTOMATION (POKOK UTAMA) -->
 <div class="page-break"></div>
+<h1>Bagian VII: Pilar Simplisitas — Zero-Manual Deployment & Otomasi DevOps Penuh</h1>
 
-<!-- BAGIAN VII: PUBLIKASI KE GITHUB PAGES -->
-<h1>Bagian VII: Publikasi Terbuka di GitHub Pages</h1>
-
-<div class="diagram-box">
-  <!-- SVG ILLUSTRATION 5: GITHUB DEPLOYMENT PIPELINE -->
-  <svg width="560" height="85" viewBox="0 0 560 85" xmlns="http://www.w3.org/2000/svg">
-    <rect x="10" y="15" width="115" height="55" rx="6" fill="#f8fafc" stroke="#334155" stroke-width="1.5" />
-    <text x="67" y="38" fill="#1e293b" font-size="8.5" font-weight="bold" text-anchor="middle">Komputer Lokal</text>
-    <text x="67" y="52" fill="#64748b" font-size="7.5" text-anchor="middle">Workspace Proyek</text>
-
-    <path d="M 125 42 L 155 42" stroke="#0f4c3a" stroke-width="2" />
-
-    <rect x="155" y="15" width="115" height="55" rx="6" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.5" />
-    <text x="212" y="38" fill="#166534" font-size="8.5" font-weight="bold" text-anchor="middle">Git Command</text>
-    <text x="212" y="52" fill="#15803d" font-size="7.5" text-anchor="middle">Commit & Push</text>
-
-    <path d="M 270 42 L 300 42" stroke="#0f4c3a" stroke-width="2" />
-
-    <rect x="300" y="15" width="115" height="55" rx="6" fill="#1e293b" />
-    <text x="357" y="38" fill="#ffffff" font-size="8.5" font-weight="bold" text-anchor="middle">GitHub Cloud</text>
-    <text x="357" y="52" fill="#4ade80" font-size="7.5" text-anchor="middle">Branch 'main'</text>
-
-    <path d="M 415 42 L 445 42" stroke="#0f4c3a" stroke-width="2" />
-
-    <rect x="445" y="15" width="105" height="55" rx="6" fill="#0f4c3a" />
-    <text x="497" y="38" fill="#fde68a" font-size="8.5" font-weight="bold" text-anchor="middle">GitHub Pages</text>
-    <text x="497" y="52" fill="#ffffff" font-size="7.5" text-anchor="middle">Live Website HTTPS</text>
-  </svg>
-  <div class="diagram-caption">Gambar 5: Siklus Otomasi Continuous Deployment Menggunakan GitHub Pages</div>
+<div class="callout callout-highlight">
+  <div class="callout-title">🚀 KEUNGGULAN UTAMA: TANPA DEPLOY ULANG MANUAL KE GITHUB</div>
+  Salah satu temuan terbesar dalam pelatihan ini adalah penghapusan keharusan deploy manual. Anda <strong>tidak perlu lagi menyentuh terminal Git, tidak perlu membuka halaman upload GitHub, dan tidak perlu men-deploy ulang server setiap kali ada revisi data atau bug</strong>. Seluruh proses audit kode, commit pesan deskriptif, dan pengiriman ke server GitHub dieksekusi secara otonom oleh AI Agent langsung dari percakapan.
 </div>
 
-<h3>7.1 Langkah Aktivasi Publikasi</h3>
+<div class="diagram-box">
+  <!-- SVG ILLUSTRATION 5: PERBANDINGAN ALUR KERJA DEPLOYMENT -->
+  <svg width="560" height="150" viewBox="0 0 560 150" xmlns="http://www.w3.org/2000/svg">
+    <!-- Traditional Pipeline -->
+    <rect x="10" y="10" width="540" height="58" rx="6" fill="#fef2f2" stroke="#ef4444" stroke-width="1" />
+    <text x="25" y="26" fill="#991b1b" font-size="8" font-weight="bold">A. Alur Tradisional (Banyak Friksi & Melelahkan):</text>
+    
+    <rect x="25" y="32" width="70" height="26" rx="4" fill="#ffffff" stroke="#fca5a5" />
+    <text x="60" y="48" fill="#7f1d1d" font-size="6.5" text-anchor="middle">Koding Manual</text>
+
+    <text x="102" y="48" fill="#ef4444" font-weight="bold">&rarr;</text>
+
+    <rect x="110" y="32" width="85" height="26" rx="4" fill="#ffffff" stroke="#fca5a5" />
+    <text x="152" y="48" fill="#7f1d1d" font-size="6.5" text-anchor="middle">Buka Terminal Git</text>
+
+    <text x="202" y="48" fill="#ef4444" font-weight="bold">&rarr;</text>
+
+    <rect x="210" y="32" width="85" height="26" rx="4" fill="#ffffff" stroke="#fca5a5" />
+    <text x="252" y="45" fill="#7f1d1d" font-size="6" text-anchor="middle">git add / commit</text>
+    <text x="252" y="53" fill="#7f1d1d" font-size="5.5" text-anchor="middle">(Sering Error)</text>
+
+    <text x="302" y="48" fill="#ef4444" font-weight="bold">&rarr;</text>
+
+    <rect x="310" y="32" width="105" height="26" rx="4" fill="#ffffff" stroke="#fca5a5" />
+    <text x="362" y="45" fill="#7f1d1d" font-size="6" text-anchor="middle">Buka Web GitHub</text>
+    <text x="362" y="53" fill="#7f1d1d" font-size="5.5" text-anchor="middle">(Drag & Drop Ulang)</text>
+
+    <text x="422" y="48" fill="#ef4444" font-weight="bold">&rarr;</text>
+
+    <rect x="430" y="32" width="105" height="26" rx="4" fill="#ffffff" stroke="#fca5a5" />
+    <text x="482" y="48" fill="#7f1d1d" font-size="6" text-anchor="middle">Re-deploy Manual</text>
+
+    <!-- Modern Agentic Pipeline -->
+    <rect x="10" y="78" width="540" height="62" rx="6" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.5" />
+    <text x="25" y="94" fill="#166534" font-size="8" font-weight="bold">B. Alur Modern Agentic AI (Zero-Manual Deployment):</text>
+
+    <rect x="25" y="100" width="145" height="30" rx="4" fill="#ffffff" stroke="#86efac" />
+    <text x="97" y="113" fill="#14532d" font-size="7" font-weight="bold" text-anchor="middle">1 Kalimat Instruksi AI</text>
+    <text x="97" y="123" fill="#15803d" font-size="6" text-anchor="middle">"Perbaiki & deploy ke GitHub"</text>
+
+    <text x="178" y="117" fill="#16a34a" font-weight="bold" font-size="12">&rarr;</text>
+
+    <rect x="190" y="100" width="165" height="30" rx="4" fill="#0f4c3a" />
+    <text x="272" y="113" fill="#fde68a" font-size="7" font-weight="bold" text-anchor="middle">AI Mengeksekusi Otonom</text>
+    <text x="272" y="123" fill="#ffffff" font-size="6" text-anchor="middle">Audit file, git add, commit, & push</text>
+
+    <text x="363" y="117" fill="#16a34a" font-weight="bold" font-size="12">&rarr;</text>
+
+    <rect x="375" y="100" width="160" height="30" rx="4" fill="#1e293b" />
+    <text x="455" y="113" fill="#4ade80" font-size="7" font-weight="bold" text-anchor="middle">Live Otomatis Global</text>
+    <text x="455" y="123" fill="#ffffff" font-size="6" text-anchor="middle">GitHub Pages update &lt; 60 detik</text>
+  </svg>
+  <div class="diagram-caption">Gambar 5: Transformasi Radikal Alur Deployment Konvensional Menjadi Zero-Manual Deployment</div>
+</div>
+
+<h3>7.1 Perbandingan Alur Kerja Tradisional vs Agentic AI</h3>
+<table>
+  <thead>
+    <tr>
+      <th style="width: 25%;">Aktivitas / Skenario</th>
+      <th style="width: 37%;">Metode Konvensional (Manual)</th>
+      <th style="width: 38%;">Metode Agentic AI (Otonom)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Menambah 5 Titik Data Baru</strong></td>
+      <td>Buka file JSON secara manual, atur format koma/kurung kurawal (rawan galat sintaksis), buka terminal, ketik perintah git add, commit, push.</td>
+      <td>Cukup katakan: <em>"Tolong tambahkan 5 data cagar budaya ini dan langsung update ke GitHub."</em> AI mengedit berkas dan mengeksekusi push otomatis.</td>
+    </tr>
+    <tr>
+      <td><strong>Memperbaiki Bug CSS di HP</strong></td>
+      <td>Cari file style.css baris demi baris, uji di browser, buka kembali git bash, commit ulang, push ulang.</td>
+      <td>Cukup katakan: <em>"Tombol zoom ketutupan drawer di HP, tolong naikkan posisinya dan deploy sekarang."</em> Selesai dalam 30 detik.</td>
+    </tr>
+    <tr>
+      <td><strong>Penanganan Galat Git</strong></td>
+      <td>Pengembang bingung memecahkan pesan galat terminal (merge conflict, head detached).</td>
+      <td>AI membaca output log terminal, menganalisis status repositori, dan menyelesaikan sinkronisasi branch secara otomatis.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>7.2 Konsep "Set Once, Continuous Auto-Deploy Forever"</h3>
+<p>
+  Peserta pelatihan hanya perlu melakukan aktivasi GitHub Pages <strong>satu kali saja di awal</strong> (membutuhkan waktu kurang dari 30 detik):
+</p>
 <ol>
-  <li>Pastikan seluruh berkas telah di-push ke repositori GitHub pada branch <code>main</code>.</li>
-  <li>Buka repositori Anda di browser web &rarr; Masuk ke menu <strong>Settings</strong> &rarr; Pilih bilah <strong>Pages</strong> di sebelah kiri.</li>
-  <li>Pada menu <em>Build and deployment</em> &rarr; <em>Branch</em>: pilih <code>main</code> dan direktori <code>/ (root)</code> &rarr; Klik <strong>Save</strong>.</li>
-  <li>Tunggu 60–120 detik, muat ulang halaman. Alamat situs publik Anda akan aktif pada tautan:
-    <br><code>https://[nama-pengguna].github.io/[nama-repositori]/</code>
-  </li>
+  <li>Buka repositori GitHub di browser &rarr; menu <strong>Settings</strong> &rarr; menu <strong>Pages</strong>.</li>
+  <li>Pada bilah <em>Build and deployment</em> &rarr; <em>Branch</em>: pilih <code>main</code> dan direktori <code>/ (root)</code> &rarr; Klik <strong>Save</strong>.</li>
 </ol>
+<p>
+  Setelah tombol *Save* tersebut diklik, **seluruh pekerjaan deployment Anda telah selesai untuk selamanya**. Setiap kali Anda meminta AI memprogram fitur baru, memperbaiki teks, atau memperbarui foto cagar budaya:
+</p>
+<ul>
+  <li>AI menjalankan perintah <code>git commit</code> dan <code>git push origin main</code> di latar belakang komputer Anda.</li>
+  <li>Server GitHub secara otomatis mendeteksi perubahan tersebut melalui *GitHub Actions Webhook*.</li>
+  <li>Dalam tempo 30–60 detik, alamat website publik Anda (<code>https://username.github.io/repo/</code>) otomatis terbarui dan dapat langsung diakses dari browser smartphone di seluruh dunia tanpa perlu me-refresh server atau mengunggah berkas apa pun lagi.</li>
+</ul>
 
 <!-- BAGIAN VIII: EVALUASI & RUBRIK PENILAIAN -->
+<div class="page-break"></div>
 <h1>Bagian VIII: Lembar Evaluasi & Rubrik Penilaian Ujian Praktikum</h1>
 
 <p>
@@ -775,7 +824,6 @@ Tolong lakukan audit terhadap berkas tersebut:
 </table>
 
 <!-- BAGIAN IX: GLOSARIUM & REFERENSI AKADEMIK -->
-<div class="page-break"></div>
 <h1>Bagian IX: Glosarium Istilah & Rujukan Akademik</h1>
 
 <h3>Glosarium Geospasial & Web Development:</h3>
@@ -784,6 +832,7 @@ Tolong lakukan audit terhadap berkas tersebut:
   <li><strong>WGS84 (EPSG:4326):</strong> Datum geodesi standar global yang digunakan oleh GPS dan Leaflet.js dengan unit derajat desimal.</li>
   <li><strong>GeoJSON:</strong> Format standar berbasis JSON untuk menyandikan aneka struktur data geografis (Point, LineString, Polygon, FeatureCollection).</li>
   <li><strong>Lat/Lng Inversion:</strong> Galat fatal akibat tertukarnya urutan lintang (Latitude) dan bujur (Longitude), menyebabkan fitur spasial berpindah posisi ke belahan bumi lain.</li>
+  <li><strong>Zero-Manual Deployment:</strong> Pola pengembangan web di mana pengembang tidak perlu lagi menjalankan perintah terminal Git atau mengunggah berkas secara manual ke server hosting; seluruh siklus kompilasi dan pengiriman kode ditangani secara mandiri oleh Agentic AI.</li>
   <li><strong>Native Lazy Loading:</strong> Atribut peramban (<code>loading="lazy"</code>) yang menunda pengunduhan gambar hingga pengguna menggulir layar mendekati posisi gambar tersebut, sangat krusial untuk menghemat memori perangkat seluler.</li>
   <li><strong>Agentic AI:</strong> Model kecerdasan buatan tingkat lanjut yang memiliki kapabilitas menggunakan alat (*tool use*), mengeksekusi perintah terminal, membaca basis kode, dan memperbaiki galat pemrograman secara mandiri.</li>
 </ul>
