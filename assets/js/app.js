@@ -299,6 +299,26 @@ window.App = (function() {
       });
     }
 
+    // 4b. Compass Rose / Arah Mata Angin (Di Atas Bar Tahun)
+    const compassRoseBtn = document.getElementById('map-compass-rose');
+    if (compassRoseBtn) {
+      compassRoseBtn.addEventListener('click', () => {
+        const svgEl = compassRoseBtn.querySelector('.compass-svg');
+        if (svgEl) {
+          svgEl.classList.remove('spinning');
+          void svgEl.offsetWidth; // Force CSS reflow to trigger spin animation
+          svgEl.classList.add('spinning');
+          setTimeout(() => svgEl.classList.remove('spinning'), 700);
+        }
+        if (window.HistoryMap && window.HistoryMap.resetView) {
+          HistoryMap.resetView();
+        }
+        if (window.FilterManager && window.FilterManager.setRegion) {
+          FilterManager.setRegion('Semua', false);
+        }
+      });
+    }
+
     // 4. Modal: Sources
     const sourcesBtn = document.getElementById('btn-open-sources-modal');
     const sourcesModal = document.getElementById('modal-sources');
